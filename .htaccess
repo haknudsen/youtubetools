@@ -1,0 +1,3 @@
+AddType application/x-httpd-php56 .php
+Action application/x-httpd-php56 /cgi-sys/php56.cgi
+

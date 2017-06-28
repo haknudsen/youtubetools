@@ -1,0 +1,17 @@
+body{font-size: 18px}
+.paging-button {
+  visibility: hidden;
+}
+
+.button-container {
+  clear: both;
+}
+.video-list{font-size: 1.5em;line-height: 1.5em;list-style: none}
+#privacyStatus{width: 120px;margin: 0 auto;padding: 4px}
+.center{text-align: center;margin: 0 auto}
+#decode{height:300px;width: 80%; margin: 0 auto}
+.content{width: 90%;margin: 0 auto}
+footer{margin-top: 20px}
+.p-2{padding: .2em;}
+.m-1{margin: 1em auto}
+#spin{margin: 15px auto 10px;width: 96%;min-height: 180px}
