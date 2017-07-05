@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<title>Create a Playlist</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="my_uploads.css">
+</head>
+<body>
+<section class="jumbotron">
+  <div class="container text-center">
+    <h1>Create a Playlist</h1>
+    <div id="login-container" class="pre-auth">This application requires access to your YouTube account.
+      Please <a href="#" id="login-link">authorize</a> to continue. </div>
+    <div id="buttons" class="m-1">
+      <label class="m-1">Playlist Name:
+        <input id="playlist-name" type="text"/>
+      </label>
+      <br>
+      <label class="m-1">Playlist Description:
+      </label>
+        <textarea id="playlist-description-new"></textarea>
+      <br>
+      <button id="playlist-button" disabled onclick="createPlaylist()">Create a new Private Playlist</button>
+      <br>
+      <label class="m-1">Current Playlist Id:
+        <input id="playlist-id" value="" type="text"/>
+      </label>
+      <br>
+      <label class="m-1">Video Id:
+        <input id="video-id" value="FdOqULUaPtI" type="text"/>
+      </label>
+      <button onclick="addVideoToPlaylist()">Add to current playlist</button>
+    </div>
+    <h3>Playlist: <span id="playlist-title"></span></h3>
+    <p id="playlist-description"></p>
+    <div id="playlist-container"> <span id="status">No Videos</span> </div>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
+  <script src="auth.js"></script> 
+  <script src="playlist_updates.js"></script> 
+  <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
+</section>
+<footer id="footer"></footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
+<script>
+    $(document).ready(function(){
+        $("#footer").load("includes/footer.html")
+    });
+</script>
+</body>
+</html>
