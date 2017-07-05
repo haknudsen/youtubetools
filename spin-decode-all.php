@@ -24,6 +24,7 @@
         $d = [];
 
         echo( spin( $content ) );
+
         function spin( $s ) {
             preg_match_all( '#\{(.+?)\}#is', $s, $match );
             if ( empty( $match ) ) {
@@ -38,40 +39,48 @@
                 $parts[ $count ] = explode( "|", $t );
             }
             for ( $phrase = 0; $phrase < $count; $phrase++ ) {
-                for ( $length = 0; $length < count( $parts[ $phrase ] ); $length++ ) {
-                }
-        $a = $parts[0];
-        $b = $parts[1];
-        $c = $parts[2];
-        $d = $parts[3];
+
+                $a = $parts[ 0 ];
+                $b = $parts[ 1 ];
+                $c = $parts[ 2 ];
+                $d = $parts[ 3 ];
+                $e = $parts[ 4 ];
             }
-        $final = [];
-        $x = 0;
-        for ( $counta = 0; $counta < count( $a ); $counta++ ) {
-            $final[ $counta ] = $a[ $counta ];
-            for ( $countb = 0; $countb < count( $b ); $countb++ ) {
-                if(count($c)>0){
-                for($countc =0;$countc < count($c);$countc++){
-                    if(count($d)>0){
-                    for($countd = 0; $countd > count($d);$countd++){
-                        echo($final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . '<br>');
-                        ++$x;
-                    }
-                    }else{
-                        echo($final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . '<br>');
-                        ++$x;
-                        
+            echo($e[1]);
+            $final = [];
+            $x = 0;
+            for ( $counta = 0; $counta < count( $a ); $counta++ ) {
+                $final[ $counta ] = $a[ $counta ];
+                for ( $countb = 0; $countb < count( $b ); $countb++ ) {
+                    if ( count( $c ) > 0 ) {
+                        for ( $countc = 0; $countc < count( $c ); $countc++ ) {
+                            if ( count( $d ) > 0 ) {
+                                for ( $countd = 0; $countd < count( $d ); $countd++ ) {
+                                    if(count($e)>0) {
+                                        for ( $counte = 0; $counte < count( $e ); $counte++ ) {
+                                        echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . ' ' . $e[ $counte ]. '<br>' );
+                                        ++$x;
+                                        }
+                                    }else{
+                                        echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . '<br>' );
+                                        ++$x;
+                                    }
+                                }
+                                } else {
+                                    echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . '<br>' );
+                                    ++$x;
+                            }
+                        }
+                        } else {
+                            echo( $final[ $counta ] . ' ' . $b[ $countb ] . '<br>' );
+                            ++$x;
+                        }
                     }
                 }
-                }else{
-                        echo($final[ $counta ] . ' ' . $b[ $countb ] . '<br>');
-                        ++$x;
-                }
+                echo( '<br>Total Combinations: ' . $x );
+                echo( '<br>phrase: ' . $phrase );
             }
-        }
-        echo('<br>Total Combinations: ' . $x);
-        }
-        ?>
+            ?>
 
     </section>
     <footer id="footer"></footer>
