@@ -22,6 +22,7 @@
         $b = [];
         $c = [];
         $d = [];
+        $e = [];
 
         echo( spin( $content ) );
 
@@ -46,7 +47,6 @@
                 $d = $parts[ 3 ];
                 $e = $parts[ 4 ];
             }
-            echo($e[1]);
             $final = [];
             $x = 0;
             for ( $counta = 0; $counta < count( $a ); $counta++ ) {
@@ -78,7 +78,7 @@
                     }
                 }
                 echo( '<br>Total Combinations: ' . $x );
-                echo( '<br>phrase: ' . $phrase );
+                echo( '<br>phrases: ' . $phrase );
             }
             ?>
 
