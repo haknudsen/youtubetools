@@ -19,12 +19,12 @@ function requestUserUploadsPlaylistId() {
         part: 'contentDetails'
     });
     request.execute(function (response) {
-            $('#playlistClick').click(function () {
-                playlist = $('#playlist').val();
-                playlistId = playlist.replace("https://www.youtube.com/playlist?list=","");
-                requestVideoPlaylist(playlistId);
-            });
-        
+        $('#playlistClick').click(function () {
+            var playlist = $('#playlist').val();
+            var playlistId = playlist.replace("https://www.youtube.com/playlist?list=", "");
+            requestVideoPlaylist(playlistId);
+        });
+
     });
 }
 
@@ -57,23 +57,23 @@ function requestVideoPlaylist(playlistId, pageToken) {
             $.each(playlistItems, function (index, item) {
                 displayResult(item.snippet);
             });
-        createSpin();
+            createList();
         } else {
             $('#video-container').html('Sorry you have no uploaded videos');
         }
     });
 }
-function createSpin(){
+
+function createList() {
     "use strict";
-    var spin = "{";
-    for(var l=0;l<videoList.length;l++){
-        if(l>0){
-        spin +="|" + videoList[l];
-        }else{
-        spin += videoList[l];
+    var spin = "";
+    for (var l = 0; l < videoList.length; l++) {
+        if (l > 0) {
+            spin += "|" + videoList[l];
+        } else {
+            spin += videoList[l];
         }
     }
-    spin += "}";
     $('#spin').text(spin);
 }
 // Create a listing for a video.
@@ -98,17 +98,17 @@ function previousPage() {
     "use strict";
     requestVideoPlaylist(playlistId, prevPageToken);
 }
- $('#sendClick').click(function () {
-                console.log(videoList);
-				$.ajax( {
-					url: "save.php",
-					data: {
-						videoList:videoList,
-                        playlistId:playlistId
-					},
-					type: 'post',
-					success: function ( data ) {
-						$( '#idList' ).html( data );
-					}
-				} );
+$('#sendClick').click(function () {
+    console.log(videoList);
+    $.ajax({
+        url: "save.php",
+        data: {
+            videoList: videoList,
+            playlistId: playlistId
+        },
+        type: 'post',
+        success: function (data) {
+            $('#idList').html(data);
+        }
+    });
 });
