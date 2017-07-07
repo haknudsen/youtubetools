@@ -46,20 +46,20 @@ function addVideoToPlaylist() {
     addToPlaylist($('#video-id').val());
 }
 
-<<<<<<< HEAD
-// Add a video to a playlist. The "startPos" and "endPos" values let you
-// start and stop the video at specific times when the video is played as
-// part of the playlist. However, these values are not set in this example.
-function addToPlaylist(id, startPos, endPos) {
+// Add a video to a playlist. 
+function addToPlaylist(id) {
     var listId = $('#playlist-id').val();
     var list = id.split("|");
-    var request;
     for (var i = 0; i < list.length; i++) {
         var details = {
             videoId: list[i],
             kind: 'youtube#video'
         };
-        request = gapi.client.youtube.playlistItems.insert({
+        sendRequest(details);
+    }
+    function sendRequest(details){
+        console.log(details);
+        gapi.client.youtube.playlistItems.insert({
             part: 'snippet',
             resource: {
                 snippet: {
@@ -68,32 +68,6 @@ function addToPlaylist(id, startPos, endPos) {
                 }
             }
         });
+        $('#status').html('<pre>' + JSON.stringify(details) + '</pre>');
     }
-    request.execute(function (response) {
-        $('#status').html('<pre>' + JSON.stringify(response.result) + '</pre>');
-        console.log(details);
-    });
-=======
-// Add a video to a playlist. 
-function addToPlaylist(id) {
-    var listId = $('#playlist-id').val();
-    var list = id.split("|");
-    for (var i = 0; i < list.length; i++) {
-        sendRequest(list[i]);
-    }
-
-    function sendRequest(details) {
-        console.log(details);
-        buildApiRequest('POST',
-            '/youtube/v3/playlistItems', {
-                'part': 'snippet',
-                'onBehalfOfContentOwner': ''
-            }, {
-                'snippet.playlistId': 'PL4Uv4nlnj1Gapl0GjGl30tfxRe2bA1W7e',
-                'snippet.resourceId.kind': 'youtube#video',
-                'snippet.resourceId.videoId': 'M7FIvfx5J10',
-                'snippet.position': ''
-            });
-    }
->>>>>>> youtubetools/master
 }
