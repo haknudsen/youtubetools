@@ -20,7 +20,7 @@ border: 1px solid #aaa; }
 .create { margin: auto; display: block; background: #333; color: #fff; padding: 4px; border-radius: 2px; border: 1px solid #aaa; font-size: 110%; }
 #playlistLink { margin: auto; display: block; }
 #playlist-description-new { margin: 1rem auto; width: 80%; height: 120px}
-#video-id{height: 200px}
+#video-id{height: 200px;width: 1000px}
 input{width: 100%}
 hr{border-color: #373f40}
 pre{height: 120px}
