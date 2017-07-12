@@ -16,6 +16,9 @@
     <div class="row m-1">
     <button id="execute-request-button" class="not-authorized">Authorize</button>
     </div>
+    <div class="row m-1">
+    <div id="channel"></div>
+    </div>
     <label class="m-1">Current Playlist Id:
       <input id="playlist-id" type="text"/>
     </label>
@@ -79,6 +82,11 @@ function setSigninStatus() {
 	isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
 	// Toggle button text and displayed statement based on current auth status.
 	if (isAuthorized) {
+        var channelInfo = buildApiRequest('GET',
+                '/youtube/v3/channels',
+                {'mine': 'true',
+                 'part': 'snippet'});
+        console.log(' '+channelInfo);
         $('#execute-request-button').removeClass("not-authorized");
         $('#execute-request-button').addClass("authorized");
 	}
@@ -177,6 +185,7 @@ function addToPlaylist(id) {
     },3000);
 	}
 } 
+    
     </script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script> 
 <script async defer src = "https://apis.google.com/js/api.js"
