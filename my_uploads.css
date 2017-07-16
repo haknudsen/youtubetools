@@ -28,3 +28,4 @@ pre{height: 120px}
 .not-authorized{border-color: red}
 .safe{color: rgba(0,172,14,1.00)}
 .over{color: #FF0004}
+.divider{border-right: thin solid #e7e7e7;height: 70px}
