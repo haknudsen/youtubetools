@@ -26,3 +26,5 @@ hr{border-color: #373f40}
 pre{height: 120px}
 .authorized{border-color: lawngreen}
 .not-authorized{border-color: red}
+.safe{color: rgba(0,172,14,1.00)}
+.over{color: #FF0004}

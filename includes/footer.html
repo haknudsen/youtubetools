@@ -1,13 +1,17 @@
 <div class="navbar navbar-default my-nav">
   <nav class="container-fluid">
-    <div class="container"> 
+    <div class="container">
       <ul class="nav navbar-nav text-center center-block">
         <li><a href="playlist.html">Playlist</a> </li>
         <li><a href="privacy.php">Privacy<br>
           Settings</a> </li>
-        <li><a href="titles.php">Titles</a> </li>
-        <li><a href="channel-list.php">Channel List</a> </li>
-        <li><a href="tags.html">tags</a> </li>
+        <li role="presentation" class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> Counters <span class="caret"></span> </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="count-character.html">Characters</a> </li>
+            <li><a href="count-words.html">Words</a> </li>
+          </ul>
+        </li>
+        <li><a href="tags.html">Tags</a> </li>
         <li><a href="thumbnails.php">Thumbnails</a> </li>
         <li class="divider"></li>
         <li><a href="playlist-create.html">Create Playlist</a> </li>
@@ -23,6 +27,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="index.html">Home</a> </li>
+      </ul>
     </div>
   </nav>
 </div>
