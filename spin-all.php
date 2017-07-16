@@ -17,7 +17,7 @@
     <section class="jumbotron">
         <div class="container-fluid text-center">
             <h2>Spin All</h2>
-        <h3 class="text-danger">Only works for 2 to 5 phrases</h3>
+        <h3 class="text-danger">Only works for 2 to 7 phrases</h3>
             <form id="content" action="spin-decode-all.php">
                 <div class="form-group">
                     <textarea id="decode" name="decode"></textarea>

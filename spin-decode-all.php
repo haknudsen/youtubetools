@@ -23,6 +23,7 @@
         $c = [];
         $d = [];
         $e = [];
+        $f = [];
 
         echo( spin( $content ) );
 
@@ -46,6 +47,8 @@
                 $c = $parts[ 2 ];
                 $d = $parts[ 3 ];
                 $e = $parts[ 4 ];
+                $f = $parts[ 5 ];
+                $g = $parts[ 6 ];
             }
             $final = [];
             $x = 0;
@@ -56,37 +59,48 @@
                         for ( $countc = 0; $countc < count( $c ); $countc++ ) {
                             if ( count( $d ) > 0 ) {
                                 for ( $countd = 0; $countd < count( $d ); $countd++ ) {
-                                    if(count($e)>0) {
+                                    if ( count( $e ) > 0 ) {
                                         for ( $counte = 0; $counte < count( $e ); $counte++ ) {
-                                        echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . ' ' . $e[ $counte ]. '<br>' );
-                                        ++$x;
+                                            if ( count( $f ) > 0 ) {
+                                                for ( $countf = 0; $countf < count( $f ); $countf++ ) {
+                                                    if ( count( $g ) > 0 ) {
+                                                        for ( $countg = 0; $countg < count( $g ); $countg++ ) {
+                                                            echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . ' ' . $e[ $counte ] . $f[ $countf ] . $g[ $countg ] . '<br>' );
+                                                            ++$x;
+                                                        }
+                                                    } else {
+                                                        echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . ' ' . $e[ $counte ] . $f[ $countf ] . '<br>' );
+                                                        ++$x;
+                                                    }
+                                                }
+                                            } else {
+                                                echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . ' ' . $e[ $counte ] . '<br>' );
+                                                ++$x;
+                                            }
                                         }
-                                    }else{
+                                    } else {
                                         echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . '<br>' );
                                         ++$x;
                                     }
                                 }
-                                } else {
-                                    echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . '<br>' );
-                                    ++$x;
+                            } else {
+                                echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . '<br>' );
+                                ++$x;
                             }
                         }
-                        } else {
-                            echo( $final[ $counta ] . ' ' . $b[ $countb ] . '<br>' );
-                            ++$x;
-                        }
+                    } else {
+                        echo( $final[ $counta ] . ' ' . $b[ $countb ] . '<br>' );
+                        ++$x;
                     }
                 }
-                echo( '<br>Total Combinations: ' . $x );
-                echo( '<br>phrases: ' . $phrase );
             }
-            ?>
+            echo( '<br>Total Combinations: ' . $x );
+            echo( '<br>phrases: ' . $phrase );
+        }
+        ?>
 
     </section>
     <footer id="footer"></footer>
-    <script type="text/javascript" src="auth.js"></script>
-    <script type="text/javascript" src="my_uploads.js"></script>
-    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
     <script>
         $( document ).ready( function () {
             $( "#footer" ).load( "includes/footer.html" )
