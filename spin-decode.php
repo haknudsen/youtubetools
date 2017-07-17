@@ -15,7 +15,7 @@
     <section class="container">
         <h1 class="text-center">My YouTube Tools</h1>
     </section>
-    <section  class="container alert-success p-2 m-1 text-center">
+    <section  class="container-fluid alert-success p-2 m-1 text-center">
         <?php
         $content = $_GET[ 'decode' ];
 /**
@@ -42,7 +42,10 @@ class Spintax
 }
 /* EXAMPLE USAGE */
 $spintax = new Spintax();
-echo $spintax->process($content);
+        $text = '<textarea id="decode">';
+        $text .= $spintax->process($content);
+        $text .= '</textarea>';
+        echo($text);
 ?>
 
     </section>

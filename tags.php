@@ -70,8 +70,15 @@ if ( $client->getAccessToken() ) {
     try {
 
         // REPLACE this value with the video ID of the video being updated.
-        $videoId = $_POST[ 'video' ];
-
+        $str = $_POST[ 'video' ];
+        if(($pos = strpos($str, '=')) !== false)
+        {
+            $videoId = trim(substr($str, strrpos($str, '=') + 1));
+        }
+        else
+        {
+           $videoId = $str;
+        }
         // Call the API's videos.list method to retrieve the video resource.
         $listResponse = $youtube->videos->listVideos( "snippet",
             array( 'id' => $videoId ) );
@@ -86,8 +93,7 @@ if ( $client->getAccessToken() ) {
             $videoSnippet = $video[ 'snippet' ];
             $tags = $videoSnippet[ 'tags' ];
 
-            $htmlBody .= "<h1>Tags for: ";
-            $htmlBody .= $videoId + "</h1>";
+            $htmlBody .= "<h1>Tags for: " . $videoId . "</h1>";
             $htmlBody .= "<h2>" . $video[ 'snippet' ][ 'title' ] . "</h2><ul>";
             $htmlBody .= "<br>";
             for ( $i = 0; $i < count( $tags ); $i++ ) {
@@ -141,7 +147,7 @@ END;
 <html>
 
 <head>
-    <title>Video Updated</title>
+    <title>Video Tags</title>
     <link rel="stylesheet" href="../dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="my_uploads.css">
 </head>
@@ -154,34 +160,16 @@ END;
             </div>
         </div>
     </section>
-<footer class="navbar navbar-default my-nav">
-        <nav class="">
-            <div class="container">
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="playlist.html">Playlist</a> </li>
-                        <li><a href="index.html">Home</a> </li>
-                        <li><a href="privacy.php">Privacy</a> </li>
-                        <li><a href="titles.php">Titles</a> </li>
-                        <li><a href="channel-list.php">Channel List</a> </li>
-                        <li class="divider"></li>
-                        <li><a href="tags.html">tags</a> </li>
-                        <li class="divider"></li>
-                        <li><a href="edit-description.php">Description</a> </li>
-<li><a href="thumbnails.php">Thumbnails</a> </li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.html">Home</a> </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
-    </footer>
+    <footer id="footer"></footer>
+    <script type="text/javascript" src="auth.js"></script>
+    <script type="text/javascript" src="my_uploads.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <script>
+        $( document ).ready( function () {
+            $( "#footer" ).load( "includes/footer.html" )
+        } )
+    </script>
+    
 </body>
 
 </html>
