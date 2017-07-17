@@ -52,6 +52,7 @@
             }
             $final = [];
             $x = 0;
+            echo($a[0]);
             for ( $counta = 0; $counta < count( $a ); $counta++ ) {
                 $final[ $counta ] = $a[ $counta ];
                 for ( $countb = 0; $countb < count( $b ); $countb++ ) {
@@ -65,31 +66,31 @@
                                                 for ( $countf = 0; $countf < count( $f ); $countf++ ) {
                                                     if ( count( $g ) > 0 ) {
                                                         for ( $countg = 0; $countg < count( $g ); $countg++ ) {
-                                                            echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . ' ' . $e[ $counte ] . $f[ $countf ] . $g[ $countg ] . '<br>' );
+                                                            echo( $final[ $counta ] . $b[ $countb ] . $c[ $countc ] . $d[ $countd ] . $e[ $counte ] . $f[ $countf ] . $g[ $countg ] . '<br>' );
                                                             ++$x;
                                                         }
                                                     } else {
-                                                        echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . ' ' . $e[ $counte ] . $f[ $countf ] . '<br>' );
+                                                        echo( $final[ $counta ] . $b[ $countb ] . $c[ $countc ] . $d[ $countd ] . $e[ $counte ] . $f[ $countf ] . '<br>' );
                                                         ++$x;
                                                     }
                                                 }
                                             } else {
-                                                echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . ' ' . $e[ $counte ] . '<br>' );
+                                                echo( $final[ $counta ] . $b[ $countb ] . $c[ $countc ] . $d[ $countd ] . $e[ $counte ] . '<br>' );
                                                 ++$x;
                                             }
                                         }
                                     } else {
-                                        echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . ' ' . $d[ $countd ] . '<br>' );
+                                        echo( $final[ $counta ] . $b[ $countb ] . $c[ $countc ] . $d[ $countd ] . '<br>' );
                                         ++$x;
                                     }
                                 }
                             } else {
-                                echo( $final[ $counta ] . ' ' . $b[ $countb ] . ' ' . $c[ $countc ] . '<br>' );
+                                echo( $final[ $counta ] . $b[ $countb ] . $c[ $countc ] . '<br>' );
                                 ++$x;
                             }
                         }
                     } else {
-                        echo( $final[ $counta ] . ' ' . $b[ $countb ] . '<br>' );
+                        echo( $final[ $counta ] . $b[ $countb ] . '<br>' );
                         ++$x;
                     }
                 }
