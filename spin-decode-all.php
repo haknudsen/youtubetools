@@ -52,7 +52,6 @@
             }
             $final = [];
             $x = 0;
-            echo($a[0]);
             for ( $counta = 0; $counta < count( $a ); $counta++ ) {
                 $final[ $counta ] = $a[ $counta ];
                 for ( $countb = 0; $countb < count( $b ); $countb++ ) {
