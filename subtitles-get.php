@@ -126,6 +126,10 @@ if ($client->getAccessToken()) {
   // and submits the form. Otherwise, the page displays the form above.
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $videoId = isset($_POST['videoId']) ? $_POST['videoId'] : null;
+        if(strrpos($videoId, '=') > 0)
+        {
+            $videoId = trim(substr($videoId, strrpos($videoId, '=') + 1));
+        }
     $captionFile = isset($_FILES['captionFile']) ? $_FILES['captionFile']['tmp_name'] : null;
     $captionName = isset($_POST['captionName']) ? $_POST['captionName'] : null;
     $captionLanguage = isset($_POST['captionLanguage']) ? $_POST['captionLanguage'] : null;
@@ -413,11 +417,8 @@ function deleteCaption(Google_Service_YouTube $youtube, $captionId, &$htmlBody) 
         <h1 class="text-center">My YouTube Tools</h1>
     </section>
     <section  class="container-fluid alert-success p-2 m-1 text-center">
-    <div class="container"><?=$htmlBody?></div>
-      </section>
-      <section class="alert alert-danger">
-          <?=$captionResouce?>
-      </section>
+  <?=$htmlBody?>
+    </section>
 </body>
 </html>
 
