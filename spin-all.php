@@ -17,7 +17,8 @@
     <section class="jumbotron">
         <div class="container-fluid text-center">
             <h2>Spin All</h2>
-        <h3 class="text-danger">Only works for 2 to 7 phrases</h3>
+            <h3 class="text-danger">Only works for 2 to 7 phrases</h3>
+            <button type="button" id="spaces" class="btn btn-default">Click for No Spaces</button>
             <form id="content" action="spin-decode-all.php">
                 <div class="form-group">
                     <textarea id="decode" name="decode"></textarea>
@@ -26,12 +27,17 @@
             </form>
         </div>
     </section>
-    
+
     <footer id="footer"></footer>
     <script type="text/javascript" src="auth.js"></script>
     <script type="text/javascript" src="my_uploads.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
     <script>
+        $( '#spaces' ).click( function () {
+            $( '#content' ).attr( 'action', 'spin-decode-all-no-spaces.php' );
+            $( '#spaces' ).css('color','#00FF00');
+        } );
+
         $( document ).ready( function () {
             $( "#footer" ).load( "includes/footer.html" )
         } )
