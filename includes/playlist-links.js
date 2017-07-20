@@ -114,7 +114,7 @@ function displayResult(videoSnippet) {
     if (embed) {
         info = '<img src="//img.youtube.com/vi/' + videoURL;
     } else {
-        info = '//img.youtube.com/vi/' + videoURL;
+        info = 'https://img.youtube.com/vi/' + videoURL;
     }
     if (max) {
         info += '/maxresdefault.jpg';
