@@ -2,7 +2,10 @@
 var playlistId, nextPageToken, prevPageToken;
 var i = 0;
 var videoList = Array();
-
+var list = Array();
+var max = true;
+var embed = false;
+var anchor = false;
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
     "use strict";
@@ -20,18 +23,45 @@ function requestUserUploadsPlaylistId() {
     });
     request.execute(function (response) {
         $('#playlistClick').click(function () {
-            var playlist = $('#playlist').val();
-            var playlistId = playlist.replace("https://www.youtube.com/playlist?list=", "");
-            requestVideoPlaylist(playlistId);
+            getPlaylist();
         });
-
     });
 }
+$('#maxresdefault').click(function () {
+    embed = false;
+    anchor = false;
+    max = true;
+    getPlaylist();
+});
+$('#mqdefault').click(function () {
+    embed = false;
+    anchor = false;
+    max = false;
+    getPlaylist();
+});
+$('#anchor-image').click(function () {
+    max = false;
+    embed = true;
+    anchor = true;
+    getPlaylist();
+});
+$('#embed-image').click(function () {
+    max = false;
+    embed = true;
+    anchor = false;
+    getPlaylist();
+});
 
+function getPlaylist() {
+    $('#link-container').val('');
+    var playlist = $('#playlist').val();
+    var playlistId = playlist.replace("https://www.youtube.com/playlist?list=", "");
+    requestVideoPlaylist(playlistId);
+}
 // Retrieve the list of videos in the specified playlist.
 function requestVideoPlaylist(playlistId, pageToken) {
     "use strict";
-    $('#video-container').html('');
+    $('#link-container').html('');
     var requestOptions = {
         playlistId: playlistId,
         part: 'snippet',
@@ -47,7 +77,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
         nextPageToken = response.result.nextPageToken;
         var nextVis = nextPageToken ? 'visible' : 'hidden';
         $('#next-button').css('visibility', nextVis);
-        prevPageToken = response.result.prevPageToken
+        prevPageToken = response.result.prevPageToken;
         var prevVis = prevPageToken ? 'visible' : 'hidden';
         $('#prev-button').css('visibility', prevVis);
 
@@ -57,33 +87,46 @@ function requestVideoPlaylist(playlistId, pageToken) {
             $.each(playlistItems, function (index, item) {
                 displayResult(item.snippet);
             });
-            createList();
+         $('#link-container').val(list);
+            $('#link-container').val($('#link-container').val().replace(/,/g, '\n'));
         } else {
-            $('#video-container').html('Sorry you have no uploaded videos');
+            $('#link-container').html('Sorry you have no uploaded videos');
         }
     });
 }
 
-function createList() {
-    "use strict";
-    var spin = "{";
-    for (var l = 0; l < videoList.length; l++) {
-        if (l > 0) {
-            spin += "|" + videoList[l];
-        } else {
-            spin += videoList[l];
-        }
-    }
-    spin += "}";
-    $('#spin').text(spin);
-}
+
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
-    var title = videoSnippet.title;
-    var videoId = videoSnippet.resourceId.videoId;
-    var videoURL = videoId;
-    $('#video-container').append('https://www.youtube.com/watch?v=' + videoURL + '<br />');
+    var title = String(videoSnippet.title),
+        videoId = videoSnippet.resourceId.videoId,
+        videoURL = videoId,
+        info = "";
+    title = title.replace(/\|/g, ' ').trim();
+    title = title.replace('  ', ' ').trim();
+    title = title.replace(/\n/g, '').trim();
+    console.log('title'+title);
+    console.log(anchor + '- ' + embed + '-' + max);
+    if(anchor){
+        info = '<a href="https://www.youtube.com/watch?v=' + videoURL + '"><img src="//img.youtube.com/vi/' + videoURL  + '/mqdefault.jpg" alt="' + title + '"/></a>';
+    }else{
+    if (embed) {
+        info = '<img src="//img.youtube.com/vi/' + videoURL;
+    } else {
+        info = '//img.youtube.com/vi/' + videoURL;
+    }
+    if (max) {
+        info += '/maxresdefault.jpg';
+    } else {
+        info += '/mqdefault.jpg';
+    }
+    if (embed) {
+        info += '" alt="' + title + '"/>';
+    }
+        
+    }
+    list[i] = info;
     videoList[i] = videoURL;
     i++;
 }
@@ -99,17 +142,3 @@ function previousPage() {
     "use strict";
     requestVideoPlaylist(playlistId, prevPageToken);
 }
-$('#sendClick').click(function () {
-    console.log(videoList);
-    $.ajax({
-        url: "save.php",
-        data: {
-            videoList: videoList,
-            playlistId: playlistId
-        },
-        type: 'post',
-        success: function (data) {
-            $('#idList').html(data);
-        }
-    });
-});
