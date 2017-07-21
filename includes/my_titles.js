@@ -19,6 +19,7 @@ function requestUserUploadsPlaylistId() {
     request.execute(function (response) {
             $('#playlistClick').click(function () {
                 playlistId = $('#playlist').val();
+                 playlistId = playlistId.replace("https://www.youtube.com/playlist?list=", "");
                 requestVideoPlaylist(playlistId);
             });
         
@@ -62,10 +63,12 @@ function requestVideoPlaylist(playlistId, pageToken) {
 
 // Create a listing for a video.
 function displayResult(videoSnippet) {
+    "use strict";
     var title = videoSnippet.title;
     var videoId = videoSnippet.resourceId.videoId;
     var videoURL = videoId;
-//    $('#video-container').append(title + '<br />');
+    title = title.toString();
+    title = title.replace(/\|/g, "<br />");
     $('#video-container').append( title + '<br />');
     videoList[i] = videoURL;
     i++;
@@ -80,17 +83,3 @@ function nextPage() {
 function previousPage() {
     requestVideoPlaylist(playlistId, prevPageToken);
 }
- $('#sendClick').click(function () {
-                console.log(videoList);
-				$.ajax( {
-					url: "save.php",
-					data: {
-						videoList:videoList,
-                        playlistId:playlistId
-					},
-					type: 'post',
-					success: function ( data ) {
-						$( '#idList' ).html( data );
-					}
-				} );
-});

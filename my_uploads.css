@@ -43,3 +43,6 @@ background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), 
 .my-nav { margin: 0 }
 #link-container{min-height: 800px}
 #rss-feeds{min-height: 400px}
+.form{max-width: 50%;margin: 0 auto}
+.form .btn{width: 50%}
+.keywordSpin{min-height: 240px;width: 100%}

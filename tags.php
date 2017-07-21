@@ -71,13 +71,10 @@ if ( $client->getAccessToken() ) {
 
         // REPLACE this value with the video ID of the video being updated.
         $str = $_POST[ 'video' ];
-        if(($pos = strpos($str, '=')) !== false)
-        {
-            $videoId = trim(substr($str, strrpos($str, '=') + 1));
-        }
-        else
-        {
-           $videoId = $str;
+        if ( ( $pos = strpos( $str, '=' ) ) !== false ) {
+            $videoId = trim( substr( $str, strrpos( $str, '=' ) + 1 ) );
+        } else {
+            $videoId = $str;
         }
         // Call the API's videos.list method to retrieve the video resource.
         $listResponse = $youtube->videos->listVideos( "snippet",
@@ -92,14 +89,18 @@ if ( $client->getAccessToken() ) {
             $video = $listResponse[ 0 ];
             $videoSnippet = $video[ 'snippet' ];
             $tags = $videoSnippet[ 'tags' ];
-
-            $htmlBody .= "<h1>Tags for: " . $videoId . "</h1>";
-            $htmlBody .= "<h2>" . $video[ 'snippet' ][ 'title' ] . "</h2><ul>";
             $htmlBody .= "<br>";
+            $keywordSpin = "{";
             for ( $i = 0; $i < count( $tags ); $i++ ) {
-                $htmlBody .= $tags[ $i ];
+                $thisTag = $tags[ $i ];
+                $htmlBody .= $thisTag;
                 $htmlBody .= "<br>";
+                if ( $i > 0 ) {
+                    $keywordSpin .= "|";
+                }
+                $keywordSpin .= $thisTag;
             }
+            $keywordSpin .= "}";
 
 
             // Set the tags array for the video snippet
@@ -121,7 +122,7 @@ if ( $client->getAccessToken() ) {
     }
 
     $_SESSION[ $tokenSessionKey ] = $client->getAccessToken();
-} elseif ( $OAUTH2_CLIENT_ID == 'REPLACE_ME' ) {
+} elseif ( $OAUTH2_CLIENT_ID == '90875073625-ff3ntj9kehegnbamaoace12q6lo37v6u.apps.googleusercontent.com' ) {
     $htmlBody = <<<END
   <h2>Client Credentials Required</h2>
   <p>
@@ -144,34 +145,51 @@ END;
 ?>
 <!doctype html>
 <html>
+
 <head>
-<title>Get Tags</title>
+    <title>Tags from Video</title>
 </head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="my_uploads.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="my_uploads.css">
 </head>
 
 <body>
-    <section class="container">
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <?=$htmlBody?>
+    <section class="jumbotron">
+        <div class="page-header text-center">
+            <h1>Tags for: <?=$videoId?></h1>
+            <h2>
+                <?=$video[ 'snippet' ][ 'title' ]?>
+            </h2>
+            <h3>Keywords: <?=$i?></h3>
+        </div>
+        <div class="alert alert-info">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-2 col-sm-offset-1">
+                   <h3 class="text-center">Keywords</h3>
+                        <?=$htmlBody?>
+                    </div>
+                    <div class="col-sm-8">
+                       <h3 class="text-center">Keywords in Spin Format</h3>
+                        <textarea class="keywordSpin"><?=$keywordSpin?></textarea>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <footer id="footer"></footer>
     <script type="text/javascript" src="auth.js"></script>
-    <script type="text/javascript" src="my_uploads.js"></script>
+    <script type="text/javascript" src="includes/my_uploads.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
     <script>
         $( document ).ready( function () {
             $( "#footer" ).load( "includes/footer.html" )
         } )
     </script>
-    
+
 </body>
 
 </html>

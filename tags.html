@@ -9,26 +9,31 @@
 <link rel="stylesheet" type="text/css" href="my_uploads.css">
 </head>
 <body>
-<section class="container">
+<div id="header"></div>
+<section class="jumbotron">
   <h1 class="text-center">Get Tags</h1>
-  <div id="login-container" class="pre-auth"> This application requires access to your YouTube account.  Please <a href="#" id="login-link">authorize</a> to continue. </div>
+  <div id="login-container" class="pre-auth text-center"> This application requires access to your YouTube account.  Please <a href="#" id="login-link">authorize</a> to continue. </div>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <form method="post" action="tags.php">
-        <input type="text" name="video" id="video" style="width: 340px">
-        <input type="submit" value="Submit" id="submit" class="btn btn-default" />
+      <form method="post" action="tags.php" class="form text-center">
+        <div class="form-group">
+          <label>Enter Video ID:</label>
+            <input type="text" name="video" id="video">
+        </div>
+        <input type="submit" value="Submit" id="submit" class="btn btn-green" />
       </form>
     </div>
   </div>
 </section>
 <footer id="footer"></footer>
-<script type="text/javascript" src="auth.js"></script>
-<script type="text/javascript" src="my_uploads.js"></script>
-<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+<script type="text/javascript" src="auth.js"></script> 
+<script type="text/javascript" src="includes/my_uploads.js"></script> 
+<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
 <script>
     $( document ).ready( function () {
         $( "#footer" ).load( "includes/footer.html" )
-    } )
+    } );
+        $("#header").load("includes/footer.html");
 </script>
 </body>
 </html>

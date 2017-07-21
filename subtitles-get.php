@@ -425,7 +425,7 @@ function deleteCaption(Google_Service_YouTube $youtube, $captionId, &$htmlBody) 
     </section>
     <footer id="footer"></footer>
     <script type="text/javascript" src="auth.js"></script>
-    <script type="text/javascript" src="my_uploads.js"></script>
+    <script type="text/javascript" src="includes/my_uploads.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
     <script>
         $( document ).ready( function () {
