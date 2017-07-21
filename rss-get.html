@@ -13,8 +13,12 @@
 <div id="header"></div>
 <section class="container">
   <button id="execute-request-button" class="btn btn-danger center-block">Authorize</button>
-  <textarea id="rss-feeds"></textarea>
+  <input type="text" id="channel" class="m-1">
+  <button id="start" class="btn btn-purple center-block text-uppercase">GET RSS feeds</button>
 </section>
+<div class="alert alert-link">
+  <textarea id="rss-feeds"></textarea>
+</div>
 <footer id="footer"></footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
 <script type="text/javascript" src="auth.js"></script> 
@@ -32,7 +36,7 @@
 
   // Global variables for GoogleAuth object, auth status.
   var GoogleAuth;
-
+    var channel;
   /**
    * Load the API's client and auth2 modules.
    * Call the initClient function after the modules load.
@@ -132,9 +136,9 @@
         var playlistID = [];
         while(response.items[x]){
         playlistID[x] = 'https://www.youtube.com/feeds/videos.xml?playlist_id=' + response.items[x].id;
-            console.log(x+'-' + playlistID[x]);
             x++;
         }
+        playlistID[x] = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + channel;
         $('#rss-feeds').val(playlistID);
         $('#rss-feeds').val($('#rss-feeds').val().replace(/,/g, '\n'));
     });
@@ -167,13 +171,16 @@
   function defineRequest() {
     // See full sample for buildApiRequest() code, which is not 
 // specific to a particular youtube or youtube method.
-
+      $('#start').click(function(){
+          channel = $('#channel').val();
+          channel = channel.replace("https://www.youtube.com/playlist?list=", "");
 buildApiRequest('GET',
                 '/youtube/v3/playlists',
-                {'channelId': 'UCKV3naM0IK4nbPDoUR1Yu7A',
+                {'channelId': channel,
                  'maxResults': '25',
                  'part': 'snippet'});
 
+  });
   }
 </script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
