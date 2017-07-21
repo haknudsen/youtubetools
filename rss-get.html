@@ -143,7 +143,9 @@
             x++;
         }
         playlistID[x] = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + channel;
-        playlistID[x+1] = 'https://www.youtube.com/feeds/videos.xml?user=' + response.items[0].snippet.channelTitle
+        try
+        {playlistID[x+1] = 'https://www.youtube.com/feeds/videos.xml?user=' + response.items[0].snippet.channelTitle;
+        } catch(err){}
         $('#rss-feeds').val(playlistID);
         $('#rss-feeds').val($('#rss-feeds').val().replace(/,/g, '\n'));
     });
