@@ -11,9 +11,13 @@
 </head>
 <body>
 <div id="header"></div>
-<section class="container">
+<section class="jumbotron text-center">
+ <h1>Get RSS Feeds from Channel ID</h1>
+ <h2>Ender the channel ID</h2>
+ <h3>Found at <a href="https://www.youtube.com/account_advanced" title="Advanced" target="_blank">https://www.youtube.com/account_advanced</a> under account information</h3>
+ <h2>Returns the RSS feeds for the Channel, user, and all the playlists</h2>
   <button id="execute-request-button" class="btn btn-danger center-block">Authorize</button>
-  <input type="text" id="channel" class="m-1">
+  <input type="text" id="channel" class="m-1 container">
   <button id="start" class="btn btn-purple center-block text-uppercase">GET RSS feeds</button>
 </section>
 <div class="alert alert-link">
@@ -139,6 +143,7 @@
             x++;
         }
         playlistID[x] = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + channel;
+        playlistID[x+1] = 'https://www.youtube.com/feeds/videos.xml?user=' + response.items[0].snippet.channelTitle
         $('#rss-feeds').val(playlistID);
         $('#rss-feeds').val($('#rss-feeds').val().replace(/,/g, '\n'));
     });
