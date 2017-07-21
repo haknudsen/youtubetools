@@ -41,4 +41,4 @@ background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), 
 .buttons-mine h3 { font-weight: 700; text-shadow: 1px 1px rgba(255, 255, 255, 0.8) }
 .buttons-mine .btn { font-size: 20px; font-weight: 600 }
 .my-nav { margin: 0 }
-#link-container{min-height: 800px}
+#link-container,#rss-feeds{min-height: 800px}
