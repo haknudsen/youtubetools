@@ -44,5 +44,6 @@ background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), 
 #link-container{min-height: 800px}
 #rss-feeds{min-height: 400px}
 .form{max-width: 50%;margin: 0 auto}
-.form .btn{width: 50%}
+.form .btn{max-width: 200px;margin:20px auto}
 .keywordSpin{min-height: 240px;width: 100%}
+.box{border: #2970D9 medium solid}

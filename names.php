@@ -126,7 +126,7 @@ END;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="https://www.websitetalkingheads.com/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="https://www.websitetalkingheads.com/css/examples.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="my_uploads.css">
+    <link rel="stylesheet" type="text/css" href="css/my_uploads.css">
 </head>
 
 <body>
