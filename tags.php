@@ -33,8 +33,8 @@ session_start();
  * <https://developers.google.com/youtube/v3/guides/authentication>
  * Please ensure that you have enabled the YouTube Data API for your project.
  */
-$OAUTH2_CLIENT_ID = '90875073625-s9gk56m4dq235b7vcq986jfa4qrbgmqq.apps.googleusercontent.com';
-$OAUTH2_CLIENT_SECRET = 'WAUktIUEHgamJdgVAIfMjqBe';
+$OAUTH2_CLIENT_ID = '90875073625-ff3ntj9kehegnbamaoace12q6lo37v6u.apps.googleusercontent.com';
+$OAUTH2_CLIENT_SECRET = '1jNNC7gKdhMML1CwVCeyBoZN';
 
 
 $client = new Google_Client();
@@ -70,8 +70,12 @@ if ( $client->getAccessToken() ) {
     try {
 
         // REPLACE this value with the video ID of the video being updated.
-        $videoId = $_POST[ 'video' ];
-
+        $str = $_POST[ 'video' ];
+        if ( ( $pos = strpos( $str, '=' ) ) !== false ) {
+            $videoId = trim( substr( $str, strrpos( $str, '=' ) + 1 ) );
+        } else {
+            $videoId = $str;
+        }
         // Call the API's videos.list method to retrieve the video resource.
         $listResponse = $youtube->videos->listVideos( "snippet",
             array( 'id' => $videoId ) );
@@ -85,15 +89,18 @@ if ( $client->getAccessToken() ) {
             $video = $listResponse[ 0 ];
             $videoSnippet = $video[ 'snippet' ];
             $tags = $videoSnippet[ 'tags' ];
-
-            $htmlBody .= "<h1>Tags for: ";
-            $htmlBody .= $videoId + "</h1>";
-            $htmlBody .= "<h2>" . $video[ 'snippet' ][ 'title' ] . "</h2><ul>";
             $htmlBody .= "<br>";
+            $keywordSpin = "{";
             for ( $i = 0; $i < count( $tags ); $i++ ) {
-                $htmlBody .= $tags[ $i ];
+                $thisTag = $tags[ $i ];
+                $htmlBody .= $thisTag;
                 $htmlBody .= "<br>";
+                if ( $i > 0 ) {
+                    $keywordSpin .= "|";
+                }
+                $keywordSpin .= $thisTag;
             }
+            $keywordSpin .= "}";
 
 
             // Set the tags array for the video snippet
@@ -115,14 +122,7 @@ if ( $client->getAccessToken() ) {
     }
 
     $_SESSION[ $tokenSessionKey ] = $client->getAccessToken();
-} elseif ( $OAUTH2_CLIENT_ID == 'REPLACE_ME' ) {
-    $htmlBody = <<<END
-  <h2>Client Credentials Required</h2>
-  <p>
-    You need to set <code>\$OAUTH2_CLIENT_ID</code> and
-    <code>\$OAUTH2_CLIENT_ID</code> before proceeding.
-  <p>
-END;
+
 } else {
     // If the user hasn't authorized the app, initiate the OAuth flow
     $state = mt_rand();
@@ -136,52 +136,53 @@ END;
 END;
 }
 ?>
-
 <!doctype html>
 <html>
 
 <head>
-    <title>Video Updated</title>
-    <link rel="stylesheet" href="../dist/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="my_uploads.css">
+    <title>Tags from Video</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/my_uploads.css">
 </head>
 
 <body>
-    <section class="container">
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <?=$htmlBody?>
+    <section class="jumbotron">
+        <div class="page-header text-center">
+            <h1>Tags for: <?=$videoId?></h1>
+            <h2>
+                <?=$video[ 'snippet' ][ 'title' ]?>
+            </h2>
+            <h3>Keywords: <?=$i?></h3>
+        </div>
+        <div class="alert alert-info">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-2 col-sm-offset-1">
+                   <h3 class="text-center">Keywords</h3>
+                        <?=$htmlBody?>
+                    </div>
+                    <div class="col-sm-8">
+                       <h3 class="text-center">Keywords in Spin Format</h3>
+                        <textarea class="keywordSpin"><?=$keywordSpin?></textarea>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-<footer class="navbar navbar-default my-nav">
-        <nav class="">
-            <div class="container">
+    <footer id="footer"></footer>
+    <script type="text/javascript" src="auth.js"></script>
+    <script type="text/javascript" src="includes/my_uploads.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <script>
+        $( document ).ready( function () {
+            $( "#footer" ).load( "includes/footer.html" )
+        } )
+    </script>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="playlist.html">Playlist</a> </li>
-                        <li><a href="index.html">Home</a> </li>
-                        <li><a href="privacy.php">Privacy</a> </li>
-                        <li><a href="titles.php">Titles</a> </li>
-                        <li><a href="channel-list.php">Channel List</a> </li>
-                        <li class="divider"></li>
-                        <li><a href="tags.html">tags</a> </li>
-                        <li class="divider"></li>
-                        <li><a href="edit-description.php">Description</a> </li>
-<li><a href="thumbnails.php">Thumbnails</a> </li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.html">Home</a> </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
-    </footer>
 </body>
 
 </html>
