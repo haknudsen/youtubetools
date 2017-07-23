@@ -17,31 +17,20 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <input type="text" name="playlist" id="playlist" style="width: 800px;margin: 5px auto">
-      <div class="row">
-        <div class="col-md-6">
+      <div class="row  text-capitalize center">
           <h3 class="text-center">Text Anchors</h3>
           <div class="row">
-            <div class="col-sm-6">
-              <button type="button" class="btn btn-green text-capitalize center" id="mqdefault">From Title</button>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-green" id="anchor-title">Anchor on Title</button>
             </div>
-            <div class="col-sm-6">
-              <button type="button" class="btn btn-green text-capitalize center" id="maxresdefault">From Tags</button>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-orange" id="anchor-tags">Anchor From Tags</button>
             </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row">
-            <h3 class="text-center">Image Anchors</h3>
-            <div class="col-sm-6">
-              <button type="button" class="btn btn-blue text-capitalize center" id="embed-image">Embed Image</button>
-            </div>
-            <div class="col-sm-6">
-              <button type="button" class="btn btn-blue text-capitalize center" id="anchor-image">Anchor on Thumbnail</button>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-purple" id="anchor-image">Anchor on Thumbnail</button>
             </div>
           </div>
-        </div>
       </div>
-      <button type="button" class="btn btn-default center-block" id="playlistClick">click</button>
     </div>
   </div>
   <div class="button-container">
@@ -50,12 +39,13 @@
   </div>
 </section>
 <section class="alert alert-success">
+  <textarea id="spintax"></textarea>
   <textarea id="link-container"></textarea>
 </section>
 <footer id="footer"></footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
 <script type="text/javascript" src="auth.js"></script> 
-<script type="text/javascript" src="includes/playlist-links.js"></script> 
+<script type="text/javascript" src="includes/playlist-anchors.js"></script> 
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
 <script>
     $(document).ready(function(){

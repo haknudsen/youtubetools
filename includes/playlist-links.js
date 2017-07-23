@@ -1,17 +1,14 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken;
-var i = 0;
-var videoList = Array();
-var list = Array();
-var max = true;
-var embed = false;
-var anchor = false;
-var maxjpg = '/maxresdefault.jpg';
-var mqjpg = '/mqdefault.jpg';
-var embedImg = '<img src="//img.youtube.com/vi/';
-var imgLnk = 'https://img.youtube.com/vi/';
-var title;
-            var spin;
+var playlistId, nextPageToken, prevPageToken, i = 0,
+    videoList = Array(),
+    list = Array(),
+    max = true,
+    embed = false,
+    maxjpg = '/maxresdefault.jpg',
+    mqjpg = '/mqdefault.jpg',
+    anchor = '<a href="https://www.youtube.com/watch?v=',
+    image = '<img src="//img.youtube.com/vi/';
+
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
     "use strict";
@@ -28,28 +25,14 @@ function requestUserUploadsPlaylistId() {
         part: 'contentDetails'
     });
 }
-$('#maxresdefault').click(function () {
-    embed = false;
-    anchor = false;
-    max = true;
+$('#anchor-title').click(function () {
+    
     getPlaylist();
 });
-$('#mqdefault').click(function () {
-    embed = false;
-    anchor = false;
-    max = false;
-    getPlaylist();
-});
-$('#anchor-image').click(function () {
-    max = false;
-    embed = true;
-    anchor = true;
+$('#anchor-tags').click(function () {
     getPlaylist();
 });
 $('#embed-image').click(function () {
-    max = false;
-    embed = true;
-    anchor = false;
     getPlaylist();
 });
 
@@ -84,28 +67,25 @@ function requestVideoPlaylist(playlistId, pageToken) {
 
         var playlistItems = response.result.items;
         if (playlistItems) {
-            if (embed) {
-                spin = embedImg;
-            } else {
-                spin = imgLnk;
-            }
-            spin += "{";
             $.each(playlistItems, function (index, item) {
-                if (index > 0) {
-                    spin += "|";
-                } 
                 displayResult(item.snippet);
             });
             $('#link-container').val(list);
             $('#link-container').val($('#link-container').val().replace(/,/g, '\n'));
+            var spin = 'https://img.youtube.com/vi/';
+            spin += "{";
+            for (var l = 0; l < videoList.length; l++) {
+                if (l > 0) {
+                    spin += "|" + videoList[l];
+                } else {
+                    spin += videoList[l];
+                }
+            }
             spin += "}";
             if (max) {
                 spin += maxjpg;
             } else {
                 spin += mqjpg;
-            }
-            if (embed) {
-                spin += '" alt="' + title + '"/>';
             }
             $('#spintax').val(spin);
         } else {
@@ -118,45 +98,17 @@ function requestVideoPlaylist(playlistId, pageToken) {
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
-    title = String(videoSnippet.title);
-    var videoId = videoSnippet.resourceId.videoId,
+    var title = String(videoSnippet.title),
+        videoId = videoSnippet.resourceId.videoId,
         videoURL = videoId,
         info = "";
     title = title.replace(/\|/g, ' ').trim();
     title = title.replace('  ', ' ').trim();
     title = title.replace(/\n/g, '').trim();
-    if (anchor) {
-        info = '<a href="https://www.youtube.com/watch?v=' + videoURL + '"><img src="//img.youtube.com/vi/' + videoURL + mqjpg + ' alt="' + title + '"/></a>';
-    } else {
-        if (embed) {
-            info = embedImg + videoURL;
-        } else {
-            info = imgLnk + videoURL;
-        }
-        if (max) {
-            info += maxjpg;
-        } else {
-            info += mqjpg;
-        }
-        if (embed) {
-            info += '" alt="' + title + '"/>';
-        }
-
-    }
+    info = anchor + videoURL + '">';
+    info += image + videoURL + mqjpg;
+    info += '" alt="' + title + '"/>';
     list[i] = info;
-    spin +=  videoURL;
+    videoList[i] = videoURL;
     i++;
-}
-
-
-// Retrieve the next page of videos in the playlist.
-function nextPage() {
-    "use strict";
-    requestVideoPlaylist(playlistId, nextPageToken);
-}
-
-// Retrieve the previous page of videos in the playlist.
-function previousPage() {
-    "use strict";
-    requestVideoPlaylist(playlistId, prevPageToken);
 }

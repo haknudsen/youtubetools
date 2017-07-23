@@ -1,13 +1,14 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken;
-var i = 0;
-var videoList = Array();
-var list = Array();
-var max = true;
-var embed = false;
-var anchor = false;
-var maxjpg = '/maxresdefault.jpg';
-var mqjpg= '/mqdefault.jpg';
+var playlistId, nextPageToken, prevPageToken, i = 0,
+    videoList = Array(),
+    list = Array(),
+    max = true,
+    embed = false,
+    maxjpg = '/maxresdefault.jpg',
+    mqjpg = '/mqdefault.jpg',
+    anchor = '<a href="https://www.youtube.com/watch?v=',
+    image = '<img src="//img.youtube.com/vi/';
+
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
     "use strict";
@@ -24,28 +25,14 @@ function requestUserUploadsPlaylistId() {
         part: 'contentDetails'
     });
 }
-$('#maxresdefault').click(function () {
-    embed = false;
-    anchor = false;
-    max = true;
+$('#anchor-title').click(function () {
+    
     getPlaylist();
 });
-$('#mqdefault').click(function () {
-    embed = false;
-    anchor = false;
-    max = false;
-    getPlaylist();
-});
-$('#anchor-image').click(function () {
-    max = false;
-    embed = true;
-    anchor = true;
+$('#anchor-tags').click(function () {
     getPlaylist();
 });
 $('#embed-image').click(function () {
-    max = false;
-    embed = true;
-    anchor = false;
     getPlaylist();
 });
 
@@ -95,11 +82,11 @@ function requestVideoPlaylist(playlistId, pageToken) {
                 }
             }
             spin += "}";
-        if (max) {
-            spin += maxjpg;
-        } else {
-            spin += mqjpg;
-        }
+            if (max) {
+                spin += maxjpg;
+            } else {
+                spin += mqjpg;
+            }
             $('#spintax').val(spin);
         } else {
             $('#link-container').html('Sorry you have no uploaded videos');
@@ -118,38 +105,10 @@ function displayResult(videoSnippet) {
     title = title.replace(/\|/g, ' ').trim();
     title = title.replace('  ', ' ').trim();
     title = title.replace(/\n/g, '').trim();
-    if (anchor) {
-        info = '<a href="https://www.youtube.com/watch?v=' + videoURL + '"><img src="//img.youtube.com/vi/' + videoURL + mqjpg +' alt="' + title + '"/></a>';
-    } else {
-        if (embed) {
-            info = '<img src="//img.youtube.com/vi/' + videoURL;
-        } else {
-            info = 'https://img.youtube.com/vi/' + videoURL;
-        }
-        if (max) {
-            info += maxjpg;
-        } else {
-            info += mqjpg;
-        }
-        if (embed) {
-            info += '" alt="' + title + '"/>';
-        }
-
-    }
+    info = anchor + videoURL + '">';
+    info += image + videoURL + mqjpg;
+    info += '" alt="' + title + '"/>';
     list[i] = info;
     videoList[i] = videoURL;
     i++;
-}
-
-
-// Retrieve the next page of videos in the playlist.
-function nextPage() {
-    "use strict";
-    requestVideoPlaylist(playlistId, nextPageToken);
-}
-
-// Retrieve the previous page of videos in the playlist.
-function previousPage() {
-    "use strict";
-    requestVideoPlaylist(playlistId, prevPageToken);
 }
