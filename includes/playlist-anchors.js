@@ -3,11 +3,11 @@ var playlistId, nextPageToken, prevPageToken, i = 0,
     videoList = Array(),
     list = Array(),
     max = true,
-    embed = false,
+    embed,
     maxjpg = '/maxresdefault.jpg',
     mqjpg = '/mqdefault.jpg',
     anchor = '<a href="https://www.youtube.com/watch?v=',
-    image = '<img src="//img.youtube.com/vi/';
+    image = '<img src="https://img.youtube.com/vi/';
 
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
@@ -26,13 +26,18 @@ function requestUserUploadsPlaylistId() {
     });
 }
 $('#anchor-title').click(function () {
-    
+    "use strict";
+    embed = 'title';
     getPlaylist();
 });
 $('#anchor-tags').click(function () {
+    "use strict";
+    embed = 'tags';
     getPlaylist();
 });
-$('#embed-image').click(function () {
+$('#anchor-image').click(function () {
+    "use strict";
+    embed = 'image';
     getPlaylist();
 });
 
@@ -106,8 +111,18 @@ function displayResult(videoSnippet) {
     title = title.replace('  ', ' ').trim();
     title = title.replace(/\n/g, '').trim();
     info = anchor + videoURL + '">';
-    info += image + videoURL + mqjpg;
-    info += '" alt="' + title + '"/>';
+    switch (embed) {
+        case 'title':
+            info += title;
+            break;
+        case 'tags':
+            info += title;
+            break;
+        case 'image':
+            info += image + videoURL + mqjpg + '" alt="' + title + '"/>';
+            break;
+    }
+    info += '</a>';
     list[i] = info;
     videoList[i] = videoURL;
     i++;

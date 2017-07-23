@@ -32,18 +32,14 @@ $('#maxresdefault').click(function () {
     embed = false;
     anchor = false;
     max = true;
+    console.log('maxresdefault');
     getPlaylist();
 });
 $('#mqdefault').click(function () {
     embed = false;
     anchor = false;
+    console.log('mqdefault');
     max = false;
-    getPlaylist();
-});
-$('#anchor-image').click(function () {
-    max = false;
-    embed = true;
-    anchor = true;
     getPlaylist();
 });
 $('#embed-image').click(function () {
