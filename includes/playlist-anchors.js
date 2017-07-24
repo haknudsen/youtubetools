@@ -42,6 +42,7 @@ $('#anchor-image').click(function () {
 });
 
 function getPlaylist() {
+    "use strict";
     $('#link-container').val('');
     var playlist = $('#playlist').val();
     var playlistId = playlist.replace("https://www.youtube.com/playlist?list=", "");
@@ -75,8 +76,10 @@ function requestVideoPlaylist(playlistId, pageToken) {
             $.each(playlistItems, function (index, item) {
                 displayResult(item.snippet);
             });
-            $('#link-container').val(list);
-            $('#link-container').val($('#link-container').val().replace(/,/g, '\n'));
+            var $link = $('#link-container');
+            $link.val(list);
+            $link.val($('#link-container').val().replace(/,/g, '\n'));
+            $link.autoresize();
             var spin = 'https://img.youtube.com/vi/';
             spin += "{";
             for (var l = 0; l < videoList.length; l++) {
@@ -93,6 +96,8 @@ function requestVideoPlaylist(playlistId, pageToken) {
                 spin += mqjpg;
             }
             $('#spintax').val(spin);
+            $('#spintax').autoresize();
+            $('#playlistID').val(playlistId);
         } else {
             $('#link-container').html('Sorry you have no uploaded videos');
         }
@@ -127,3 +132,10 @@ function displayResult(videoSnippet) {
     videoList[i] = videoURL;
     i++;
 }
+$.fn.extend({
+    autoresize: function () {
+        $(this).on('change keyup keydown paste cut', function () {
+            $(this).height(0).height(this.scrollHeight);
+        }).change();
+    }
+});
