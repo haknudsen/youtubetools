@@ -18,6 +18,26 @@ function changeText() {
         myText = getText();
         changeText(myText.toLowerCase());
     });
+    $('#convert-html').click(function(){
+        myText = getText();
+        myText = myText.replace(/&lt;/g,"<")
+		   .replace(/&gt;/g,">")
+		   .replace(/&amp;/g,"&")
+		   .replace(/&#039;/g,"'")
+		   .replace(/&#034;/g,'"')
+		   .replace(/&#39;/g,"'")
+		   .replace(/&#34;/g,'"')
+		   .replace(/&quot;/g,'"')
+		   .replace(/&rsquo;/g,"'");
+        
+        changeText(myText);
+    });
+    $('#convert-br').click(function(){
+        console.log('Hit');
+        myText = getText();
+        myText = myText.replace(/<br>/g,"/n");
+        changeText(myText);
+    });
     $('#case-upper').click(function () {
         myText = getText();
         changeText(myText.toUpperCase());
