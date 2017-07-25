@@ -41,25 +41,25 @@ $response = curl_exec( $ch );
               <button type="button" class="btn btn-blue" id="anchor-title">Anchor on Title</button>
             </div>
             <div class="col-sm-4">
-              <button type="button" class="btn btn-orange" id="anchor-tags">Anchor From Tags</button>
+              <button type="button" class="btn btn-orange" id="anchor-description">Anchor From Description</button>
             </div>
             <div class="col-sm-4">
               <button type="button" class="btn btn-purple" id="anchor-image">Anchor on Thumbnail</button>
             </div>
           </div>
       </div>
+    </div>
+  </div>
+</section>
+  <div class="alert alert-info">
       <div class="text-center">
          <form action="includes/pastebin-login.php">
           <button type="submit" class="btn btn-green">Log in to Paste Bin</button>
          </form>
       </div>
-    </div>
-  </div>
-  <div class="button-container">
     <button id="prev-button" class="paging-button" onclick="previousPage();">Previous Page</button>
     <button id="next-button" class="paging-button" onclick="nextPage();">Next Page</button>
   </div>
-</section>
 <section class="alert alert-success">
       <div class="text-center">
          <form action="includes/pastebin-send.php">
@@ -76,8 +76,8 @@ $response = curl_exec( $ch );
 <footer id="footer"></footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
 <script type="text/javascript" src="auth.js"></script> 
-<script type="text/javascript" src="includes/playlist-anchors.js"></script> 
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
+<script type="text/javascript" src="includes/playlist-anchors.js"></script> 
 <script>
     $(document).ready(function(){
         $("#footer").load("includes/footer.html");

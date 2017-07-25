@@ -85,8 +85,9 @@ function removeEmptyParams(params) {
 
 function executeRequest(request) {
     request.execute(function (response) {
-        $('#tags').val(response.items[0].snippet.tags);
-        $('#tags').autoresize();
+        var myTags = response.items[0].snippet.tags
+        console.log(myTags);
+        return myTags;
     });
 }
 
@@ -111,19 +112,12 @@ function buildApiRequest(requestMethod, path, params, properties) {
     executeRequest(request);
 }
 /***** END BOILERPLATE CODE *****/
-function defineRequest(vID) {
+function defineRequest(id) {
     // See full sample for buildApiRequest() code, which is not
     // specific to a particular youtube or youtube method.
     buildApiRequest('GET',
         '/youtube/v3/videos', {
-            'id': vID,
+            'id': id,
             'part': 'snippet'
         });
 }
-$.fn.extend({
-    autoresize: function () {
-        $(this).on('change keyup keydown paste cut', function () {
-            $(this).height(0).height(this.scrollHeight);
-        }).change();
-    }
-});

@@ -30,9 +30,9 @@ $('#anchor-title').click(function () {
     embed = 'title';
     getPlaylist();
 });
-$('#anchor-tags').click(function () {
+$('#anchor-description').click(function () {
     "use strict";
-    embed = 'tags';
+    embed = 'description';
     getPlaylist();
 });
 $('#anchor-image').click(function () {
@@ -111,6 +111,7 @@ function displayResult(videoSnippet) {
     var title = String(videoSnippet.title),
         videoId = videoSnippet.resourceId.videoId,
         videoURL = videoId,
+        description = String(videoSnippet.description),
         info = "";
     title = title.replace(/\|/g, ' ').trim();
     title = title.replace('  ', ' ').trim();
@@ -120,8 +121,8 @@ function displayResult(videoSnippet) {
         case 'title':
             info += title;
             break;
-        case 'tags':
-            info += title;
+        case 'description':
+            info += description.split('.')[0];
             break;
         case 'image':
             info += image + videoURL + mqjpg + '" alt="' + title + '"/>';
