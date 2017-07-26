@@ -113,9 +113,7 @@ function displayResult(videoSnippet) {
         videoURL = videoId,
         description = String(videoSnippet.description),
         info = "";
-    title = title.replace(/\|/g, ' ').trim();
-    title = title.replace('  ', ' ').trim();
-    title = title.replace(/\n/g, '').trim();
+    title = fixTitle(title);
     info = anchor + videoURL + '">';
     switch (embed) {
         case 'title':
@@ -132,6 +130,12 @@ function displayResult(videoSnippet) {
     list[i] = info;
     videoList[i] = videoURL;
     i++;
+}
+function fixTitle(title){
+    "use strict";
+    title = title.toString();
+    title = title.replace(/,/g, ' ').trim();
+    return title.replace(/\|/g, '');
 }
 $.fn.extend({
     autoresize: function () {

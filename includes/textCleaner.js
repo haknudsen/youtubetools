@@ -32,27 +32,12 @@ function changeText() {
         myText = getText();
         myText = myText.replace(/\n/g,"");
         myText = myText.replace(/\r/g,"");
-        console.log('hit ');
         changeText(myText.trim());
     });
     //-------------------------------------Case
     $('#case-lower').click(function () {
         myText = getText();
         changeText(myText.toLowerCase());
-    });
-    $('#convert-html').click(function () {
-        myText = getText();
-        myText = myText.replace(/&lt;/g, "<")
-            .replace(/&gt;/g, ">")
-            .replace(/&amp;/g, "&")
-            .replace(/&#039;/g, "'")
-            .replace(/&#034;/g, '"')
-            .replace(/&#39;/g, "'")
-            .replace(/&#34;/g, '"')
-            .replace(/&quot;/g, '"')
-            .replace(/&rsquo;/g, "'");
-
-        changeText(myText);
     });
     $('#convert-br').click(function () {
         console.log('Hit');
@@ -92,6 +77,13 @@ function changeText() {
     });
     ///----------------------------------HTML
 
+    $('#hyperlinks').click(function () {
+        myText = getText();
+        str = '<a href="' + myText;
+        str += '">' + myText;
+        str += '</a>';
+        changeText(str);
+    });
     $('#remove-html').click(function () {
         myText = getText().replace(/(<([^>]+)>)/ig, "");
         str = myText.replace(/(\r\n|\n|\r)/gm, "");
@@ -100,6 +92,20 @@ function changeText() {
     });
     //---------------------------------convert
 
+    $('#convert-html').click(function () {
+        myText = getText();
+        myText = myText.replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&amp;/g, "&")
+            .replace(/&#039;/g, "'")
+            .replace(/&#034;/g, '"')
+            .replace(/&#39;/g, "'")
+            .replace(/&#34;/g, '"')
+            .replace(/&quot;/g, '"')
+            .replace(/&rsquo;/g, "'");
+
+        changeText(myText);
+    });
     $('#convert-special').click(function () {
         myText = getText().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, ' ');
         changeText(myText.trim());
