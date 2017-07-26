@@ -3,7 +3,7 @@ var nextPageToken, prevPageToken, i = 0,
     videoList = Array(),
     list = Array(),
     embed,
-    anchor = '(a href="https://www.youtube.com/watch?v=';
+    anchor = 'https://www.youtube.com/watch?v=';
 
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
@@ -89,7 +89,8 @@ function displayResult(videoSnippet) {
         description = String(videoSnippet.description),
         info = "";
     title = fixTitle(title);
-    info = anchor + videoURL + ')[';
+    description = fixDescription(description);
+    info = '[';
     switch (embed) {
         case 'title':
             info += title;
@@ -98,7 +99,8 @@ function displayResult(videoSnippet) {
             info += description.split('.')[0];
             break;
     }
-    info += ']';
+    info += ']('
+    info += anchor + videoURL + ')';
     list[i] = info;
     videoList[i] = videoURL;
     i++;
@@ -108,6 +110,12 @@ function fixTitle(title){
     title = title.toString();
     title = title.replace(/,/g, ' ').trim();
     return title.replace(/\|/g, '');
+}
+function fixDescription(description){
+    "use strict";
+    description = description.split('\n');
+    console.log('d- '+description);
+    return description[0];
 }
 $.fn.extend({
     autoresize: function () {

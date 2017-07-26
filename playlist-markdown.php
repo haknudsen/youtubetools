@@ -37,14 +37,11 @@ $response = curl_exec( $ch );
       <div class="row  text-capitalize center">
           <h3 class="text-center">Text Anchors</h3>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <button type="button" class="btn btn-blue" id="anchor-title">Anchor on Title</button>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <button type="button" class="btn btn-orange" id="anchor-description">Anchor From Description</button>
-            </div>
-            <div class="col-sm-4">
-              <button type="button" class="btn btn-purple" id="anchor-image">Anchor on Thumbnail</button>
             </div>
           </div>
       </div>
@@ -77,7 +74,7 @@ $response = curl_exec( $ch );
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
 <script type="text/javascript" src="auth.js"></script> 
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
-<script type="text/javascript" src="includes/playlist-anchors.js"></script> 
+<script type="text/javascript" src="includes/playlist-markdown.js"></script> 
 <script src="includes/header-autoresize.js"></script>
 </body>
 </html>
