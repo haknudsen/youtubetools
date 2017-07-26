@@ -32,13 +32,11 @@ $('#maxresdefault').click(function () {
     embed = false;
     anchor = false;
     max = true;
-    console.log('maxresdefault');
     getPlaylist();
 });
 $('#mqdefault').click(function () {
     embed = false;
     anchor = false;
-    console.log('mqdefault');
     max = false;
     getPlaylist();
 });
@@ -104,6 +102,8 @@ function requestVideoPlaylist(playlistId, pageToken) {
                 spin += '" alt="' + title + '"/>';
             }
             $('#spintax').val(spin);
+    $('#spintax').autoresize();
+    $('#link-container').autoresize();
         } else {
             $('#link-container').html('Sorry you have no uploaded videos');
         }

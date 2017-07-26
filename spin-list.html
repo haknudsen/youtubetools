@@ -11,8 +11,9 @@
 </head>
 
 <body>
+<div id="header"></div>
 <section class="container">
-  <h1 class="text-center">My YouTube Tools</h1>
+  <h1 class="text-center">vSEO Tools</h1>
 </section>
 <section class="container text-center">
   <h2 class="text-capitalize">Turn List into spin text</h2>
@@ -29,10 +30,9 @@
 <script type="text/javascript" src="auth.js"></script> 
 <script type="text/javascript" src="includes/my_uploads.js"></script> 
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
+<script src="includes/header-autoresize.js"></script>
+
 <script>
-        $( document ).ready( function () {
-            $( "#footer" ).load( "includes/footer.html" )
-        } );
     $("#submit").click(function(){
         var list = $("#decode").val();
         var text = list.replace(/(\r\n|\n|\r)/gm,"|");
@@ -40,6 +40,8 @@
         text += "}";
         $("#spin").val(text);
 });
+    $('#spin').autoresize();
+    $('#decode').autoresize();
     </script>
 </body>
 </html>

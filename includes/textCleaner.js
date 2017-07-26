@@ -13,29 +13,51 @@ function changeText() {
         myText = getText();
         changeText(myText.trim());
     });
+    //---------------------------------------Line Breaks
+    $('#remove-extra-linebreaks').click(function () {
+        myText = getText();
+        var stringArray = myText.split('\n');
+        var temp = [""];
+        var x = 0;
+        for (var i = 0; i < stringArray.length; i++) {
+            if (stringArray[i].trim() !== "") {
+                temp[x] = stringArray[i];
+                x++;
+            }
+        }
+        myText = temp.join(' ');
+        changeText(myText);
+    });
+    $('#remove-linebreaks').click(function () {
+        myText = getText();
+        myText = myText.replace(/\n/g,"");
+        myText = myText.replace(/\r/g,"");
+        console.log('hit ');
+        changeText(myText.trim());
+    });
     //-------------------------------------Case
     $('#case-lower').click(function () {
         myText = getText();
         changeText(myText.toLowerCase());
     });
-    $('#convert-html').click(function(){
+    $('#convert-html').click(function () {
         myText = getText();
-        myText = myText.replace(/&lt;/g,"<")
-		   .replace(/&gt;/g,">")
-		   .replace(/&amp;/g,"&")
-		   .replace(/&#039;/g,"'")
-		   .replace(/&#034;/g,'"')
-		   .replace(/&#39;/g,"'")
-		   .replace(/&#34;/g,'"')
-		   .replace(/&quot;/g,'"')
-		   .replace(/&rsquo;/g,"'");
-        
+        myText = myText.replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&amp;/g, "&")
+            .replace(/&#039;/g, "'")
+            .replace(/&#034;/g, '"')
+            .replace(/&#39;/g, "'")
+            .replace(/&#34;/g, '"')
+            .replace(/&quot;/g, '"')
+            .replace(/&rsquo;/g, "'");
+
         changeText(myText);
     });
-    $('#convert-br').click(function(){
+    $('#convert-br').click(function () {
         console.log('Hit');
         myText = getText();
-        myText = myText.replace(/<br>/g,"/n");
+        myText = myText.replace(/<br>/g, "/n");
         changeText(myText);
     });
     $('#case-upper').click(function () {
@@ -55,7 +77,7 @@ function changeText() {
                 console.log('part- ' + part);
                 console.log('1st character-' + textArray[x].charAt(0));
                 console.log('lower: ' + lower);
-                sentenceArray.push(part+lower);
+                sentenceArray.push(part + lower);
             }
             str = sentenceArray.join('. ');
         }
@@ -69,10 +91,10 @@ function changeText() {
         changeText(str);
     });
     ///----------------------------------HTML
-    
+
     $('#remove-html').click(function () {
-        myText = getText().replace(/(<([^>]+)>)/ig,"");
-        str = myText.replace(/(\r\n|\n|\r)/gm,"");
+        myText = getText().replace(/(<([^>]+)>)/ig, "");
+        str = myText.replace(/(\r\n|\n|\r)/gm, "");
         str = str.replace(/ +(?= )/g, '\n');
         changeText(str);
     });

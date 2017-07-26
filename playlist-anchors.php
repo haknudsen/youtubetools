@@ -78,11 +78,6 @@ $response = curl_exec( $ch );
 <script type="text/javascript" src="auth.js"></script> 
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
 <script type="text/javascript" src="includes/playlist-anchors.js"></script> 
-<script>
-    $(document).ready(function(){
-        $("#footer").load("includes/footer.html");
-        $("#header").load("includes/footer.html");
-    })
-</script>
+<script src="includes/header-autoresize.js"></script>
 </body>
 </html>

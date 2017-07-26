@@ -18,14 +18,24 @@
 <section class="alert alert-info buttons-mine">
   <div class="container">
     <div class="row text-capitalize" role="group" aria-label="Spaces">
+     <div class="col-md-6">
       <h3 class="text-center">Spaces</h3>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-4 center">
+      <div class="col-sm-6 center">
         <button type="button" class="btn btn-green text-capitalize center" id="remove-extra">remove extra spaces</button>
       </div>
-      <div class="col-sm-4 center">
+      <div class="col-sm-6 center">
         <button type="button" class="btn btn-green text-capitalize" id="remove-trailing">remove trailing spaces</button>
       </div>
+     </div>
+     <div class="col-md-6">
+      <h3 class="text-center">Line Breaks</h3>
+      <div class="col-sm-6 center">
+        <button type="button" class="btn btn-drkblue text-capitalize center" id="remove-extra-linebreaks">remove extra line breaks</button>
+      </div>
+      <div class="col-sm-6 center">
+        <button type="button" class="btn btn-drkblue text-capitalize" id="remove-linebreaks">remove all</button>
+      </div>
+     </div>
     </div>
     <div class="row">
       <h3 class="text-center">Change Case</h3>
@@ -75,7 +85,7 @@
 <script src="includes/textCleaner.js"></script> 
 <script>
     $(document).ready(function(){
-        $("#header").load("includes/footer.html");
+        $("#header").load("includes/header.html");
         $("#footer").load("includes/footer.html");
         changeText();
     })
