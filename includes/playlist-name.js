@@ -1,5 +1,3 @@
-
-
 function updateSigninStatus(isSignedIn) {  
     setSigninStatus(); 
 }
@@ -82,7 +80,7 @@ function buildApiRequest(requestMethod, path, params, properties) {  
   
 function defineRequest() {   // See full sample for buildApiRequest() code, which is not 
     // specific to a particular youtube or youtube method.
-var playList = getPlaylistID();
+    var playList = getPlaylistID();
     buildApiRequest('GET',         '/youtube/v3/playlists',          {
         'channelId': playList,
                  'maxResults': '25',
@@ -91,9 +89,10 @@ var playList = getPlaylistID();
 
      
 }
+
 function getPlaylistID() {
     $('#link-container').val('');
     var playlist = $('#playlist').val();
     var playlistId = playlist.replace("https://www.youtube.com/playlist?list=", "");
-    console.log(' '+playlistId);
+    console.log(' ' + playlistId);
 }

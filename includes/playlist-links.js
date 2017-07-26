@@ -1,7 +1,6 @@
 // Define some variables used to remember state.
 var playlistId, nextPageToken, prevPageToken;
 var i = 0;
-var videoList = Array();
 var list = Array();
 var max = true;
 var embed = false;
@@ -14,6 +13,7 @@ var title;
             var spin;
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
+    "use strict";
     "use strict";
     requestUserUploadsPlaylistId();
 }
@@ -29,18 +29,21 @@ function requestUserUploadsPlaylistId() {
     });
 }
 $('#maxresdefault').click(function () {
+    "use strict";
     embed = false;
     anchor = false;
     max = true;
     getPlaylist();
 });
 $('#mqdefault').click(function () {
+    "use strict";
     embed = false;
     anchor = false;
     max = false;
     getPlaylist();
 });
 $('#embed-image').click(function () {
+    "use strict";
     max = false;
     embed = true;
     anchor = false;
@@ -48,6 +51,7 @@ $('#embed-image').click(function () {
 });
 
 function getPlaylist() {
+    "use strict";
     $('#link-container').val('');
     var playlist = $('#playlist').val();
     var playlistId = playlist.replace("https://www.youtube.com/playlist?list=", "");

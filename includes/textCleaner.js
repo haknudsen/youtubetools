@@ -5,9 +5,8 @@ function changeText() {
     //----------------------------------------------------Spaces
     $('#remove-extra').click(function () {
         myText = getText();
-        myText = myText.replace(/ +(?= )/g, '');
-        console.log(' myText' + myText);
-        changeText(myText);
+        myText = myText.replace(/ +/g," ");
+        changeText(myText.trim());
     });
     $('#remove-trailing').click(function () {
         myText = getText();
@@ -15,6 +14,14 @@ function changeText() {
     });
     //---------------------------------------Line Breaks
     $('#remove-extra-linebreaks').click(function () {
+        myText = getText();
+        myText = myText.replace(/\n\n/g,"\n");
+        myText = myText.replace(/ \n/g,"\n");
+        myText = myText.replace(/\s /g, '');
+
+        changeText(myText.trim());
+    });
+    $('#remove-linebreaks').click(function () {
         myText = getText();
         var stringArray = myText.split('\n');
         var temp = [""];
@@ -25,14 +32,8 @@ function changeText() {
                 x++;
             }
         }
-        myText = temp.join(' ');
+        myText = temp.join('');
         changeText(myText);
-    });
-    $('#remove-linebreaks').click(function () {
-        myText = getText();
-        myText = myText.replace(/\n/g,"");
-        myText = myText.replace(/\r/g,"");
-        changeText(myText.trim());
     });
     //-------------------------------------Case
     $('#case-lower').click(function () {
@@ -122,3 +123,10 @@ function changeText() {
 
 
 }
+jQuery.fn.cleanWhitespace = function() {
+    "use strict";
+    var textNodes = this.contents().filter(
+        function() { return (this.nodeType === 3 && !/\S/.test(this.nodeValue)); })
+        .remove();
+    return this;
+};

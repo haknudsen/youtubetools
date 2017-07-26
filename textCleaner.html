@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-    <title>textCleaner&#8482;</title>
+<title>textCleaner&#8482;</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -13,29 +13,27 @@
 <div id="header"></div>
 <section class="jumbotron">
   <h1 class="text-center">textCleaner<sup>&#8482;</sup></h1>
-  <textarea id="textCleaner"></textarea>
-</section>
-<section class="alert alert-info buttons-mine">
+  <div class="alert alert-info buttons-mine">
   <div class="container">
     <div class="row text-capitalize" role="group" aria-label="Spaces">
-     <div class="col-md-6">
-      <h3 class="text-center">Spaces</h3>
-      <div class="col-sm-6 center">
-        <button type="button" class="btn btn-green text-capitalize center" id="remove-extra">remove extra spaces</button>
+      <div class="col-md-6">
+        <h3 class="text-center">Spaces</h3>
+        <div class="col-sm-6 center">
+          <button type="button" class="btn btn-green text-capitalize center" id="remove-extra">remove extra spaces</button>
+        </div>
+        <div class="col-sm-6 center">
+          <button type="button" class="btn btn-green text-capitalize" id="remove-trailing">remove trailing spaces</button>
+        </div>
       </div>
-      <div class="col-sm-6 center">
-        <button type="button" class="btn btn-green text-capitalize" id="remove-trailing">remove trailing spaces</button>
+      <div class="col-md-6">
+        <h3 class="text-center">Line Breaks</h3>
+        <div class="col-sm-6 center">
+          <button type="button" class="btn btn-drkblue text-capitalize center" id="remove-extra-linebreaks">remove extra line breaks</button>
+        </div>
+        <div class="col-sm-6 center">
+          <button type="button" class="btn btn-drkblue text-capitalize" id="remove-linebreaks">remove all</button>
+        </div>
       </div>
-     </div>
-     <div class="col-md-6">
-      <h3 class="text-center">Line Breaks</h3>
-      <div class="col-sm-6 center">
-        <button type="button" class="btn btn-drkblue text-capitalize center" id="remove-extra-linebreaks">remove extra line breaks</button>
-      </div>
-      <div class="col-sm-6 center">
-        <button type="button" class="btn btn-drkblue text-capitalize" id="remove-linebreaks">remove all</button>
-      </div>
-     </div>
     </div>
     <div class="row">
       <h3 class="text-center">Change Case</h3>
@@ -65,28 +63,33 @@
     <div class="row text-capitalize" role="group" aria-label="convert">
       <h3 class="text-center">Convert</h3>
       <div class="col-md-4">
-      <div class="center">
-        <button type="button" class="btn btn-blue text-capitalize center" id="convert-special">Remove Special Characters</button>
-      </div></div>
-      <div class="col-md-4">
-      <div class="center">
-        <button type="button" class="btn btn-blue text-capitalize center" id="convert-html">Replace HTML Entities</button>
-      </div>
+        <div class="center">
+          <button type="button" class="btn btn-blue text-capitalize center" id="convert-special">Remove Special Characters</button>
+        </div>
       </div>
       <div class="col-md-4">
-      <div class="center">
-        <button type="button" class="btn btn-blue text-capitalize center" id="convert-br"></button>
+        <div class="center">
+          <button type="button" class="btn btn-blue text-capitalize center" id="convert-html">Replace HTML Entities</button>
+        </div>
       </div>
+      <div class="col-md-4">
+        <div class="center">
+          <button type="button" class="btn btn-blue text-capitalize center" id="convert-br"></button>
+        </div>
       </div>
     </div>
   </div>
+</div>
+  <textarea id="textCleaner"></textarea>
+</section>
+<section class="container-fluid">
 </section>
 <footer id="footer"></footer>
 <script src="includes/textCleaner.js"></script> 
+<script src="includes/header-autoresize.js"></script> 
 <script>
+    $('#textCleaner').autoresize();
     $(document).ready(function(){
-        $("#header").load("includes/header.html");
-        $("#footer").load("includes/footer.html");
         changeText();
     })
 </script>

@@ -4,7 +4,7 @@ body { font-size: 18px }
 .video-list { font-size: 1.5em; line-height: 1.5em; list-style: none }
 #privacyStatus { width: 120px; margin: 0 auto; padding: 4px }
 .center { text-align: center; margin: 0 auto }
-#decode, #textCleaner { height: 180px; width: 50%; margin: 10px auto }
+#decode, #textCleaner { height: 180px; margin: 10px auto }
 .content { width: 90%; margin: 0 auto }
 footer { margin-top: 20px }
 .p-2 { padding: .2em; }
