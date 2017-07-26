@@ -10,5 +10,5 @@ $.fn.extend({
     $(document).ready(function(){
         "use strict";
         $("#footer").load("includes/footer.html");
-        $("#header").load("includes/header.html");
+        $("#header").load("includes/header.php");
     });
