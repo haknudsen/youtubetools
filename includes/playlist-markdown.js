@@ -99,7 +99,7 @@ function displayResult(videoSnippet) {
             info += description.split('.')[0];
             break;
     }
-    info += ']('
+    info += '](';
     info += anchor + videoURL + ')';
     list[i] = info;
     videoList[i] = videoURL;

@@ -1,5 +1,5 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken, i = 0,
+var nextPageToken, prevPageToken, i = 0,
     videoList = Array(),
     list = Array(),
     max = true,
@@ -7,7 +7,8 @@ var playlistId, nextPageToken, prevPageToken, i = 0,
     maxjpg = '/maxresdefault.jpg',
     mqjpg = '/mqdefault.jpg',
     anchor = '<a href="https://www.youtube.com/watch?v=',
-    image = '<img src="https://img.youtube.com/vi/';
+    image = '<img src="https://img.youtube.com/vi/',
+    description, title,vertical;
 
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
@@ -80,21 +81,36 @@ function requestVideoPlaylist(playlistId, pageToken) {
             $link.val(list);
             $link.val($('#link-container').val().replace(/,/g, '\n'));
             $link.autoresize();
-            var spin = 'https://img.youtube.com/vi/';
-            spin += "{";
+            var spin = anchor;
+            var spintax = "{";
             for (var l = 0; l < videoList.length; l++) {
                 if (l > 0) {
-                    spin += "|" + videoList[l];
+                    spintax += '|' + videoList[l];
                 } else {
-                    spin += videoList[l];
+                    spintax += videoList[l];
                 }
             }
-            spin += "}";
-            if (max) {
-                spin += maxjpg;
-            } else {
-                spin += mqjpg;
+            spintax += '}';
+            spin += spintax;
+            spin += '>';
+            switch (embed) {
+                case 'image':
+                    spin += image;
+                    spin += spintax;
+                    if (max) {
+                        spin += maxjpg;
+                    } else {
+                        spin += mqjpg;
+                    }
+                    break;
+                case 'title':
+                    spin += title;
+                    break;
+                case 'description':
+                    spin += fixDescription(description);
+                    break;
             }
+            spin += '</a>';
             $('#spintax').val(spin);
             $('#spintax').autoresize();
             $('#playlistID').val(playlistId);
@@ -108,19 +124,18 @@ function requestVideoPlaylist(playlistId, pageToken) {
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
-    var title = String(videoSnippet.title),
-        videoId = videoSnippet.resourceId.videoId,
+    title = String(videoSnippet.title);
+    description = String(videoSnippet.description);
+    var videoId = videoSnippet.resourceId.videoId,
         videoURL = videoId,
-        description = String(videoSnippet.description),
         info = "";
-    title = fixTitle(title);
     info = anchor + videoURL + '">';
     switch (embed) {
         case 'title':
-            info += title;
+            info += fixTitle(title);
             break;
         case 'description':
-            info += description.split('.')[0];
+            info += fixDescription(description);
             break;
         case 'image':
             info += image + videoURL + mqjpg + '" alt="' + title + '"/>';
@@ -131,11 +146,20 @@ function displayResult(videoSnippet) {
     videoList[i] = videoURL;
     i++;
 }
-function fixTitle(title){
+
+function fixTitle(title) {
     "use strict";
     title = title.toString();
     title = title.replace(/,/g, ' ').trim();
     return title.replace(/\|/g, '');
+}
+
+function fixDescription(description) {
+    "use strict";
+    description = description.toString().split(/\n/);
+    description  = description[0];
+    console.log('d- ' +description );
+    return description;
 }
 $.fn.extend({
     autoresize: function () {

@@ -12,7 +12,7 @@
 <body>
 <div id="header"></div>
 <section class="container">
-  <h1 class="text-center">Get Playlist video links</h1>
+  <h1 class="text-center">Get Video Links with Anchors</h1>
   <div id="login-container" class="pre-auth"> This application requires access to your YouTube account.  Please <a href="#" id="login-link">authorize</a> to continue. </div>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -36,6 +36,7 @@
 </section>
   
 <section class="alert alert-success">
+  <textarea class="m-1" id="link-container"></textarea>
   <textarea class="m-1" id="spintax"></textarea>
 </section>
 <footer id="footer"></footer>
