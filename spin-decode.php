@@ -12,9 +12,7 @@
 </head>
 
 <body>
-    <section class="container">
-        <h1 class="text-center">My YouTube Tools</h1>
-    </section>
+    <div id="header"></div>
     <section class="container-fluid alert-success p-2 m-1 text-center">
         <?php
         $content = $_GET[ 'decode' ];
@@ -39,7 +37,9 @@
     <script type="text/javascript" src="auth.js"></script>
     <script type="text/javascript" src="my_uploads.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <script src="includes/header-autoresize.js"></script>
     <script>
+        $( '#decode' ).autoresize();
         $( document ).ready( function () {
             $( "#footer" ).load( "includes/footer.html" )
         } );

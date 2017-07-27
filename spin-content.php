@@ -11,9 +11,7 @@
 </head>
 
 <body>
-    <section class="container">
-        <h1 class="text-center">My YouTube Tools</h1>
-    </section>
+    <div id="header"></div>
     <section class="jumbotron">
         <div class="container-fluid text-center">
             <h2>Content to Spin</h2>
@@ -25,15 +23,14 @@
             </form>
         </div>
     </section>
-    
+
     <footer id="footer"></footer>
     <script type="text/javascript" src="auth.js"></script>
     <script type="text/javascript" src="my_uploads.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <script src="includes/header-autoresize.js"></script>
     <script>
-        $( document ).ready( function () {
-            $( "#footer" ).load( "includes/footer.html" )
-        } )
+        $( '#decode' ).autoresize();
     </script>
 </body>
 
