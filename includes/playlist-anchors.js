@@ -4,8 +4,8 @@ var nextPageToken, prevPageToken, i = 0,
     list = Array(),
     max = true,
     embed,
-    maxjpg = '/maxresdefault.jpg',
-    mqjpg = '/mqdefault.jpg',
+    maxjpg = '/maxresdefault.jpg"',
+    mqjpg = '/mqdefault.jpg"',
     anchor = '<a href="https://www.youtube.com/watch?v=',
     image = '<img src="https://img.youtube.com/vi/',
     description, title,vertical;
@@ -92,7 +92,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
             }
             spintax += '}';
             spin += spintax;
-            spin += '>';
+            spin += '">';
             switch (embed) {
                 case 'image':
                     spin += image;
@@ -110,7 +110,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
                     spin += fixDescription(description);
                     break;
             }
-            spin += '</a>';
+            spin += '/></a>';
             $('#spintax').val(spin);
             $('#spintax').autoresize();
             $('#playlistID').val(playlistId);
@@ -138,7 +138,7 @@ function displayResult(videoSnippet) {
             info += fixDescription(description);
             break;
         case 'image':
-            info += image + videoURL + mqjpg + '" alt="' + title + '"/>';
+            info += image + videoURL + mqjpg + ' alt="' + title + '"/>';
             break;
     }
     info += '</a>';
