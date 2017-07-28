@@ -1,5 +1,9 @@
 <?php
 $videoId = $_POST[ "videoID" ];
+$pos = strpos($videoId, '=');
+if($pos){
+$videoId = explode('=', $videoId)[1];
+}
 $resolution = array( "default", "sddefault", "mqdefault", "hqdefault", "maxresdefault" );
 $htmlBody .= '<div class="container">';
 for ( $x = 0; $x < sizeof( $resolution ); $x++ ) {
