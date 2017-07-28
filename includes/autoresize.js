@@ -2,7 +2,9 @@
 $.fn.extend({
     autoresize: function () {
         $(this).on('change keyup keydown paste cut', function () {
-            $(this).height(0).height(this.scrollHeight);
+            var scroll = this.scrollHeight;
+            if(scroll<60){scroll=60;}
+            $(this).height(0).height(scroll);
         }).change();
     }
 });

@@ -11,9 +11,7 @@
 </head>
 
 <body>
-    <section class="container">
-        <h1 class="text-center">My YouTube Tools</h1>
-    </section>
+   <div id="header"></div>
     <section class="jumbotron">
         <div class="container-fluid text-center">
             <h2>Spin All</h2>
@@ -32,15 +30,13 @@
     <script type="text/javascript" src="auth.js"></script>
     <script type="text/javascript" src="includes/my_uploads.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <script src="includes/header-autoresize.js"></script>
     <script>
+        $('#decode').autoresize;
         $( '#spaces' ).click( function () {
             $( '#content' ).attr( 'action', 'spin-decode-all-no-spaces.php' );
             $( '#spaces' ).css('color','#00FF00');
         } );
-
-        $( document ).ready( function () {
-            $( "#footer" ).load( "includes/footer.html" )
-        } )
     </script>
 </body>
 
