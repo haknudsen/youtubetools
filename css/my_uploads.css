@@ -14,9 +14,9 @@ footer { margin-top: 20px }
 #title { min-width: 200px; margin: 10px auto; text-align: center }
 .btn { margin: 10px auto }
 .instructions { margin: auto; display: block; padding: 25px; text-align: center; }
-textarea { width: 96%; margin: auto; display: block; padding: 4px; background: #333; color: #fff; border: 1px solid #eee; }
-textarea:active, textarea:focus { /*border: 1px solid #FF3300;*/ border: 1px solid #aaa; }
-.create { margin: auto; display: block; background: #333; color: #fff; padding: 4px; border-radius: 2px; border: 1px solid #aaa; font-size: 110%; }
+textarea { width: 96%; margin: auto; display: block;  background: #333; color: #fff; border: 1px solid #eee;padding: 1rem }
+textarea:active, textarea:focus { /*border: 1px solid #FF3300;*/ border: 1px solid #aaa;padding: 1rem }
+.create { margin: auto; display: block; background: #333; color: #fff;border-radius: 2px; border: 1px solid #aaa; font-size: 110%; }
 #playlistLink { margin: auto; display: block; }
 #playlist-description-new { margin: 1rem auto; width: 80%; height: 120px }
 #video-id { height: 200px; width: 1000px }
