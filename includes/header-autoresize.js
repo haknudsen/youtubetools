@@ -2,8 +2,9 @@
 $.fn.extend({
     autoresize: function () {
         "use strict";
-        $(this).on('change keyup keydown paste cut', function () {
+        $(this).on('change keyup keydown paste cut blur', function () {
             $(this).height(0).height(this.scrollHeight);
+            console.log('Hit ' + this);
         }).change();
     }
 });

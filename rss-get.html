@@ -12,29 +12,33 @@
 <body>
 <div id="header"></div>
 <section class="jumbotron text-center">
- <h1>Get RSS Feeds from Channel ID</h1>
- <h2>Ender the channel ID</h2>
- <h3>Found at <a href="https://www.youtube.com/account_advanced" title="Advanced" target="_blank">https://www.youtube.com/account_advanced</a> under account information</h3>
- <h2>Returns the RSS feeds for the Channel, user, and all the playlists</h2>
+  <h1>Get RSS Feeds from Channel ID</h1>
+  <h2>Ender the channel ID</h2>
+  <h3>Found at <a href="https://www.youtube.com/account_advanced" title="Advanced" target="_blank">https://www.youtube.com/account_advanced</a> under account information</h3>
+  <h2>Returns the RSS feeds for the Channel, user, and all the playlists</h2>
   <button id="execute-request-button" class="btn btn-danger center-block">Authorize</button>
   <input type="text" id="channel" class="m-1 container">
   <button id="start" class="btn btn-purple center-block text-uppercase">GET RSS feeds</button>
 </section>
-<div class="alert alert-link">
-  <textarea id="rss-feeds"></textarea>
+<div class="alert alert-info">
+  <div class="row">
+    <div class="col-md-6">
+      <textarea id="rss-feeds"></textarea>
+    </div>
+    <div class="col-md-6">
+      <textarea id="rss-links"></textarea>
+    </div>
+  </div>
 </div>
 <footer id="footer"></footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
 <script type="text/javascript" src="auth.js"></script> 
 <script type="text/javascript" src="includes/my_uploads.js"></script> 
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
+<script src="includes/header-autoresize.js"></script> 
 <script>
-    $(document).ready(function(){
-        $("#footer").load("includes/footer.html");
-        $("#header").load("includes/footer.html");
-    })
-</script> 
-<script>
+    $('#rss-links').autoresize();
+    $('#rss-feeds').autoresize();
 
   /***** START BOILERPLATE CODE: Load client library, authorize user. *****/
 
@@ -84,6 +88,7 @@
     isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
     // Toggle button text and displayed statement based on current auth status.
     if (isAuthorized) {
+        $('#execute-request-button').removeClass("btn-danger").addClass("btn-green");
       defineRequest();
     }
   }
@@ -134,20 +139,37 @@
 
   function executeRequest(request) {
     request.execute(function(response) {
-        $('#execute-request-button').removeClass("btn-danger").addClass("btn-green");
       console.log(response);
-        var x=0;
-        var playlistID = [];
+        var x=0,
+            a= '<a href="';
+            playlistID = [],
+            links = [],
+            anchors = [],
+            combine = [];
         while(response.items[x]){
-        playlistID[x] = 'https://www.youtube.com/feeds/videos.xml?playlist_id=' + response.items[x].id;
+        links[x] = playlistID[x] = 'https://www.youtube.com/feeds/videos.xml?playlist_id=' + response.items[x].id;
+            anchors[x] = response.items[x].id;
             x++;
         }
-        playlistID[x] = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + channel;
+        links[x] = playlistID[x] = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + channel;
+        anchors[x] = channel;
         try
-        {playlistID[x+1] = 'https://www.youtube.com/feeds/videos.xml?user=' + response.items[0].snippet.channelTitle;
+        {
+            x++;
+            links[x] = playlistID[x] = 'https://www.youtube.com/feeds/videos.xml?user=' + response.items[0].snippet.channelTitle;
+            anchors[x] = response.items[0].snippet.channelTitle;
         } catch(err){}
         $('#rss-feeds').val(playlistID);
         $('#rss-feeds').val($('#rss-feeds').val().replace(/,/g, '\n'));
+        var y=0;
+        while(y<x){
+            combine[y] = a + links[y] + '">' + anchors[y] + '</a>';
+            y++;
+        }
+        $('#rss-links').val(combine);
+        $('#rss-links').val($('#rss-links').val().replace(/,/g, '\n'));
+        $('#rss-links').focus();
+        $('#rss-feeds').focus();
     });
   }
 
