@@ -162,7 +162,7 @@
         $('#rss-feeds').val(playlistID);
         $('#rss-feeds').val($('#rss-feeds').val().replace(/,/g, '\n'));
         var y=0;
-        while(y<x){
+        while(y<x+1){
             combine[y] = a + links[y] + '">' + anchors[y] + '</a>';
             y++;
         }
