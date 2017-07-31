@@ -32,7 +32,7 @@ function changeText() {
                 x++;
             }
         }
-        myText = temp.join('');
+        myText = temp.join(' ');
         changeText(myText);
     });
     //-------------------------------------Case
@@ -118,6 +118,7 @@ function changeText() {
 
     function changeText(myText) {
         $('#textCleaner').val(myText);
+         $('#textCleaner').autoresize();
     }
 
 
