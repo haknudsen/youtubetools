@@ -101,7 +101,6 @@ function removeEmptyParams(params) {
 function executeRequest(request) {
     request.execute(function (response) {
         $('#description').val(response.items[0].snippet.description);
-    $('#description').autoresize();
     });
 }
 

@@ -71,7 +71,11 @@ function displayResult(videoSnippet) {
     }));
     i++;
 }
-
-
-
-
+$('#updateDescription').click(function(){
+    buildApiRequest('PUT',
+                '/youtube/v3/videos',
+                {'part': 'snippet,status'},
+                {'id': $('option:selected').val(),
+                 'snippet.description': $('#description').val()
+      });
+});
