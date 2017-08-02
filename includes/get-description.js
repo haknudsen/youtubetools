@@ -100,7 +100,9 @@ function removeEmptyParams(params) {
 
 function executeRequest(request) {
     request.execute(function (response) {
-        $('#description').val(response.items[0].snippet.description);
+        var myResponse = response.items[0].snippet.description;
+        console.log(myResponse);
+        $('#description').val(myResponse);
     });
 }
 

@@ -1,5 +1,7 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken, i = 0, videoList = Array(),  video, description;
+var i = 0,
+    videoList = Array(),
+    video, description;
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
     "use strict";
@@ -41,12 +43,6 @@ function requestVideoPlaylist(playlistId, pageToken) {
     request.execute(function (response) {
         // Only show pagination buttons if there is a pagination token for the
         // next or previous page of results.
-        nextPageToken = response.result.nextPageToken;
-        var nextVis = nextPageToken ? 'visible' : 'hidden';
-        $('#next-button').css('visibility', nextVis);
-        prevPageToken = response.result.prevPageToken
-        var prevVis = prevPageToken ? 'visible' : 'hidden';
-        $('#prev-button').css('visibility', prevVis);
 
         var playlistItems = response.result.items;
         if (playlistItems) {
@@ -70,12 +66,20 @@ function displayResult(videoSnippet) {
         text: title
     }));
     i++;
+            video = $('option:selected').val();
+            defineRequest(video);
+    $('#description').delay("slow").focus();
 }
-$('#updateDescription').click(function(){
+$('#updateDescription').click(function () {
+    "use strict";
+    var descriptionUpdate = $('#description').val();
     buildApiRequest('PUT',
-                '/youtube/v3/videos',
-                {'part': 'snippet,status'},
-                {'id': $('option:selected').val(),
-                 'snippet.description': $('#description').val()
-      });
+        '/youtube/v3/videos', {
+            'part': 'snippet'
+        }, {
+            'id': 'pJHh7k8hWnE',
+            'snippet.categoryId': '19',
+            'snippet.defaultLanguage': 'en',
+            'snippet.description': descriptionUpdate
+        });
 });
