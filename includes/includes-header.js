@@ -16,6 +16,6 @@ $.fn.extend({
 });
     $(document).ready(function(){
         "use strict";
-        $("#footer").load("footer.html");
-        $("#header").load("header.php");
+        $("#footer").load("includes-nav.html");
+        $("#header").load("nav-header.php");
     });
