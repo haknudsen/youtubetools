@@ -2,8 +2,10 @@
 $.fn.extend({
     autoresize: function () {
         "use strict";
-        $(this).on('change keyup keydown paste cut blur', function () {
+        $(this).on('change paste cut blur', function () {
         var newHeight =  this.scrollHeight;
+            console.log('newHeight-' + newHeight);
+            console.log('current Height-' +$(this).height());
             if(this.scrollHeight < 40){
                 newHeight = 40;
             }
@@ -16,6 +18,6 @@ $.fn.extend({
 });
     $(document).ready(function(){
         "use strict";
-        $("#footer").load("includes/footer.html");
+        $("#footer").load("includes/nav.html");
         $("#header").load("includes/header.php");
     });
