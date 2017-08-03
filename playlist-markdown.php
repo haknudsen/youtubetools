@@ -1,7 +1,5 @@
 <?php
 $api_dev_key = '8633e8df7b1fe0423b83017afbbaedd1';
-$api_user_name = 'a_users_username';
-$api_user_password = 'a_users_password';
 $api_user_name = urlencode( 'talkingheads' );
 $api_user_password = urlencode( 'talk1ngheads' );
 $url = 'https://pastebin.com/api/api_login.php';
@@ -50,15 +48,6 @@ $response = curl_exec( $ch );
 </section>
   <div class="alert alert-info">
       <div class="text-center">
-         <form action="includes/pastebin-login.php">
-          <button type="submit" class="btn btn-green">Log in to Paste Bin</button>
-         </form>
-      </div>
-    <button id="prev-button" class="paging-button" onclick="previousPage();">Previous Page</button>
-    <button id="next-button" class="paging-button" onclick="nextPage();">Next Page</button>
-  </div>
-<section class="alert alert-success">
-      <div class="text-center">
          <form action="includes/pastebin-send.php">
           <button type="submit" class="btn btn-green">Send to Paste Bin</button>
           <div class="m-1">
@@ -68,13 +57,17 @@ $response = curl_exec( $ch );
           <input type="hidden" value="<?=$response?>" name="userID" id="userID">
          </form>
       </div>
-  <textarea class="m-1" id="spintax"></textarea>
-</section>
+    <button id="prev-button" class="paging-button" onclick="previousPage();">Previous Page</button>
+    <button id="next-button" class="paging-button" onclick="nextPage();">Next Page</button>
+  </div>
 <footer id="footer"></footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
 <script type="text/javascript" src="auth.js"></script> 
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
 <script type="text/javascript" src="includes/playlist-markdown.js"></script> 
 <script src="includes/header-autoresize.js"></script>
+<script>
+    $('#link-container').autoresize();
+</script>
 </body>
 </html>

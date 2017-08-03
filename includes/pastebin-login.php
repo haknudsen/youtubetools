@@ -1,7 +1,5 @@
 <?php
 $api_dev_key = '8633e8df7b1fe0423b83017afbbaedd1';
-$api_user_name = 'a_users_username';
-$api_user_password = 'a_users_password';
 $api_user_name = urlencode( 'talkingheads' );
 $api_user_password = urlencode( 'talk1ngheads' );
 $url = 'https://pastebin.com/api/api_login.php';
