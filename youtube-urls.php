@@ -60,9 +60,9 @@ $response = curl_exec( $ch );
 <footer id="footer"></footer>
 <script src="includes/header-autoresize.js"></script> 
 <script src="includes/youtube_variations.js"></script> 
+<script src="includes/autosize.js"></script>
 <script>
-    $('#link-container').autoresize();
-    $('#keywords').autoresize();
+    autosize(document.querySelectorAll('textarea'));
     </script>
 </body>
 </html>

@@ -66,3 +66,4 @@ background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), 
 .box{border: #2970D9 medium solid}
 #description{height: 500px}
 #result,#pbLink{min-width: 800px}
+.bulk label{width: 100%}
