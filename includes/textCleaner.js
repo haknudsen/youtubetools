@@ -6,6 +6,7 @@ function changeText() {
     $('#remove-extra').click(function () {
         myText = getText();
         myText = myText.replace(/ +/g," ");
+        myText = myText.replace(/\n /g,"\n");
         changeText(myText.trim());
     });
     $('#remove-trailing').click(function () {

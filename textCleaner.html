@@ -87,8 +87,9 @@
 <footer id="footer"></footer>
 <script src="includes/textCleaner.js"></script> 
 <script src="includes/header-autoresize.js"></script> 
+<script src="includes/autosize.js"></script>
 <script>
-    $('#textCleaner').autoresize();
+    autosize(document.querySelectorAll('textarea'));
     $(document).ready(function(){
         changeText();
     })

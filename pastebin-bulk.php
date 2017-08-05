@@ -35,25 +35,24 @@ $response = curl_exec( $ch );
             <div class="row">
                 <div class="col-xs-6">
                     <label>URLs to Send to Pastebin
-                    <textarea id="urls"></textarea>
+                    <textarea id="urls" style="max-height: 300px"></textarea>
       </label>
                 </div>
                 <div class="col-xs-6">
                     <label>Keywords
-                    <textarea id="keywords"></textarea>
+                    <textarea id="keywords" style="max-height: 300px"></textarea>
       </label>
                 </div>
             </div>
             <button type="button" class="btn btn-green center-block" id="getPaste">Create Paste</button>
         </div>
-        <div class="text-center m-1" id="result"></div>
-        <div class="alert-info text-center">
-            <form action="includes/pastebin-send.php">
-                <textarea class="text-center" name="link-container" id="link-container"></textarea >
-          <div class="m-1">
+        <div class="alert alert-info">
+            <form action="includes/pastebin-send.php" class="container">
+                <textarea class="text-left" name="link-container" id="link-container"></textarea>
+          <div class="m-1 text-center">
               <label>Enter name for Pastebin:<input type="text" value="" name="playlistID" id="playlistID"></label>
-          </div>
           <button type="submit" class="btn btn-green">Send to Paste Bin</button>
+          </div>
           <input type="hidden" value="<?=$response?>" name="userID" id="userID">
          </form>
          </div>
@@ -65,23 +64,30 @@ $response = curl_exec( $ch );
 <script>
     autosize(document.querySelectorAll('textarea'));
     $( '#getPaste' ).click( function() {
-        var myURLs = $('#urls').val();
-        var keywords = $('#keywords').val();
-        console.log('urls ' + myURLs);
-        console.log('keywords ' + keywords);
         var paste = Array();
-        myURLs = myURLs.textToArray();
-        keywords = keywords.textToArray();
-        console.log('urls ' + myURLs);
-        console.log('keywords ' + keywords);
-				str = "<a href='" + shortURL + "'>" + keyword + "</a>";
-				$('#result').html(str);
+        var keywords = textToArray($('#keywords').val());
+        var myURLs = textToArray($('#urls').val());
+        var listLength = keywords.length;
+    var l = listLength-1;
+    for (i = 0; i < myURLs.length; i++) {
 				info = '[';
-				info += keyword;
+				info += keywords[l];
 				info += '](';
-				info += shortURL + ')';
-                $('#link-container').text(info);
+				info +=  myURLs[i] + ')';
+                paste[i] = info;
+        if(l === 0){l=listLength-1;}else{l--;}
+    }
+                $('#link-container').val(paste);
+        $('#link-container').val($('#link-container').val().replace(/,/g, '\n'));
 		} );
+    function textToArray(myArray) {
+        "use strict";
+        myArray = myArray.split("\n");
+        myArray = myArray.filter(function (value) {
+            return value !== "" && value !== null;
+        });
+        return myArray;
+    }
 </script> 
 </body>
 </html>
