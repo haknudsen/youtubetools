@@ -11,7 +11,7 @@ footer { margin-top: 20px }
 .m-1 { margin: 1em auto }
 #spin { margin: 15px auto 10px; width: 96%; min-height: 80px;}
 #results { width: 100%; min-height: 500px; margin: 20px }
-#title { min-width: 200px; margin: 10px auto; text-align: center }
+#title { min-width: 200px; margin: 10px auto; text-align: left}
 .btn { margin: 10px auto }
 .instructions { margin: auto; display: block; padding: 25px; text-align: center; }
 textarea { width: 96%; margin: auto; display: block;  background: #333; color: #fff; border: 1px solid #eee;padding: 1rem }
@@ -64,6 +64,5 @@ background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), 
 .form .btn{max-width: 200px;margin:20px auto}
 .keywordSpin{min-height: 240px;width: 100%}
 .box{border: #2970D9 medium solid}
-#description{height: 500px}
 #result,#pbLink{min-width: 800px}
 .bulk label{width: 100%}

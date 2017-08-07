@@ -1,13 +1,72 @@
-
-<html><head><title>Google APIs - Sample JS Page</title></head>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Edit Description</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/my_uploads.css">
+</head>
 <body>
-
+<div id="header"></div>
+<section class="container-fluid">
+  <div  class="text-center">
+    <h1>Video Data Editor</h1>
+    <label>Enter Video ID
+      <input type="text" id="video">
+    </label>
+    <button id="execute-request-button">Authorize</button>
+    <button type="button" class="btn btn-green center-block" id="getVideo">Get Video</button>
+  </div>
+  <div class="alert alert-info">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="text-capitalize text-center">title</h3>
+        <input type="text" id="title">
+      </div>
+      <div class="col-sm-4">
+        <h3 class="text-capitalize text-center">video ID</h3>
+        <h4 id="videoId"></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="text-capitalize text-center">description</h3>
+        <textarea id="description"></textarea>
+        <div class="m-1">
+          <h3  class="text-capitalize text-center">Total Letter Count : <span id="counter">0</span></h3>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="text-capitalize text-center">tags</h3>
+        <textarea id="tags"></textarea>
+        <h3  class="text-capitalize text-center">Total Letter Count : <span id="counter2">0</span></h3>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="footer"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script src="includes/autosize.js"></script> 
+<script src="includes/header-autoresize.js"></script> 
+<script src="includes/jquery.simplyCountable-description.js"></script> 
+<script async defer src="https://apis.google.com/js/api.js" 
+        onload="this.onload=function(){};handleClientLoad()" 
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script> 
+<script>
+    $('#description').simplyCountable();
+    autosize(document.querySelectorAll('textarea'));
+    </script> 
 <script>
 
   /***** START BOILERPLATE CODE: Load client library, authorize user. *****/
 
   // Global variables for GoogleAuth object, auth status.
-  var GoogleAuth;
+  var GoogleAuth,title,description,channel,snippet,videoId,getVideo;
+    var tags = Array();
 
   /**
    * Load the API's client and auth2 modules.
@@ -52,7 +111,11 @@
     isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
     // Toggle button text and displayed statement based on current auth status.
     if (isAuthorized) {
-      defineRequest();
+        $('#getVideo').click(function(){
+            getVideo = $('#video').val();
+    getVideo = getVideo.substring(getVideo.lastIndexOf("=") + 1);
+            defineRequest(getVideo);
+        })
     }
   }
 
@@ -102,7 +165,26 @@
 
   function executeRequest(request) {
     request.execute(function(response) {
-      console.log(response);
+       snippet = response.items[0].snippet;
+        videoId = response.items[0].id;
+        title = snippet.title;
+        description = snippet.description;
+        tags = snippet.tags;
+        channel = snippet.channelTitle;
+        $('#title').val(title);
+        $('#description').val(description);
+        $('#tags').val(tags);
+        $('#channelTitle').val(channel);
+        $('#videoId').text(videoId);
+    autosize(document.querySelectorAll('textarea'));
+    $('#description').simplyCountable();
+        $('#tags').simplyCountable({
+            counter: '#counter2',
+            countType: 'characters',
+            maxCount: 500,
+            countDirection: 'up'
+
+		  });
     });
   }
 
@@ -130,29 +212,16 @@
   /***** END BOILERPLATE CODE *****/
 
   
-  function defineRequest() {
+  function defineRequest(getVideo) {
     // See full sample for buildApiRequest() code, which is not 
 // specific to a particular youtube or youtube method.
 
-buildApiRequest('PUT',
+buildApiRequest('GET',
                 '/youtube/v3/videos',
-                {'part': 'snippet'},
-                {'id': 'pJHh7k8hWnE',
-                 'snippet.categoryId': '19',
-                 'snippet.defaultLanguage': 'en',
-                 'snippet.description': 'For over 12 years. We’ve helped thousands of business distribute millions of certificates to happy customers.  As an A+ plus rating company with the BBB. and a licensed seller of travel, we fulfill all of our incentives in house, so when you work with us, you and your customers are working directly with the source and not a 3rd party vendor. . And for your further confidence and protection we  participate in The Travel Consumer Restitution Corporation Fund (TCRC), which was created to protect consumers from dishonest travel companies. We have the experience and credentials to allow you to distribute these certificates with confidence.',
-                 'snippet.tags[]': 'creative marketing incentives,travel certificates,travel incentives,incentives,promotions,premiums,sales incentives,sales motivators,tradeshow giveaways,give aways,gas vouchers,restaurant vouchers,travel vouchers,creative marketing incentives who are we,marketing,vacation certificates,cmig,funrewardsforyou,creative marketing incentive group,incentive marketing,fun rewards for you',
-                 'snippet.title': 'Our History - Creative Marketing Incentives'
-      });
+                {'id': getVideo,
+                 'part': 'snippet'});
 
   }
 </script>
-
-<button id="execute-request-button">Authorize</button>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script async defer src="https://apis.google.com/js/api.js" 
-        onload="this.onload=function(){};handleClientLoad()" 
-        onreadystatechange="if (this.readyState === 'complete') this.onload()">
-</script>
-</body></html>
+</body>
+</html>
