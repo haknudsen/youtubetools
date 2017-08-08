@@ -11,7 +11,7 @@ footer { margin-top: 20px }
 .m-1 { margin: 1em auto }
 #spin { margin: 15px auto 10px; width: 96%; min-height: 80px;}
 #results { width: 100%; min-height: 500px; margin: 20px }
-#title, select, #category { min-width: 200px; margin: 10px auto; text-align: left;padding: 8px;height: 40px}
+#title, #language, #category { min-width: 200px; margin: 10px auto; text-align: left;padding: 8px;height: 40px}
 .btn { margin: 10px auto }
 .instructions { margin: auto; display: block; padding: 25px; text-align: center; }
 textarea { width: 96%; margin: auto; display: block;  background: #333; color: #fff; border: 1px solid #eee;padding: 1rem }

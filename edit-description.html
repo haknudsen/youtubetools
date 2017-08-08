@@ -61,7 +61,7 @@
   /***** START BOILERPLATE CODE: Load client library, authorize user. *****/
 
   // Global variables for GoogleAuth object, auth status.
-var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId,defaultLanguage;
+var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId,defaultLanguage,tagsString;
 var tags = Array();
 var videoUpdate =false;
 
@@ -175,6 +175,7 @@ var videoUpdate =false;
       console.log(response);
         if(!videoUpdate){
             snippet = response.items[0].snippet;
+            console.log(snippet.tags);
             $('#description').val(snippet.description) ;
 $('#tags').val(snippet.tags);
 $('#title').val(snippet.title);
@@ -212,7 +213,8 @@ $('#language').val(snippet.defaultLanguage);
     // See full sample for buildApiRequest() code, which is not 
 // specific to a particular youtube or youtube method.
       description = $('#description').val() ;
-      tags = $('#tags').val();
+      tagsString = $('#tags').val();
+      tags = tagsString.split(',');
       title = $('#title').val();
       categoryId = $('#category').val();
       defaultLanguage = $('#language').val();
@@ -230,10 +232,14 @@ buildApiRequest('PUT',
   }
 </script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script src="includes/autosize.js"></script> 
 <script src="includes/header-autoresize.js"></script> 
 <script async defer src="https://apis.google.com/js/api.js" 
         onload="this.onload=function(){};handleClientLoad()" 
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
-</script>
+</script> 
+<script>
+    autosize(document.querySelectorAll('textarea'));
+    </script>
 </body>
 </html>
