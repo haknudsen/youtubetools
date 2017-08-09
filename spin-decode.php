@@ -24,6 +24,7 @@
          */
         class Spintax {
             public
+
             function process( $text ) {
                 return preg_replace_callback( '/\{(((?>[^\{\}]+)|(?R))*)\}/x', array( $this, 'replace' ), $text); } public function replace($text) { $text = $this->process($text[1]); $parts = explode('|', $text); return $parts[array_rand($parts)]; } } /* EXAMPLE USAGE */ $spintax = new Spintax(); $text = '<textarea id="decode">';
         $text .= $spintax->process($content);
@@ -38,11 +39,9 @@
     <script type="text/javascript" src="my_uploads.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
     <script src="includes/header-autoresize.js"></script>
+    <script src="includes/autosize.js"></script>
     <script>
-        $( '#decode' ).autoresize();
-        $( document ).ready( function () {
-            $( "#footer" ).load( "includes/footer.html" )
-        } );
+        autosize( document.querySelectorAll( 'textarea' ) );
 
         function goBack() {   
             window.history.back();

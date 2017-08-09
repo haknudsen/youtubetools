@@ -100,7 +100,11 @@
         </div>
     </section>
     <footer id="footer"></footer>
-    <script src="includes/header-autoresize.js"></script>
+<script src="includes/header-autoresize.js"></script> 
+<script src="includes/autosize.js"></script> 
+<script>
+    autosize(document.querySelectorAll('textarea'));
+</script> 
 </body>
 
 </html>

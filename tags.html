@@ -18,7 +18,7 @@
       <form method="post" action="tags.php" class="form text-center">
         <div class="form-group">
           <label>Enter Video ID:</label>
-            <input type="text" name="video" id="video">
+          <input type="text" name="video" id="video">
         </div>
         <input type="submit" value="Submit" id="submit" class="btn btn-green" />
       </form>
@@ -27,7 +27,12 @@
 </section>
 <footer id="footer"></footer>
 <script type="text/javascript" src="auth.js"></script> 
-<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
+<script src="includes/header-autoresize.js"></script> 
+<script src="includes/autosize.js"></script> 
+<script>
+    autosize(document.querySelectorAll('textarea'));
+</script> 
 <script>
 
   /***** START BOILERPLATE CODE: Load client library, authorize user. *****/
@@ -166,17 +171,11 @@ buildApiRequest('GET',
                  'part': 'snippet'});
 
   }
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 <script async defer src="https://apis.google.com/js/api.js" 
         onload="this.onload=function(){};handleClientLoad()" 
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
-</script> 
-<script>
-    $( document ).ready( function () {
-        $( "#footer" ).load( "includes/nav.html" );
-        $("#header").load("includes/nav.html");
-    } );
 </script>
 </body>
 </html>

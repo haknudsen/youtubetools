@@ -35,11 +35,10 @@
     <script type="text/javascript" src="auth.js"></script>
     <script type="text/javascript" src="includes/my_titles.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <script src="includes/header-autoresize.js"></script>
+    <script src="includes/autosize.js"></script>
     <script>
-        $( document ).ready( function () {
-            $( "#footer" ).load( "includes/footer.html" );
-            $( "#header" ).load( "includes/footer.html" );
-        } )
+        autosize( document.querySelectorAll( 'textarea' ) );
     </script>
 </body>
 
