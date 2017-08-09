@@ -17,16 +17,17 @@
     <div class="m-1">
         <h3>Total Letter Count : <span id="counter">0</span></h3>
     </div>
-
 </section>
 <footer id="footer"></footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
 <script src="includes/jquery.simplyCountable.js"></script>
 <script src="includes/header-autoresize.js"></script> 
+<script src="includes/autosize.js"></script> 
 <script>
     $(document).ready(function(){
           $('#count').simplyCountable();
     });
+    autosize(document.querySelectorAll('textarea'));
 </script>
 </body>
 </html>

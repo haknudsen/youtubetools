@@ -11,7 +11,7 @@
 </head>
 
 <body>
-   <div id="header"></div>
+    <div id="header"></div>
     <section class="jumbotron">
         <div class="container-fluid text-center">
             <h2>Spin All</h2>
@@ -31,11 +31,12 @@
     <script type="text/javascript" src="includes/my_uploads.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
     <script src="includes/header-autoresize.js"></script>
+    <script src="includes/autosize.js"></script>
     <script>
-        $('#decode').autoresize;
+        autosize( document.querySelectorAll( 'textarea' ) );
         $( '#spaces' ).click( function () {
             $( '#content' ).attr( 'action', 'spin-decode-all-no-spaces.php' );
-            $( '#spaces' ).css('color','#00FF00');
+            $( '#spaces' ).css( 'color', '#00FF00' );
         } );
     </script>
 </body>

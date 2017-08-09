@@ -101,10 +101,10 @@
 
     </section>
     <footer id="footer"></footer>
+    <script src="includes/header-autoresize.js"></script>
+    <script src="includes/autosize.js"></script>
     <script>
-        $( document ).ready( function () {
-            $( "#footer" ).load( "includes/footer.html" )
-        } )
+        autosize( document.querySelectorAll( 'textarea' ) );
     </script>
 </body>
 

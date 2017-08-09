@@ -65,9 +65,10 @@ $response = curl_exec( $ch );
 <script type="text/javascript" src="auth.js"></script> 
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
 <script type="text/javascript" src="includes/playlist-markdown.js"></script> 
-<script src="includes/header-autoresize.js"></script>
+<script src="includes/header-autoresize.js"></script> 
+<script src="includes/autosize.js"></script> 
 <script>
-    $('#link-container').autoresize();
-</script>
+    autosize(document.querySelectorAll('textarea'));
+</script> 
 </body>
 </html>

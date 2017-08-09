@@ -29,8 +29,9 @@
     <script type="text/javascript" src="my_uploads.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
     <script src="includes/header-autoresize.js"></script>
+    <script src="includes/autosize.js"></script>
     <script>
-        $( '#decode' ).autoresize();
+        autosize( document.querySelectorAll( 'textarea' ) );
     </script>
 </body>
 

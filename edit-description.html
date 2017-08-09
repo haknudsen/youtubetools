@@ -38,9 +38,12 @@
         onload="this.onload=function(){};handleClientLoad()" 
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script> 
+<script src="includes/autosize.js"></script> 
 <script src="includes/header-autoresize.js"></script> 
 <script src="includes/jquery.simplyCountable-description.js"></script> 
-<script>var GoogleAuth;
+<script>
+    autosize(document.querySelectorAll('textarea'));
+    var GoogleAuth;
 
   /**
    * Load the API's client and auth2 modules.
@@ -182,6 +185,5 @@ buildApiRequest('PUT',
   }
     $('#description').simplyCountable();
 </script>
-<script src="includes/header-autoresize.js"></script>
 </body>
 </html>
