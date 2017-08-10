@@ -56,6 +56,7 @@ function setSigninStatus() {
             videoUpdate = false;
             getVideo = $('#video').val();
             getVideo = getVideo.substring(getVideo.lastIndexOf("=") + 1);
+            getVideo = getVideo.substring(getVideo.lastIndexOf("/") + 1);
             defineRequest(getVideo);
         });
         $('#update').click(function () {
@@ -122,8 +123,8 @@ function executeRequest(request) {
             tags = snippet.tags;
             channel = snippet.channelTitle;
             $('#title').val(title);
-            $('#description').val(description);
-            $('#tags').val(tags);
+            $('#description').val(description).blur();
+            $('#tags').val(tags).blur();
             $('#channelTitle').val(channel);
             $('#videoId').text(videoId);
             $('#description').simplyCountable();
@@ -133,7 +134,6 @@ function executeRequest(request) {
                 maxCount: 500,
                 countDirection: 'up'
             });
-            autosize(document.querySelectorAll('textarea'));
         }
     });
 }
@@ -182,21 +182,23 @@ function update() {
     videoUpdate = true;
     title = $('#title').val();
     description = $('#description').val();
-    tags = $('#tags').val();
-    // Sample js code for videos.update
-
-// See full sample for buildApiRequest() code, which is not 
-// specific to a particular youtube or youtube method.
-
-buildApiRequest('PUT',
-                '/youtube/v3/videos',
-                {'part': 'snippet'},
-                {'id': 'pJHh7k8hWnE',
-                 'snippet.categoryId': '19',
-                 'snippet.defaultLanguage': 'en',
-                 'snippet.description': 'test',
-                 'snippet.tags[]': '',
-                 'snippet.title': 'Our History - Creative Marketing Incentives',
-                 'status.privacyStatus': ''
-      });
+    tags = getTags();
+    privacy = 'Public';
+    buildApiRequest('PUT',
+        '/youtube/v3/videos', {
+            'part': 'snippet'
+        }, {
+            'id': 'pJHh7k8hWnE',
+            'snippet.categoryId': '19',
+            'snippet.defaultLanguage': 'en',
+            'snippet.description': description,
+            'snippet.tags[]': tags,
+            'snippet.title': title,
+            'status.privacyStatus': privacy
+        });
+}
+function getTags(){
+    "use strict";
+    var stringTags = $('#tags').val();
+    return stringTags.split(',');
 }

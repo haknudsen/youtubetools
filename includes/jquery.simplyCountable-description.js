@@ -113,7 +113,6 @@
       };
       
       countCheck();
-
       countable.on('keyup blur paste', function(e) {
         switch(e.type) {
           case 'keyup':
