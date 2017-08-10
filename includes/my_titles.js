@@ -69,6 +69,7 @@ function displayResult(videoSnippet) {
     var videoURL = videoId;
     title = title.toString();
     title = title.replace(/\|/g, "<br />");
+    
     $('#video-container').append( title + '<br />');
     videoList[i] = videoURL;
     i++;

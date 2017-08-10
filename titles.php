@@ -36,10 +36,13 @@
     <script type="text/javascript" src="includes/my_titles.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
     <script src="includes/header-autoresize.js"></script>
+<<<<<<< HEAD
     <script src="includes/autosize.js"></script>
     <script>
         autosize( document.querySelectorAll( 'textarea' ) );
     </script>
+=======
+>>>>>>> youtubetools/master
 </body>
 
 </html>

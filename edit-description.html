@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Edit Description from Playlist</title>
+<title>Edit Description</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -11,26 +11,50 @@
 </head>
 <body>
 <div id="header"></div>
-<section class="jumbotron">
-  <h1 class="text-center">Edit Description</h1>
-  <div id="login-container" class="pre-auth"> This application requires access to your YouTube account.  Please <a href="#" id="login-link">authorize</a> to continue. </div>
-  <div class="container center">
-    <h3 id="reporter"></h3>
-    <input type="text" name="playlist" id="playlist" style="width: 800px;margin: 5px auto">
-    <button type="button" class="btn btn-green center-block" id="playlistClick">Get Videos</button>
+<section class="container-fluid">
+  <div class="text-center">
+    <button id="execute-request-button" class="btn btn-danger">Authorize</button>
+    <br>
+    <label class="m-1">Enter Video ID
+      <input type="text" id="video">
+    </label>
+    <br>
+    <button type="button" class="btn btn-danger" id="getVideo">Get Video</button>
+    <button type="button" class="btn btn-purple" id="update">Update</button>
   </div>
-  <div class="container center">
-    <select id="video-ids" class="m-1">
-    </select>
-  </div>
-  <div class="alert alert-success">
-    <textarea id="description"></textarea>
-    <div class="m-1 text-center">
-      <h3 class="text-center">Total Letter Count : <span id="counter">0</span></h3>
-      <button id="execute-request-button">Authorize</button>
-      <button type="button" class="btn btn-purple center-block" id="updateDescription">Update Description</button>
+</section>
+<div class="alert alert-info">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3 class="text-capitalize text-center">title</h3>
+      <input type="text" id="title">
+    </div>
+    <div class="col-sm-2">
+      <h3 class="text-capitalize text-center">Language</h3>
+      <select  id="language" title="Language">
+        <option value="en" selected>English</option>
+      </select>
+    </div>
+    <div class="col-sm-2">
+      <h3 class="text-capitalize text-center">category</h3>
+      <input id="category" type="text">
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3 class="text-capitalize text-center">description</h3>
+      <textarea id="description"></textarea>
+      <div class="m-1">
+        <h3  class="text-capitalize text-center">Total Letter Count : <span id="counter">0</span></h3>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h3 class="text-capitalize text-center">tags</h3>
+      <textarea id="tags"></textarea>
+      <h3  class="text-capitalize text-center">Total Letter Count : <span id="counter2">0</span></h3>
+    </div>
+  </div>
+<<<<<<< HEAD
 </section>
 <footer id="footer"></footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
@@ -44,6 +68,18 @@
 <script>
     autosize(document.querySelectorAll('textarea'));
     var GoogleAuth;
+=======
+</div>
+<div id="footer"></div>
+<script>
+
+  /***** START BOILERPLATE CODE: Load client library, authorize user. *****/
+
+  // Global variables for GoogleAuth object, auth status.
+var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId,defaultLanguage,tagsString;
+var tags = Array();
+var videoUpdate =false;
+>>>>>>> youtubetools/master
 
   /**
    * Load the API's client and auth2 modules.
@@ -88,7 +124,21 @@
     isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
     // Toggle button text and displayed statement based on current auth status.
     if (isAuthorized) {
-      defineRequest();
+        $('#getVideo').addClass('btn-green');
+        $('#execute-request-button').addClass('btn-green');
+        $('#getVideo').click(function () {
+            getVideo = $('#video').val();
+            getVideo = getVideo.substring(getVideo.lastIndexOf("=") + 1);
+            videoUpdate =false;
+            buildApiRequest('GET',
+                '/youtube/v3/videos',
+                {'id': getVideo,
+                 'part': 'snippet'});
+        });
+        $('#update').click(function(){
+            videoUpdate = true;
+                defineRequest();
+        })
     }
   }
 
@@ -139,6 +189,15 @@
   function executeRequest(request) {
     request.execute(function(response) {
       console.log(response);
+        if(!videoUpdate){
+            snippet = response.items[0].snippet;
+            console.log(snippet.tags);
+            $('#description').val(snippet.description) ;
+$('#tags').val(snippet.tags);
+$('#title').val(snippet.title);
+$('#category').val(snippet.categoryId);
+$('#language').val(snippet.defaultLanguage);
+        }
     });
   }
 
@@ -169,21 +228,39 @@
   function defineRequest() {
     // See full sample for buildApiRequest() code, which is not 
 // specific to a particular youtube or youtube method.
-      $('#updateDescription').click(function(){
-var description = $('#description').val();
+      description = $('#description').val() ;
+      tagsString = $('#tags').val();
+      tags = tagsString.split(',');
+      title = $('#title').val();
+      categoryId = $('#category').val();
+      defaultLanguage = $('#language').val();
 buildApiRequest('PUT',
                 '/youtube/v3/videos',
                 {'part': 'snippet'},
                 {'id': 'pJHh7k8hWnE',
-                 'snippet.categoryId': '19',
-                 'snippet.defaultLanguage': 'en',
+                 'snippet.categoryId':categoryId,
+                 'snippet.defaultLanguage': defaultLanguage,
                  'snippet.description': description,
-                 'snippet.title': 'Our History - Creative Marketing Incentives'
-      });
+                 'snippet.tags[]': '',
+                 'snippet.title': title
       });
 
   }
+<<<<<<< HEAD
     $('#description').simplyCountable();
 </script>
+=======
+</script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script src="includes/autosize.js"></script> 
+<script src="includes/header-autoresize.js"></script> 
+<script async defer src="https://apis.google.com/js/api.js" 
+        onload="this.onload=function(){};handleClientLoad()" 
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script> 
+<script>
+    autosize(document.querySelectorAll('textarea'));
+    </script>
+>>>>>>> youtubetools/master
 </body>
 </html>
