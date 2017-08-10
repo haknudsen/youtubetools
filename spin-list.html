@@ -13,18 +13,32 @@
 <body>
 <div id="header"></div>
 <section class="container">
-  <h1 class="text-center">vSEO Tools</h1>
+  <h1 class="text-center">Lists</h1>
 </section>
 <section class="container text-center">
-  <h2 class="text-capitalize">Turn List into spin text</h2>
+  <h2 class="text-capitalize">Turn List into spintax or separate with commas</h2>
   <h3>Each part on its own line</h3>
-  <div class="form-group">
-    <textarea id="decode" name="decode"></textarea>
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-2">
+      <button id="getSpintax" class="btn btn-primary">Get Spintax</button>
+    </div>
+    <div class="col-sm-4">
+      <button id="commas" class="btn btn-purple">Comma Separated</button>
+    </div>
   </div>
-  <button id="submit" class="btn btn-primary">Submit</button>
 </section>
 <section class="container-fluid alert-success m-1 text-center">
-    <textarea id="spin"></textarea>
+  <div class="row m-1">
+    <div class="col-md-3 col-md-offset-1">
+      <textarea id="decode" name="decode" style="max-height: 500px"></textarea>
+    </div>
+    <div class="col-md-8">
+      <textarea id="spin" style="max-height: 500px"></textarea>
+      <div class="m-1">
+        <h3>Total Letter Count : <span id="counter">0</span></h3>
+      </div>
+    </div>
+  </div>
 </section>
 <footer id="footer"></footer>
 <script type="text/javascript" src="auth.js"></script> 
@@ -32,15 +46,37 @@
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
 <script src="includes/header-autoresize.js"></script> 
 <script src="includes/autosize.js"></script> 
+<script src="includes/jquery.simplyCountable.js"></script> 
 <script>
     autosize(document.querySelectorAll('textarea'));
-    $("#submit").click(function(){
+    $("#getSpintax").click(function(){
         var list = $("#decode").val();
         var text = list.replace(/(\r\n|\n|\r)/gm,"|");
         text = "{" + text;
         text += "}";
         $("#spin").val(text);
 });
+    $("#commas").click(function(){
+        setTimeout(function() {
+             $("#spin").focus();
+            }, 0);
+        var list = $("#decode").val();
+        var text = list.replace(/(\r\n|\n|\r)/gm,",");
+        $("#spin").val(text);
+        setTimeout(function() {
+             $("#spin").keyup();
+            }, 0);
+        setTimeout(function() {
+             $("#spin").keydown();
+            }, 0);
+        });
+    $(document).ready(function(){
+          $('#spin').simplyCountable({
+    counter:            '#counter',
+    countType:          'characters',
+    maxCount:           500
+          });
+    });
     </script>
 </body>
 </html>
