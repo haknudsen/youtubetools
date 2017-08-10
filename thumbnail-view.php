@@ -1,17 +1,22 @@
 <?php
 $videoId = $_POST[ "videoID" ];
-$pos = strpos($videoId, '=');
-if($pos){
-$videoId = explode('=', $videoId)[1];
+$pos = strrpos( $videoId, '=' );
+if ( $pos ) {
+    $videoId = substr( $videoId, $pos + 1 );
+} else {
+    $pos = strrpos( $videoId, '/' );
+    if ( $pos ) {
+        $videoId = substr( $videoId, $pos + 1 );
+    }
 }
 $resolution = array( "default", "sddefault", "mqdefault", "hqdefault", "maxresdefault" );
 $htmlBody .= '<div class="container">';
 for ( $x = 0; $x < sizeof( $resolution ); $x++ ) {
     $imgurl = '//img.youtube.com/vi/' . $videoId . '/' . $resolution[ $x ] . '.jpg';
     $htmlBody .= '<div class="text-center">';
-    $htmlBody .= '<a href="' .$imgurl . '"><img src="' . $imgurl;
+    $htmlBody .= '<a href="' . $imgurl . '"><img src="' . $imgurl;
     $htmlBody .= '" class="img img-responsive center-block box"></a>';
-    $htmlBody .= '<h3><a href="' .$imgurl . '">' .$imgurl . '</a></h3>';
+    $htmlBody .= '<h3><a href="' . $imgurl . '">' . $imgurl . '</a></h3>';
     $htmlBody .= '</div>';
     if ( get_headers( $url )[ 0 ] == 'HTTP/1.0 200 OK' ) {
         break;
@@ -39,11 +44,11 @@ for ( $x = 0; $x < sizeof( $resolution ); $x++ ) {
             <?=$htmlBody?>
         </section>
         <footer id="footer"></footer>
-<script src="includes/header-autoresize.js"></script> 
-<script src="includes/autosize.js"></script> 
-<script>
-    autosize(document.querySelectorAll('textarea'));
-</script> 
+        <script src="includes/header-autoresize.js"></script>
+        <script src="includes/autosize.js"></script>
+        <script>
+            autosize( document.querySelectorAll( 'textarea' ) );
+        </script>
 </body>
 
 </html>
