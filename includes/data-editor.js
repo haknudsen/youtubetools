@@ -3,7 +3,7 @@
 /***** START BOILERPLATE CODE: Load client library, authorize user. *****/
 
 // Global variables for GoogleAuth object, auth status.
-var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId;
+var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId,privacy,language;
 var tags = Array();
 var videoUpdate = true;
 
@@ -122,6 +122,10 @@ function executeRequest(request) {
             description = snippet.description;
             tags = snippet.tags;
             channel = snippet.channelTitle;
+            language = snippet.defaultLanguage;
+            console.log( ' ' +language);
+            $('#language').val(language);
+            $('#category').val(categoryId);
             $('#title').val(title);
             $('#description').val(description).blur();
             $('#tags').val(tags).blur();
