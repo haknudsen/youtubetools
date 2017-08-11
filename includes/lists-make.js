@@ -14,6 +14,11 @@ $("#commas").click(function () {
     $("#spin").val(text);
     fieldUpdate();
 });
+$('#clear').click(function(){
+    $("#spin").val('');
+    $("#decode").val('');
+    fieldUpdate();
+})
 $(document).ready(function () {
     $('#spin').simplyCountable({
         counter: '#counter',
