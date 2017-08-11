@@ -60,6 +60,7 @@ function setSigninStatus() {
             videoUpdate = false;
             getVideo = $('#video').val();
             getVideo = getVideo.substring(getVideo.lastIndexOf("=") + 1);
+            getVideo = getVideo.substring(getVideo.lastIndexOf("/") + 1);
             defineRequest(getVideo);
         });
         $('#update').click(function () {
@@ -79,7 +80,7 @@ function createResource(properties) {
     var normalizedProps = properties;
     for (var p in properties) {
         var value = properties[p];
-        if (p && p.substr(-2, 2) == '[]') {
+        if (p && p.substr(-2, 2) === '[]') {
             var adjustedName = p.replace('[]', '');
             if (value) {
                 normalizedProps[adjustedName] = value.split(',');
@@ -94,13 +95,13 @@ function createResource(properties) {
             var ref = resource;
             for (var pa = 0; pa < propArray.length; pa++) {
                 var key = propArray[pa];
-                if (pa == propArray.length - 1) {
+                if (pa === propArray.length - 1) {
                     ref[key] = normalizedProps[p];
                 } else {
                     ref = ref[key] = ref[key] || {};
                 }
             }
-        };
+        }
     }
     return resource;
 }
@@ -108,7 +109,7 @@ function createResource(properties) {
 function removeEmptyParams(params) {
     "use strict";
     for (var p in params) {
-        if (!params[p] || params[p] == 'undefined') {
+        if (!params[p] || params[p] === 'undefined') {
             delete params[p];
         }
     }
@@ -119,7 +120,6 @@ function executeRequest(request) {
     "use strict";
     request.execute(function (response) {
         console.log(response);
-        console.log(videoUpdate);
         if (videoUpdate === false) {
             snippet = response.items[0].snippet;
             categoryId = snippet.categoryId;
@@ -128,9 +128,12 @@ function executeRequest(request) {
             description = snippet.description;
             tags = snippet.tags;
             channel = snippet.channelTitle;
+            language = snippet.defaultLanguage;
+            $('#language').val(language);
+            $('#category').val(categoryId);
             $('#title').val(title);
-            $('#description').val(description);
-            $('#tags').val(tags);
+            $('#description').val(description).blur();
+            $('#tags').val(tags).blur();
             $('#channelTitle').val(channel);
             $('#videoId').text(videoId);
             $('#description').simplyCountable();
@@ -163,7 +166,6 @@ function buildApiRequest(requestMethod, path, params, properties) {
             'params': params
         });
     }
-    console.log(request);
     executeRequest(request);
 }
 
@@ -189,22 +191,19 @@ function update() {
     title = $('#title').val();
     description = $('#description').val();
     tags = getTags();
-    // Sample js code for videos.update
-
-// See full sample for buildApiRequest() code, which is not 
-// specific to a particular youtube or youtube method.
-
-buildApiRequest('PUT',
-                '/youtube/v3/videos',
-                {'part': 'snippet'},
-                {'id': videoId,
-                 'snippet.categoryId': '19',
-                 'snippet.defaultLanguage': 'en',
-                 'snippet.description': description,
-                 'snippet.tags[]': '',
-                 'snippet.title': title
-      });
-    $('#reporter').text('updated!');
+    privacy = 'Public';
+    buildApiRequest('PUT',
+        '/youtube/v3/videos', {
+            'part': 'snippet'
+        }, {
+            'id': videoId,
+            'snippet.categoryId': categoryId,
+            'snippet.defaultLanguage': language,
+            'snippet.description': description,
+            'snippet.tags[]': tags,
+            'snippet.title': title,
+            'status.privacyStatus': privacy
+        });
 }
 function getTags(){
     "use strict";
