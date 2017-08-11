@@ -128,6 +128,11 @@ function executeRequest(request) {
             description = snippet.description;
             tags = snippet.tags;
             channel = snippet.channelTitle;
+            channel = snippet.channelTitle;
+            language = snippet.defaultLanguage;
+            categoryId = snippet.categoryId;
+            $('#language').val(language);
+            $('#category').val(categoryId);
             $('#title').val(title);
             $('#description').val(description);
             $('#tags').val(tags);
@@ -189,6 +194,7 @@ function update() {
     title = $('#title').val();
     description = $('#description').val();
     tags = getTags();
+            console.log( tags );
     // Sample js code for videos.update
 
 // See full sample for buildApiRequest() code, which is not 
@@ -201,7 +207,7 @@ buildApiRequest('PUT',
                  'snippet.categoryId': '19',
                  'snippet.defaultLanguage': 'en',
                  'snippet.description': description,
-                 'snippet.tags[]': '',
+                 'snippet.tags': tags,
                  'snippet.title': title
       });
     $('#reporter').text('updated!');
