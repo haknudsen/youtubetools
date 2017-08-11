@@ -70,7 +70,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
             var $link = $('#link-container');
             $link.val(list);
             $link.val($('#link-container').val().replace(/,/g, '\n'));
-            $link.autoresize();
+            autosize.update($link);
             
             $('#playlistID').val(playlistId);
         } else {
