@@ -3,7 +3,7 @@
 /***** START BOILERPLATE CODE: Load client library, authorize user. *****/
 
 // Global variables for GoogleAuth object, auth status.
-var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId,privacy,language;
+var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId,isAuthorized;
 var tags = Array();
 var videoUpdate = true;
 
@@ -12,10 +12,12 @@ var videoUpdate = true;
  * Call the initClient function after the modules load.
  */
 function handleClientLoad() {
+    "use strict";
     gapi.load('client:auth2', initClient);
 }
 
 function initClient() {
+    "use strict";
     // Initialize the gapi.client object, which app uses to make API requests.
     // Get API key and client ID from API Console.
     // 'scope' field specifies space-delimited list of access scopes
@@ -41,11 +43,13 @@ function initClient() {
 }
 
 function handleAuthClick(event) {
+    "use strict";
     // Sign user in after click on auth button.
     GoogleAuth.signIn();
 }
 
 function setSigninStatus() {
+    "use strict";
     var user = GoogleAuth.currentUser.get();
     isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
     // Toggle button text and displayed statement based on current auth status.
@@ -56,7 +60,6 @@ function setSigninStatus() {
             videoUpdate = false;
             getVideo = $('#video').val();
             getVideo = getVideo.substring(getVideo.lastIndexOf("=") + 1);
-            getVideo = getVideo.substring(getVideo.lastIndexOf("/") + 1);
             defineRequest(getVideo);
         });
         $('#update').click(function () {
@@ -66,10 +69,12 @@ function setSigninStatus() {
 }
 
 function updateSigninStatus(isSignedIn) {
+    "use strict";
     setSigninStatus();
 }
 
 function createResource(properties) {
+    "use strict";
     var resource = {};
     var normalizedProps = properties;
     for (var p in properties) {
@@ -101,6 +106,7 @@ function createResource(properties) {
 }
 
 function removeEmptyParams(params) {
+    "use strict";
     for (var p in params) {
         if (!params[p] || params[p] == 'undefined') {
             delete params[p];
@@ -122,13 +128,9 @@ function executeRequest(request) {
             description = snippet.description;
             tags = snippet.tags;
             channel = snippet.channelTitle;
-            language = snippet.defaultLanguage;
-            console.log( ' ' +language);
-            $('#language').val(language);
-            $('#category').val(categoryId);
             $('#title').val(title);
-            $('#description').val(description).blur();
-            $('#tags').val(tags).blur();
+            $('#description').val(description);
+            $('#tags').val(tags);
             $('#channelTitle').val(channel);
             $('#videoId').text(videoId);
             $('#description').simplyCountable();
@@ -138,6 +140,7 @@ function executeRequest(request) {
                 maxCount: 500,
                 countDirection: 'up'
             });
+            autosize(document.querySelectorAll('textarea'));
         }
     });
 }
@@ -186,23 +189,21 @@ function update() {
     videoUpdate = true;
     title = $('#title').val();
     description = $('#description').val();
-    tags = getTags();
-    privacy = 'Public';
-    buildApiRequest('PUT',
-        '/youtube/v3/videos', {
-            'part': 'snippet'
-        }, {
-            'id': 'pJHh7k8hWnE',
-            'snippet.categoryId': '19',
-            'snippet.defaultLanguage': 'en',
-            'snippet.description': description,
-            'snippet.tags[]': tags,
-            'snippet.title': title,
-            'status.privacyStatus': privacy
-        });
-}
-function getTags(){
-    "use strict";
-    var stringTags = $('#tags').val();
-    return stringTags.split(',');
+    tags = $('#tags').val();
+    // Sample js code for videos.update
+
+// See full sample for buildApiRequest() code, which is not 
+// specific to a particular youtube or youtube method.
+
+buildApiRequest('PUT',
+                '/youtube/v3/videos',
+                {'part': 'snippet'},
+                {'id': 'pJHh7k8hWnE',
+                 'snippet.categoryId': '19',
+                 'snippet.defaultLanguage': 'en',
+                 'snippet.description': 'test',
+                 'snippet.tags[]': '',
+                 'snippet.title': 'Our History - Creative Marketing Incentives',
+                 'status.privacyStatus': ''
+      });
 }
