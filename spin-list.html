@@ -39,37 +39,19 @@
       </div>
     </div>
   </div>
+  <div class="row">
+      <button id="clear" class="btn btn-green">Clear Fields</button>
+  </div>
 </section>
 <footer id="footer"></footer>
 <script type="text/javascript" src="auth.js"></script> 
-<script type="text/javascript" src="includes/my_uploads.js"></script> 
+<script type="text/javascript" src="includes/lists-make.js"></script> 
 <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script> 
 <script src="includes/header-autoresize.js"></script> 
 <script src="includes/autosize.js"></script> 
 <script src="includes/jquery.simplyCountable.js"></script> 
 <script>
     autosize(document.querySelectorAll('textarea'));
-    $("#getSpintax").click(function(){
-        var list = $("#decode").val();
-        var text = list.replace(/(\r\n|\n|\r)/gm,"|");
-        text = "{" + text;
-        text += "}";
-        $("#spin").val(text);
-});
-    $("#commas").click(function(){
-        var list = $("#decode").val();
-        var text = list.replace(/(\r\n|\n|\r)/gm,",");
-        $("#spin").val(text);
-         autosize.update($('#spin'));
-         autosize.update($('#decode'));
-        });
-    $(document).ready(function(){
-          $('#spin').simplyCountable({
-    counter:            '#counter',
-    countType:          'characters',
-    maxCount:           500
-          });
-    });
     </script>
 </body>
 </html>
