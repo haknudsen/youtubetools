@@ -14,15 +14,17 @@
 <section class="container-fluid">
   <div  class="text-center">
     <h1>Video Data Editor</h1>
-    <div class="row m-1">
+    <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h3 class="text-capitalize text-center">Enter Video ID</h3>
         <input type="text" id="video">
       </div>
     </div>
-    <button id="execute-request-button">Authorize</button>
-    <button type="button" class="btn btn-danger center-block" id="getVideo">Get Video</button>
-    <button type="button" class="btn btn-purple" id="update">Update</button>
+    <div class="btn-row">
+      <button type="button" class="btn btn-drkblue"  id="execute-request-button">Authorize</button>
+      <button type="button" class="btn btn-danger" id="getVideo">Get Video</button>
+      <button type="button" class="btn btn-purple" id="update">Update</button>
+    </div>
   </div>
   <div class="alert alert-info">
     <div class="row">
@@ -46,14 +48,14 @@
     <div class="row">
       <div class="col-sm-6">
         <h3 class="text-capitalize text-center">description</h3>
-        <textarea id="description" style="max-height: 960px;min-height: 320px"></textarea>
+        <textarea id="description" style="max-height: 960px;min-height: 20px"></textarea>
         <div class="m-1">
           <h3  class="text-capitalize text-center">Total Letter Count : <span id="counter">0</span></h3>
         </div>
       </div>
       <div class="col-sm-6">
         <h3 class="text-capitalize text-center">tags</h3>
-        <textarea id="tags" style="max-height: 960px;min-height: 200px"></textarea>
+        <textarea id="tags" style="max-height: 960px;min-height: 20px"></textarea>
         <h3  class="text-capitalize text-center">Total Letter Count : <span id="counter2">0</span></h3>
       </div>
     </div>
