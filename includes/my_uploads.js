@@ -76,6 +76,7 @@ function createList() {
     }
     spin += "}";
     $('#spin').text(spin);
+         autosize.update($('#spin'));
 }
 // Create a listing for a video.
 function displayResult(videoSnippet) {

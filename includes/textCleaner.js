@@ -119,7 +119,7 @@ function changeText() {
 
     function changeText(myText) {
         $('#textCleaner').val(myText);
-         $('#textCleaner').autoresize();
+         autosize.update($('#textCleaner'));
     }
 
 

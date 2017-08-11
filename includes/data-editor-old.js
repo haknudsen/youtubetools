@@ -122,13 +122,13 @@ function executeRequest(request) {
         console.log(response);
         if (videoUpdate === false) {
             snippet = response.items[0].snippet;
-            categoryId = snippet.categoryId;
             videoId = response.items[0].id;
             title = snippet.title;
             description = snippet.description;
             tags = snippet.tags;
             channel = snippet.channelTitle;
             language = snippet.defaultLanguage;
+            categoryId = snippet.categoryId;
             $('#language').val(language);
             $('#category').val(categoryId);
             $('#title').val(title);

@@ -145,6 +145,8 @@ function executeRequest(request) {
                 maxCount: 500,
                 countDirection: 'up'
             });
+            autosize.update($('#description'));
+            autosize.update($('#tags'));
         }
     });
 }
