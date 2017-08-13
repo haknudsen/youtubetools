@@ -4,7 +4,7 @@ $api_dev_key = '8633e8df7b1fe0423b83017afbbaedd1'; // your api_developer_key
 $api_paste_code = $content; // your paste text
 echo($api_user_code);
 $api_paste_private = '0'; // 0=public 1=unlisted 2=private
-$api_paste_name = 'Talking Heads-' . $_GET[ 'playlistID' ] . '.markdown'; // name or title of your paste
+$api_paste_name = $_GET[ 'playlistID' ] . '.markdown'; // name or title of your paste
 $api_paste_expire_date = 'N';
 $api_paste_format = 'markdown';
 $api_user_key = $_GET[ 'userID' ]; // if an invalid or expired api_user_key is used, an error will spawn. If no api_user_key is used, a guest paste will be created]

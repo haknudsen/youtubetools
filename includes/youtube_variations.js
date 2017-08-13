@@ -7,17 +7,17 @@ $('#getURLs').click(function () {
     "use strict";
     var list = $('#keywords').val();
     list = list.split("\n");
-    list = list.filter(function(value) {
-    return value !== "" && value !== null;
-});
-        console.log(list );
+    list = list.filter(function (value) {
+        return value !== "" && value !== null;
+    });
+    console.log(list);
     var i = 0;
     var listLength = list.length;
-    var l = listLength-1;
+    var l = listLength - 1;
     var id = $('#videoID').val();
-    id = id.substring(id.indexOf("=") + 1);
+    id = id.substring(id.lastIndexOf("=") + 1);
     $('#playlistID').val(id);
-    for (i = 0; i <60; i++) {
+    for (i = 0; i < 50; i++) {
         var newUrl = arrUrls[i].replace('XXXXX', id);
         info = '[';
         info += list[l];
@@ -25,10 +25,14 @@ $('#getURLs').click(function () {
         info += anchor + newUrl + ')';
         linkList[i] = info;
         console.log(l);
-        if(l === 0){l=listLength-1;}else{l--;}
+        if (l === 0) {
+            l = listLength - 1;
+        } else {
+            l--;
+        }
     }
-            var $link = $('#link-container');
-            $link.val( linkList );
-            $link.val($('#link-container').val().replace(/,/g, '\n'));
-            $link.autoresize();
+    var $link = $('#link-container');
+    $link.val(linkList);
+    $link.val($('#link-container').val().replace(/,/g, '\n'));
+    autosize.update($('#link-container'));
 });
