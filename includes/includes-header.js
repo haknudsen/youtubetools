@@ -17,5 +17,5 @@ $.fn.extend({
     $(document).ready(function(){
         "use strict";
         $("#footer").load("includes-nav.html");
-        $("#header").load("nav-header.php");
+        $("#header").load("includes-nav.html");
     });

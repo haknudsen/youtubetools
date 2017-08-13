@@ -17,15 +17,21 @@
   <h3>Found at <a href="https://www.youtube.com/account_advanced" title="Advanced" target="_blank">https://www.youtube.com/account_advanced</a> under account information</h3>
   <h2>Returns the RSS feeds for the Channel, user, and all the playlists</h2>
   <button id="execute-request-button" class="btn btn-danger center-block">Authorize</button>
-  <input type="text" id="channel" class="m-1 container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <input type="text" id="channel" class="container">
+    </div>
+  </div>
   <button id="start" class="btn btn-purple center-block text-uppercase">GET RSS feeds</button>
 </section>
 <div class="alert alert-info">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12 m-1">
       <textarea id="rss-feeds"></textarea>
     </div>
-    <div class="col-md-6">
+  </div>
+  <div class="row">
+    <div class="col-md-12 m-1">
       <textarea id="rss-links"></textarea>
     </div>
   </div>
@@ -168,8 +174,8 @@
         }
         $('#rss-links').val(combine);
         $('#rss-links').val($('#rss-links').val().replace(/,/g, '\n'));
-        $('#rss-links').focus();
-        $('#rss-feeds').focus();
+        autosize.update($('#rss-feeds'));
+        autosize.update($('#rss-links'));
     });
   }
 
