@@ -1,5 +1,5 @@
 // JavaScript Document
-var arrUrls = ["http://www.you2repeat.com/watch?v=XXXXXX", "http://youtubeonrepeat.com/watch/?v=XXXXXX", "https://listenonrepeat.com/?v=XXXXXX", "http://www.youtubeloop.net/watch?v=XXXXXX", "http://www.infinitelooper.com/?v=XXXXXX", "https://endlessvideo.com/watch?v=XXXXXX", "https://loopvideos.com/XXXXXX", "https://www.youtuberepeater.com/watch?v=XXXXXX",  "http://loopvid.io/video/XXXXXX"];
+var arrUrls = ["http://www.you2repeat.com/watch?v=XXXXXX", "http://youtubeonrepeat.com/watch/?v=XXXXXX", "https://listenonrepeat.com/?v=XXXXXX", "http://www.youtubeloop.net/watch?v=XXXXXX", "http://www.infinitelooper.com/?v=XXXXXX", "https://endlessvideo.com/watch?v=XXXXXX", "https://loopvideos.com/XXXXXX", "https://www.youtuberepeater.com/watch?v=XXXXXX",  "http://loopvid.io/video/XXXXXX","http://youloop.org/loop.php?v=XXXXXX"];
 var linkList = Array();
 var info;
 $('#getURLs').click(function () {
