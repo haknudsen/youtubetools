@@ -46,7 +46,7 @@ $response = curl_exec( $ch );
         </div>
         <div class="text-center m-1" id="result"></div>
         <div class="alert-info text-center">
-            <form action="includes/pastebin-send.php">
+            <form action="pastebin-send.php">
                 <textarea class="text-center" name="link-container" id="link-container"></textarea >
           <div class="m-1">
               <label>Enter name for Pastebin:<input type="text" value="" name="playlistID" id="playlistID"></label>

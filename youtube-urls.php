@@ -46,7 +46,7 @@ $response = curl_exec( $ch );
         <div class="alert alert-info">
             <div class="row">
                 <div class="col-sm-12">
-                    <form action="includes/pastebin-send.php">
+                    <form action="pastebin-send.php">
                         <button type="submit" class="btn btn-green">Send to Paste Bin</button>
                         <div class="m-1">
                             <label>Enter name for Pastebin:<input type="text" value="" name="playlistID" id="playlistID"></label>
