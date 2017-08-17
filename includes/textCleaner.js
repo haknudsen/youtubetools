@@ -109,7 +109,7 @@ function changeText() {
         changeText(myText);
     });
     $('#convert-special').click(function () {
-        myText = getText().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, ' ');
+        myText = getText().html();
         changeText(myText.trim());
     });
     ////-----------------------------------general functions
