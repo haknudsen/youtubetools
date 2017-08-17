@@ -58,7 +58,7 @@ $response = curl_exec( $ch );
          </div>
 </section>
 <footer id="footer"></footer>
-<script src="includes/header-autoresize.js"></script>
+<script src="includes/navigation.js"></script>
 <script src="includes/my-array.js"></script>
 <script src="includes/autosize.js"></script>
 <script>

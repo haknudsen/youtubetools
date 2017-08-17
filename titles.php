@@ -35,7 +35,7 @@
     <script type="text/javascript" src="auth.js"></script>
     <script type="text/javascript" src="includes/my_titles.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
-    <script src="includes/header-autoresize.js"></script>
+    <script src="includes/navigation.js"></script>
 <<<<<<< HEAD
     <script src="includes/autosize.js"></script>
     <script>
