@@ -88,7 +88,7 @@ function changeText() {
     });
     $('#remove-html').click(function () {
         myText = getText().replace(/(<([^>]+)>)/ig, "");
-        str = myText.replace(/(\r\n|\n|\r)/gm, "");
+        str = myText.replace(/(\r\n|\n|\r)/gm, "\n");
         str = str.replace(/ +(?= )/g, '\n');
         changeText(str);
     });
