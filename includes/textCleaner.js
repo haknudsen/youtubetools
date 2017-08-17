@@ -112,6 +112,10 @@ function changeText() {
         myText = getText().html();
         changeText(myText.trim());
     });
+    $('#convert-commas').click(function(){
+        myText = getText().replace(/,/g, '\n');
+        changeText(myText);
+    })
     ////-----------------------------------general functions
     function getText() {
         return $('#textCleaner').val().toString();
