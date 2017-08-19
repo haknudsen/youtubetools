@@ -108,8 +108,8 @@ function changeText() {
 
         changeText(myText);
     });
-    $('#convert-special').click(function () {
-        myText = getText().html();
+    $('#remove-special').click(function () {
+        myText = getText().replace(/’/g, "'");
         changeText(myText.trim());
     });
     $('#convert-commas').click(function(){
