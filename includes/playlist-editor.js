@@ -3,9 +3,9 @@
 /***** START BOILERPLATE CODE: Load client library, authorize user. *****/
 
 // Global variables for GoogleAuth object, auth status.
-var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId,privacy,language,isAuthorized;
+var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId, privacy, language, isAuthorized;
 var tags = Array();
-var videoUpdate = true;
+var videoUpdate = false;
 
 /**
  * Load the API's client and auth2 modules.
@@ -54,14 +54,12 @@ function setSigninStatus() {
     isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
     // Toggle button text and displayed statement based on current auth status.
     if (isAuthorized) {
-        $('#getVideo').addClass('btn-green');
-        $('#execute-request-button').prop("disabled", true);
-        $('#getVideo').click(function () {
-            videoUpdate = false;
-            getVideo = $('#video').val();
-            getVideo = getVideo.substring(getVideo.lastIndexOf("=") + 1);
+        $('#optionlist').change(function () {
+                $("#reporter").text($('#optionlist').val());
+            getVideo = $("#reporter").text();
             defineRequest(getVideo);
-        });
+            })
+            .change();
         $('#update').click(function () {
             update();
         });
@@ -118,9 +116,7 @@ function removeEmptyParams(params) {
 function executeRequest(request) {
     "use strict";
     request.execute(function (response) {
-        console.log(response);
-        console.log(videoUpdate);
-        if (videoUpdate === false) {
+        if (videoUpdate === false && response.items.length>0) {
             snippet = response.items[0].snippet;
             categoryId = snippet.categoryId;
             videoId = response.items[0].id;
@@ -170,7 +166,6 @@ function buildApiRequest(requestMethod, path, params, properties) {
             'params': params
         });
     }
-    console.log(request);
     executeRequest(request);
 }
 
@@ -196,25 +191,26 @@ function update() {
     title = $('#title').val();
     description = $('#description').val();
     tags = getTags();
-            console.log( tags );
     // Sample js code for videos.update
 
-// See full sample for buildApiRequest() code, which is not 
-// specific to a particular youtube or youtube method.
+    // See full sample for buildApiRequest() code, which is not 
+    // specific to a particular youtube or youtube method.
 
-buildApiRequest('PUT',
-                '/youtube/v3/videos',
-                {'part': 'snippet'},
-                {'id': videoId,
-                 'snippet.categoryId': '19',
-                 'snippet.defaultLanguage': 'en',
-                 'snippet.description': description,
-                 'snippet.tags': tags,
-                 'snippet.title': title
-      });
+    buildApiRequest('PUT',
+        '/youtube/v3/videos', {
+            'part': 'snippet'
+        }, {
+            'id': videoId,
+            'snippet.categoryId': '19',
+            'snippet.defaultLanguage': 'en',
+            'snippet.description': description,
+            'snippet.tags': tags,
+            'snippet.title': title
+        });
     $('#reporter').text('updated!');
 }
-function getTags(){
+
+function getTags() {
     "use strict";
     var stringTags = $('#tags').val();
     return stringTags.split(',');

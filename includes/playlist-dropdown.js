@@ -1,6 +1,5 @@
 // Define some variables used to remember state.
 var playlistId, nextPageToken, prevPageToken;
-var i = 0;
 var videoList = Array();
 
 // After the API loads, call a function to get the uploads playlist ID.
@@ -50,12 +49,14 @@ function requestVideoPlaylist(playlistId, pageToken) {
         prevPageToken = response.result.prevPageToken;
         var prevVis = prevPageToken ? 'visible' : 'hidden';
         $('#prev-button').css('visibility', prevVis);
-
         var playlistItems = response.result.items;
+        $('#editor-section').removeClass("alert-warning");
+        $('#editor-section').addClass("alert-success");
         if (playlistItems) {
             $.each(playlistItems, function (index, item) {
                 displayResult(item.snippet);
             });
+            $("#reporter").text($("#optionlist option:first").val());
         } else {
             $('#video-container').html('Sorry you have no uploaded videos');
         }
@@ -65,10 +66,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
 function displayResult(videoSnippet) {
     "use strict";
     var videoId = videoSnippet.resourceId.videoId;
-    var videoURL = videoId;
-    $('#optionlist').append('<option value="' + videoURL + '">' + videoURL + '</option>');
-    videoList[i] = videoURL;
-    i++;
+    $('#optionlist').append('<option value="' + videoId + '">' + videoId + '</option>');
 }
 
 // Retrieve the next page of videos in the playlist.
@@ -82,17 +80,3 @@ function previousPage() {
     "use strict";
     requestVideoPlaylist(playlistId, prevPageToken);
 }
-$('#sendClick').click(function () {
-    console.log(videoList);
-    $.ajax({
-        url: "save.php",
-        data: {
-            videoList: videoList,
-            playlistId: playlistId
-        },
-        type: 'post',
-        success: function (data) {
-            $('#idList').html(data);
-        }
-    });
-});

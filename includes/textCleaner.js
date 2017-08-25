@@ -109,8 +109,26 @@ function changeText() {
         changeText(myText);
     });
     $('#remove-special').click(function () {
-        myText = getText().replace(/’/g, "'");
-        changeText(myText.trim());
+        var s = getText();
+            var s = text;
+    // smart single quotes and apostrophe
+    s = s.replace(/[\u2018\u2019\u201A]/g, "\'");
+    // smart double quotes
+    s = s.replace(/[\u201C\u201D\u201E]/g, "\"");
+    // ellipsis
+    s = s.replace(/\u2026/g, "...");
+    // dashes
+    s = s.replace(/[\u2013\u2014]/g, "-");
+    // circumflex
+    s = s.replace(/\u02C6/g, "^");
+    // open angle bracket
+    s = s.replace(/\u2039/g, "<");
+    // close angle bracket
+    s = s.replace(/\u203A/g, ">");
+    // spaces
+    s = s.replace(/[\u02DC\u00A0]/g, " ");
+        s = s.replace(/’/g, "'");
+        changeText(s);
     });
     $('#convert-commas').click(function(){
         myText = getText().replace(/,/g, '\n');
