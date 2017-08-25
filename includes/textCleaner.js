@@ -97,6 +97,7 @@ function changeText() {
     $('#convert-html').click(function () {
         myText = getText();
         myText = myText.replace(/&lt;/g, "<")
+            .replace(/’/g, "'")
             .replace(/&gt;/g, ">")
             .replace(/&amp;/g, "&")
             .replace(/&#039;/g, "'")
