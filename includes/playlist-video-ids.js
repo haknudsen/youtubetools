@@ -84,7 +84,7 @@ function displayResult(videoSnippet) {
     var title = videoSnippet.title;
     var videoId = videoSnippet.resourceId.videoId;
     var videoURL = videoId;
-    $('#video-container').append('https://www.youtube.com/watch?v=' + videoURL + '<br />');
+    $('#video-container').append(videoURL + '<br />');
     videoList[i] = videoURL;
     i++;
 }
