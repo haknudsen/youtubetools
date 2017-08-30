@@ -111,9 +111,9 @@ function requestVideoPlaylist(playlistId, pageToken) {
                     break;
             }
             spin += '/></a>';
+            $('#playlistID').val(playlistId);
             $('#spintax').val(spin);
             $('#spintax').autoresize();
-            $('#playlistID').val(playlistId);
         } else {
             $('#link-container').html('Sorry you have no uploaded videos');
         }
