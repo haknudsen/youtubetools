@@ -55,37 +55,9 @@
     <footer id="footer"></footer>
     <script src="includes/navigation.js"></script>
     <script src="includes/autosize.js"></script>
+    <script src="includes/add-pre-suf.js"></script>
     <script>
         autosize( document.querySelectorAll( 'textarea' ) );
-
-        function addpresufx() {
-            var prfx = document.getElementById( 'prefix' ).value;
-            var sufx = document.getElementById( 'suffix' ).value;
-            var text = document.getElementById( 'input' ).value;
-            var belong2 = 'pbclevtug grkgzrpunavp.pbz';
-            text = text.replace( /\r/g, '' );
-            text = text.split( /\n/ );
-            var textlen = text.length;
-            var textarrout = new Array();
-            for ( var x = 0; x < textlen; x++ ) {
-                textarrout[ x ] = prfx + text[ x ] + sufx;
-            }
-            textout = textarrout.join( '\n' );
-            document.getElementById( 'output' ).value = textout;
-            count_me();
-        }
-        $( '#clear' ).click( function () {
-            "use strict";
-            $( "#spin" ).val( '' );
-            $( "#decode" ).val( '' );
-            fieldUpdate();
-        } );
-
-        function fieldUpdate() {
-            "use strict";
-            autosize.update( $( '#decode' ) );
-            $( '#spin' ).blur();
-        }
     </script>
 </body>
 
