@@ -13,6 +13,11 @@ function changeText() {
         myText = getText();
         changeText(myText.trim());
     });
+    $('#replace-spaces').click(function () {
+        myText = getText();
+        myText = myText.replace(/ +/g,"-");
+        changeText(myText.trim());
+    });
     //---------------------------------------Line Breaks
     $('#remove-extra-linebreaks').click(function () {
         myText = getText();
