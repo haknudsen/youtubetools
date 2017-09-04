@@ -116,7 +116,6 @@ function changeText() {
     });
     $('#remove-special').click(function () {
         var s = getText();
-            var s = text;
     // smart single quotes and apostrophe
     s = s.replace(/[\u2018\u2019\u201A]/g, "\'");
     // smart double quotes
@@ -130,6 +129,8 @@ function changeText() {
     // open angle bracket
     s = s.replace(/\u2039/g, "<");
     // close angle bracket
+    s = s.replace(/\�/g, "'");
+        //
     s = s.replace(/\u203A/g, ">");
     // spaces
     s = s.replace(/[\u02DC\u00A0]/g, " ");
