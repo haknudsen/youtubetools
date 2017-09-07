@@ -13,86 +13,69 @@ curl_setopt( $ch, CURLOPT_NOBODY, 0 );
 
 $response = curl_exec( $ch );
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <title>URL Shortener</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/my_uploads.css">
-    <script src="https://apis.google.com/js/client.js" type="text/javascript">
-    </script>
+	<meta charset="utf-8">
+	<title>URL Shortener</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">
+	</script>
+	<link href="css/my_uploads.css" rel="stylesheet" type="text/css">
+	<script src="https://apis.google.com/js/client.js" type="text/javascript">
+	</script>
 </head>
-
 <body>
-    <div id="header"></div>
-    <section class="jumbotron">
-        <div class="container text-center">
-            <div class="row">
-                <label>URL to Shorten
-        <input type="text" id="url">
-      </label>
-            </div>
-            <div class="row">
-                <label>Keyword
-        <input type="text" id="keyword">
-      </label>
-            </div>
-            <button type="button" class="btn btn-green center-block" id="getURL">Get URL</button>
-        </div>
-        <div class="text-center m-1" id="result"></div>
-        <div class="alert-info text-center">
-            <form action="pastebin-send.php">
-                <textarea class="text-center" name="link-container" id="link-container"></textarea >
-          <div class="m-1">
-              <label>Enter name for Pastebin:<input type="text" value="" name="playlistID" id="playlistID"></label>
-          </div>
-          <button type="submit" class="btn btn-green">Send to Paste Bin</button>
-          <input type="hidden" value="<?=$response?>" name="userID" id="userID">
-         </form>
-         </div>
-</section>
-<footer id="footer"></footer>
-<script>
-    $( '#getURL' ).click( function() {
-        var shortURL,keyword,str;
-	var longUrl = $( '#url' ).val();
-	gapi.client.setApiKey( 'AIzaSyAIcryxKhc2Dhcus5leonpybDnkSNtwioE' );
-	gapi.client.load( 'urlshortener', 'v1', function() {
-		document.getElementById( "result" ).innerHTML = "";
-		var request = gapi.client.urlshortener.url.insert( {
-			'resource': {
-				'longUrl': longUrl
-			}
-		} );
-		request.execute( function( response ) {
-        console.log(response.id);
-			if ( response.id != null ) {
-                shortURL = response.id;
-                keyword = $( '#keyword' ).val();
-            $('#playlistID').val( keyword);
-				str = "<a href='" + shortURL + "'>" + keyword + "</a>";
-				$('#result').html(str);
-				info = '[';
-				info += keyword;
-				info += '](';
-				info += shortURL + ')';
-                $('#link-container').text(info);
-			} else {
-				alert( "Error: creating short url \n" + response.error );
-			}
-		} );
-	} );
-} );
-</script> 
-<script src="includes/navigation.js"></script> 
-<script src="includes/autosize.js"></script> 
-<script>
-    autosize(document.querySelectorAll('textarea'));
-</script> 
+	<div id="header"></div>
+	<section class="jumbotron">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-sm-6">
+					<h3>URL to Shorten</h3><input id="url" type="text">
+				</div>
+				<div class="col-sm-6">
+					<h3>Keywords</h3>
+					<h4>Use less than 80 keywords</h4>
+					<textarea id="keywords" style="max-height: 500px"></textarea>
+				</div>
+			</div><button class="btn btn-green center-block" id="getURL" type="button">Get URL</button>
+		</div>
+	</section>
+	<section class="alert alert-info">
+		<div class="container">
+			<div class="row">
+				<h2 class="text-center" id="reporter"></h2>
+				<div class="col-sm-4">
+					<h3 class="text-center">Shorties</h3><button class="btn btn-purple text-center center-block" id="getPastebin" type="button">Get Pastebin</button> 
+					<textarea id="shorties" name="shorties"></textarea>
+				</div>
+				<div class="col-sm-8">
+					<h3 class="text-center">Links for Pastebin</h3>
+					<form action="pastebin-send.php">
+					<h3 class="text-center">Enter name for Pastebin:</h3>
+                       <input id="playlistID" name="playlistID" type="text" value="">
+                        <button class="btn btn-green text-center" type="submit">Send to Paste Bin</button>
+						<textarea id="link-container" name="link-container"></textarea> <input id="userID" name="userID" type="hidden" value="&lt;?=$response?&gt;">
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer id="footer"></footer>
+	<script src="includes/url-shortener.js">
+	</script> 
+	<script src="includes/navigation.js">
+	</script> 
+	<script src="includes/autosize.js">
+	</script> 
+	<script>
+	   autosize(document.querySelectorAll('textarea'));
+	   $(document).ready(function(){
+	       $('#keywords').val('');
+	   })
+	</script>
 </body>
 </html>
