@@ -29,6 +29,7 @@
                 return preg_replace_callback( '/\{(((?>[^\{\}]+)|(?R))*)\}/x', array( $this, 'replace' ), $text); } public function replace($text) { $text = $this->process($text[1]); $parts = explode('|', $text); return $parts[array_rand($parts)]; } } /* EXAMPLE USAGE */ $spintax = new Spintax(); $text = '<textarea id="decode">';
         $text .= $spintax->process($content);
         $text .= '</textarea>'; echo($text); ?>
+            <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
 
     </section>
     <section class="alert alert-dismissible">
@@ -42,6 +43,10 @@
     <script src="includes/autosize.js"></script>
     <script>
         autosize( document.querySelectorAll( 'textarea' ) );
+        $( "#copy" ).click( function () {
+            $( "#decode" ).select();
+            document.execCommand( 'copy' );
+        } );
 
         function goBack() {   
             window.history.back();

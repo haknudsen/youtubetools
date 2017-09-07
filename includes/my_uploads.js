@@ -1,5 +1,5 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken;
+var playlistId, nextPageToken, prevPageToken,link;
 var i = 0;
 var videoList = Array();
 
@@ -31,7 +31,7 @@ function requestUserUploadsPlaylistId() {
 // Retrieve the list of videos in the specified playlist.
 function requestVideoPlaylist(playlistId, pageToken) {
     "use strict";
-    $('#video-container').html('');
+    $('#video-container').val('');
     var requestOptions = {
         playlistId: playlistId,
         part: 'snippet',
@@ -58,8 +58,10 @@ function requestVideoPlaylist(playlistId, pageToken) {
                 displayResult(item.snippet);
             });
             createList();
+         autosize.update($('#video-container'));
+         autosize.update($('#spin'));
         } else {
-            $('#video-container').html('Sorry you have no uploaded videos');
+            $('#video-container').val('Sorry you have no uploaded videos');
         }
     });
 }
@@ -81,10 +83,10 @@ function createList() {
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
-    var title = videoSnippet.title;
     var videoId = videoSnippet.resourceId.videoId;
     var videoURL = videoId;
-    $('#video-container').append('https://www.youtube.com/watch?v=' + videoURL + '<br />');
+    link = 'https://www.youtube.com/watch?v=' + videoURL + '\n';
+    $('#video-container').val( $('#video-container').val() + link);
     videoList[i] = videoURL;
     i++;
 }

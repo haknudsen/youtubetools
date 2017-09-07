@@ -21,7 +21,7 @@
         <h3>Each part on its own line</h3>
         <div class="row">
             <div class="col-sm-4 col-sm-offset-2">
-                <button id="prefix" class="btn btn-drkblue">Add Prefix</button>
+                <button id="prefix" class="btn btn-blue">Add Prefix</button>
             </div>
             <div class="col-sm-4">
                 <button id="suffix" class="btn btn-green">Add Suffex</button>
@@ -49,6 +49,7 @@
             </div>
         </div>
         <div class="container text-center">
+            <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
             <button id="clear" class="btn btn-warning center">Clear Fields</button>
         </div>
     </section>
@@ -57,6 +58,10 @@
     <script src="includes/autosize.js"></script>
     <script src="includes/add-pre-suf.js"></script>
     <script>
+        $( "#copy" ).click( function () {
+            $( "#spin" ).select();
+            document.execCommand( 'copy' );
+        } );
         autosize( document.querySelectorAll( 'textarea' ) );
     </script>
 </body>

@@ -46,10 +46,12 @@
        <div class="container-fluid">
            <h2 class="text-center">Spintax</h2>
             <textarea id="spintax"></textarea>
+  <button type="button" class="btn btn-primary text-capitalize center-block" id="copy-spin">Copy Spin</button>
        </div>
        <div class="container-fluid">
            <h2 class="text-center">All</h2>
             <textarea id="link-container"></textarea>
+  <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
        </div>
 </section>
 <footer id="footer"></footer>
@@ -61,6 +63,14 @@
 <script src="includes/navigation.js"></script> 
 <script src="includes/autosize.js"></script> 
 <script>
+    $("#copy-spin").click(function(){
+    $("#spintax").select();
+    document.execCommand('copy');
+});
+    $("#copy").click(function(){
+    $("#link-container").select();
+    document.execCommand('copy');
+});
     autosize(document.querySelectorAll('textarea'));
 </script> 
 </body>

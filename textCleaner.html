@@ -15,6 +15,7 @@
   <h1 class="text-center">textCleaner<sup>&#8482;</sup></h1>
   <div class="container-fluid">
     <textarea id="textCleaner"></textarea>
+    <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
   </div>
 </section>
 <section class="alert alert-info buttons-mine">
@@ -90,9 +91,13 @@
 <footer id="footer"></footer>
 <script src="includes/textCleaner.js"></script> 
 <script src="includes/navigation.js"></script> 
-<script src="includes/autosize.js"></script>
+<script src="includes/autosize.js"></script> 
 <script>
     autosize(document.querySelectorAll('textarea'));
+    $("#copy").click(function(){
+    $("textarea").select();
+    document.execCommand('copy');
+});
     $(document).ready(function(){
         changeText();
     })

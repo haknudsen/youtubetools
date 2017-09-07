@@ -43,6 +43,7 @@
       <div class="m-1">
         <h3>Total Letter Count : <span id="counter">0</span></h3>
         <h3>Number of lines: <span id="lines"></span></h3>
+    <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
       </div>
     </div>
   </div>
@@ -56,6 +57,10 @@
 <script src="includes/autosize.js"></script> 
 <script src="includes/jquery.simplyCountable.js"></script> 
 <script>
+    $("#copy").click(function(){
+    $("#spin").select();
+    document.execCommand('copy');
+});
     $(document).ready(function(){
     listFunctions();
     autosize(document.querySelectorAll('textarea'));

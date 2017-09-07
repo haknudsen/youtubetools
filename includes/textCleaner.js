@@ -69,7 +69,7 @@ function changeText() {
                 console.log('part- ' + part);
                 console.log('1st character-' + textArray[x].charAt(0));
                 console.log('lower: ' + lower);
-                sentenceArray.push(part + lower);
+                sentenceArray.push(part + lower + '.');
             }
             str = sentenceArray.join('. ');
         }
