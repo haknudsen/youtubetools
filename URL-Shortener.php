@@ -58,7 +58,7 @@ $response = curl_exec( $ch );
 					<h3 class="text-center">Enter name for Pastebin:</h3>
                        <input id="playlistID" name="playlistID" type="text" value="">
                         <button class="btn btn-green text-center" type="submit">Send to Paste Bin</button>
-						<textarea id="link-container" name="link-container"></textarea> <input id="userID" name="userID" type="hidden" value="&lt;?=$response?&gt;">
+						<textarea id="link-container" name="link-container"></textarea> <input id="userID" name="userID" type="hidden" value="<?=$response?>">
 					</form>
 				</div>
 			</div>
