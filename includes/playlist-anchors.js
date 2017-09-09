@@ -46,7 +46,7 @@ function getPlaylist() {
     "use strict";
     $('#link-container').val('');
     var playlist = $('#playlist').val();
-    var playlistId = playlist.replace("https://www.youtube.com/playlist?list=", "");
+    var playlistId = playlist.substring(playlist.lastIndexOf("=") + 1);
     requestVideoPlaylist(playlistId);
 }
 // Retrieve the list of videos in the specified playlist.
@@ -110,7 +110,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
                     spin += fixDescription(description);
                     break;
             }
-            spin += '/></a>';
+            spin += 'style="max-width:100%;margin:0 auto" /></a>';
             $('#playlistID').val(playlistId);
             $('#spintax').val(spin);
             $('#spintax').autoresize();
@@ -138,7 +138,7 @@ function displayResult(videoSnippet) {
             info += fixDescription(description);
             break;
         case 'image':
-            info += image + videoURL + mqjpg + ' alt="' + title + '"/>';
+            info += image + videoURL + maxjpg + ' alt="' + title + '" style="max-width:100%;margin:0 auto"/>';
             break;
     }
     info += '</a>';

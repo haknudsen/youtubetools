@@ -45,7 +45,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="auth.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
-    <script type="text/javascript" src="includes/playlist-anchors.js"></script>
+    <script src="includes/playlist-anchors.js"></script>
     <script src="includes/navigation.js"></script>
     <script src="includes/autosize.js"></script>
     <script>
