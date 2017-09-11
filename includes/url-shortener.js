@@ -35,6 +35,7 @@ $('#getURL').click(function () {
 $('#getPastebin').click(function () {
     "use strict";
     if (typeof shortURL !== 'undefined') {
+        $('#link-container').val('');
         shorts = $('#shorties').val();
         shorts = shorts.split('\n');
         for (x = 0; x < keywords.length; x++) {

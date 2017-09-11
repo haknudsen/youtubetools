@@ -34,14 +34,13 @@ $response = curl_exec( $ch );
     <div id="header"></div>
     <section class="jumbotron">
         <div class="container text-center">
-            <div class="row">
+                        <div class="row">
                 <div class="col-sm-6">
                     <h3>URL to Shorten</h3><input id="url" type="text">
                 </div>
                 <div class="col-sm-6">
-                    <h3>Keywords</h3>
-                    <h4>Use less than 80 keywords</h4>
-                    <textarea id="keywords"></textarea>
+                    <h3>Keywords-Use less than 80 keywords</h3>
+                    <textarea id="keywords" style="max-height: 200px"></textarea>
                 </div>
             </div>
     </section>
