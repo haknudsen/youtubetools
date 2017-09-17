@@ -18,6 +18,7 @@
         <h3>Total Letter Count : <span id="counter">0</span></h3>
     </div>
 </section>
+    <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
 <footer id="footer"></footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
 <script src="includes/jquery.simplyCountable.js"></script>
@@ -28,6 +29,10 @@
           $('#count').simplyCountable();
     });
     autosize(document.querySelectorAll('textarea'));
+    $("#copy").click(function(){
+        $("textarea").select();
+        document.execCommand('copy');
+    });
 </script>
 </body>
 </html>

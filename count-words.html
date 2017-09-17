@@ -18,6 +18,7 @@
     <div class="m-1">
       <h3>Total Word Count : <span id="counter">0</span></h3>
     </div>
+    <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
   </div>
 </section>
 <footer id="footer"></footer>
@@ -40,7 +41,11 @@
       thousandSeparator:  ','
           });
     });
-    $('#count').autoresize();
+    autosize(document.querySelectorAll('textarea'));
+    $("#copy").click(function(){
+        $("textarea").select();
+        document.execCommand('copy');
+    });
 </script>
 </body>
 </html>
