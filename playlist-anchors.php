@@ -38,8 +38,10 @@
     </section>
 
     <section class="alert alert-success">
-        <textarea class="m-1" id="link-container"></textarea>
+        <textarea class="m-1" id="link-container" style="max-height: 400px"></textarea>
+        <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
         <textarea class="m-1" id="spintax"></textarea>
+        <button type="button" class="btn btn-primary text-capitalize center-block" id="copy-spin">Copy Spin</button>
     </section>
     <footer id="footer"></footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -50,6 +52,14 @@
     <script src="includes/autosize.js"></script>
     <script>
         autosize( document.querySelectorAll( 'textarea' ) );
+        $( "#copy" ).click( function () {
+            $( "#link-container" ).select();
+            document.execCommand( 'copy' );
+        } );
+        $( "#copy-spin" ).click( function () {
+            $( "#spintax" ).select();
+            document.execCommand( 'copy' );
+        } );
     </script>
 </body>
 
