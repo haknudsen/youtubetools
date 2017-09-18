@@ -36,7 +36,7 @@ function getPlaylist() {
     "use strict";
     $('#link-container').val('');
     var playlist = $('#playlist').val();
-    var playlistId = playlist.replace("https://www.youtube.com/playlist?list=", "");
+    var playlistId = playlist.substring(playlist.lastIndexOf("=") + 1);
     requestVideoPlaylist(playlistId);
 }
 // Retrieve the list of videos in the specified playlist.
@@ -71,7 +71,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
             $link.val(list);
             $link.val($('#link-container').val().replace(/,/g, '\n'));
             autosize.update($link);
-            
+
             $('#playlistID').val(playlistId);
         } else {
             $('#link-container').html('Sorry you have no uploaded videos');
@@ -105,15 +105,17 @@ function displayResult(videoSnippet) {
     videoList[i] = videoURL;
     i++;
 }
-function fixTitle(title){
+
+function fixTitle(title) {
     "use strict";
     title = title.toString();
     title = title.replace(/,/g, ' ').trim();
     return title.replace(/\|/g, '');
 }
-function fixDescription(description){
+
+function fixDescription(description) {
     "use strict";
     description = description.split('\n');
-    console.log('d- '+description);
+    console.log('d- ' + description);
     return description[0];
 }
