@@ -31,7 +31,7 @@ function requestUserUploadsPlaylistId() {
 // Retrieve the list of videos in the specified playlist.
 function requestVideoPlaylist(playlistId, pageToken) {
     "use strict";
-    $('#video-container').html('');
+    $('#video-container').val('');
     var requestOptions = {
         playlistId: playlistId,
         part: 'snippet',
@@ -53,7 +53,6 @@ function requestVideoPlaylist(playlistId, pageToken) {
 
         var playlistItems = response.result.items;
         if (playlistItems) {
-            console.log(playlistItems.length);
             $.each(playlistItems, function (index, item) {
                 displayResult(item.snippet);
             });
@@ -76,15 +75,15 @@ function createList() {
     }
     spin += "}";
     $('#spin').text(spin);
+         autosize.update($('#video-container'));
          autosize.update($('#spin'));
 }
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
-    var title = videoSnippet.title;
     var videoId = videoSnippet.resourceId.videoId;
     var videoURL = videoId;
-    $('#video-container').append(videoURL + '<br />');
+    $('#video-container').val($('#video-container').val() + videoURL + '\n');
     videoList[i] = videoURL;
     i++;
 }

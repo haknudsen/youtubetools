@@ -15,7 +15,7 @@ $('#getURLs').click(function () {
     var l = listLength - 1;
     var id = $('#videoID').val();
     id = id.substring(id.lastIndexOf("=") + 1);
-    $('#playlistID').val(id);
+    $('#playlistID').val(list[0]);
     for (i = 0; i < 9; i++) {
         var newUrl = arrUrls[i].replace('XXXXXX', id);
         info = '[';

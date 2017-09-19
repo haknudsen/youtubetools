@@ -82,9 +82,8 @@ $response = curl_exec( $ch );
     </section>
     <footer id="footer"></footer>
     <script src="includes/url-shortener.js">
-    </script>
-    <script src="includes/navigation.js">
-    </script>
+    </script><script src="includes/navigation.js">
+</script>
     <script src="includes/autosize.js">
     </script>
     <script>
