@@ -33,16 +33,13 @@
     <footer id="footer"></footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="auth.js"></script>
-    <script type="text/javascript" src="includes/my_titles.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
     <script src="includes/navigation.js"></script>
-<<<<<<< HEAD
     <script src="includes/autosize.js"></script>
+    <script type="text/javascript" src="includes/my_titles.js"></script>
     <script>
         autosize( document.querySelectorAll( 'textarea' ) );
     </script>
-=======
->>>>>>> youtubetools/master
 </body>
 
 </html>
