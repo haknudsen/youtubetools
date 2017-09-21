@@ -1,7 +1,9 @@
 // Define some variables used to remember state.
 var playlistId, nextPageToken, prevPageToken;
 var videoList = Array();
-
+var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId,privacy,language,isAuthorized;
+var tags = Array();
+var videoUpdate = true;
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
     "use strict";
@@ -60,8 +62,23 @@ function requestVideoPlaylist(playlistId, pageToken) {
         } else {
             $('#video-container').html('Sorry you have no uploaded videos');
         }
+        $('#optionlist').on('change',function(){
+            console.log( 'hit ' );
+            $('#reporter').text($('#optionlist').val());
+            getResults();
+        });
     });
 }
+//get results
+
+       function getResults() {
+            videoUpdate = false;
+            getVideo = $('#reporter').text();
+            defineRequest(getVideo);
+        }
+        $('#update').click(function () {
+            update();
+        });
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
