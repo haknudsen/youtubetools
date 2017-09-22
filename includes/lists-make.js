@@ -49,6 +49,13 @@ function listFunctions() {
         $("#spin").val(holder);
         fieldUpdate();
     });
+        $('#convert-commas').click(function(){
+        list = $("#decode").val();
+        holder = list.replace(/,/g, '\n');
+        $("#spin").val(holder);
+        fieldUpdate();
+    });
+//End functions
     $('#clear').click(function () {
         $("#spin").val('');
         $("#decode").val('');

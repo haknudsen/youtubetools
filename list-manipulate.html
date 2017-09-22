@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Turn list into spin text</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/my_uploads.css">
+</head>
+
+<body>
+<div id="header"></div>
+<section class="container">
+  <h1 class="text-center">Lists</h1>
+</section>
+<section class="container text-center">
+  <h2 class="text-capitalize">Turn List into spintax or separate with commas</h2>
+  <h3>Each part on its own line</h3>
+  <div class="row">
+    <div class="col-sm-2">
+      <button id="getSpintax" class="btn btn-primary">Get Spintax</button>
+    </div>
+    <div class="col-sm-2">
+      <button id="commas" class="btn btn-purple">Comma Separated</button>
+    </div>
+    <div class="col-sm-2">
+      <button id="getHTML" class="btn btn-blue">Get HTML</button>
+    </div>
+    <div class="col-sm-2">
+      <button id="alphabetize" class="btn btn-green">Alphabetize</button>
+    </div>
+    <div class="col-sm-2">
+      <button id="convert-commas" class="btn btn-orange">Replace Commas</button>
+    </div>
+  </div>
+</section>
+<section class="container-fluid alert-success m-1 text-center">
+  <div class="row m-1">
+    <div class="col-md-4">
+      <textarea id="decode" name="decode" style="max-height: 700px"></textarea>
+    </div>
+    <div class="col-md-8">
+      <textarea id="spin" style="max-height: 700px"></textarea>
+      <div class="m-1">
+        <h3>Total Letter Count : <span id="counter">0</span></h3>
+        <h3>Number of lines: <span id="lines"></span></h3>
+    <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <button id="clear" class="btn btn-danger">Clear Fields</button>
+  </div>
+</section>
+<footer id="footer"></footer>
+<script src="includes/navigation.js"></script> 
+<script src="includes/autosize.js"></script> 
+<script src="includes/jquery.simplyCountable.js"></script> 
+<script type="text/javascript" src="includes/lists-make.js"></script> 
+<script>
+    $("#copy").click(function(){
+    $("#spin").select();
+    document.execCommand('copy');
+});
+    $(document).ready(function(){
+    listFunctions();
+    autosize(document.querySelectorAll('textarea'));
+    });
+</script>
+</body>
+</html>
