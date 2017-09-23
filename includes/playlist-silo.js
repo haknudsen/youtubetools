@@ -1,5 +1,6 @@
 // Define some variables used to remember state.
 var playlistId, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count;
+var updated = Array();
 var phrase = Array();
 var videoList = Array();
 var description = Array();
@@ -69,7 +70,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
             while (videoList[i]) {
                 defineRequest(videoList[i]);
                 phrase[i] = $('#phrase').val() + ' ' + link + videoList[count];
-                console.log(count + ':' + phrase[i]);
+                console.log(count + ':' + videoList[i] + ':' + phrase[i]);
                 count++;
                 if (count > videoList.length - 1) {
                     count = 0;
@@ -83,15 +84,28 @@ function requestVideoPlaylist(playlistId, pageToken) {
     });
 }
 $('#complete').click(function(){
+    "use strict";
     i=0;
     videoUpdate = true;
     while(videoList[i]){
-        
+        updated[i] = description[i] + ('\n' + phrase[i]);
+        console.log( updated[i] );
+    buildApiRequest('PUT',
+        '/youtube/v3/videos', {
+            'part': 'snippet'
+        }, {
+            'id': videoList[i],
+            'snippet.categoryId': '19',
+            'snippet.description': updated[i]
+        });
+        i++;
     }
-})
+    $('#success').text('updated!');
+});
 var waitResults = function () {
+    "use strict";
     if (typeof description[i] !== 'undefined') {
-        description[i] = description[i] + ('\n' + phrase[i]);
+        console.log( 'wait' );
     } else {
         setTimeout(function () {
             waitResults();
@@ -218,7 +232,6 @@ function executeRequest(request) {
             categoryId = snippet.categoryId;
             videoId = response.items[0].id;
             description[i] = snippet.description;
-            console.log(description[i]);
         }
     });
 }
@@ -260,29 +273,4 @@ function defineRequest(getVideo) {
         });
 
 }
-
-function update() {
-    "use strict";
-    videoUpdate = true;
-    description = description[i];
-    // Sample js code for videos.update
-
-    // See full sample for buildApiRequest() code, which is not 
-    // specific to a particular youtube or youtube method.
-
-    buildApiRequest('PUT',
-        '/youtube/v3/videos', {
-            'part': 'snippet'
-        }, {
-            'id': videoId,
-            'snippet.categoryId': '19',
-            'snippet.description': description
-        });
-    $('#counter').text('updated!');
-}
-
-function getTags() {
-    "use strict";
-    var stringTags = $('#tags').val();
-    return stringTags.split(',');
-}
+// the end!!!
