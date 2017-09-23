@@ -18,20 +18,16 @@
     <div class="col-md-8 col-md-offset-2">
       <input class="silo"  type="text" name="playlist" id="playlist">
       <h2 class="text-center">Phrase</h2>
-      <input class="silo" type="text" name="phrase" id="phrase">
+      <input class="silo" type="text" name="phrase" id="phrase" value="Watch the next video">
       <button type="button" class="btn btn-purple center-block" id="playlistClick">Start</button>
     </div>
   </div>
 </section>
 <section class="alert alert-success">
-  <div id="video-container"></div>
-  <select class="m-1 center-block" id="optionlist">
-  </select>
+  <textarea class="m-1" id="reporter"></textarea>
+  <h3 class="text-center" id="count"></h3>
 </section>
 <section class="alert alert-info">
-  <div class="container">
-    <h3 class="text-center" id="reporter"></h3>
-  </div>
   <div class="row">
     <div class="col-sm-12">
       <h3 class="text-capitalize text-center">description</h3>
@@ -46,7 +42,6 @@
 <script src="includes/navigation.js"></script> 
 <script src="includes/autosize.js"></script> 
 <script type="text/javascript" src="includes/playlist-silo.js"></script> 
-<script src="includes/playlist-video-editor.js"></script> 
 <script>
     autosize(document.querySelectorAll('textarea'));
 </script>
