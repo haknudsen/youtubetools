@@ -1,5 +1,5 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count,desRec;
+var playlistId, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count,desRec, ids;
 var updated = Array();
 var phrase = Array();
 var videoList = Array();
@@ -65,10 +65,10 @@ function requestVideoPlaylist(playlistId, pageToken) {
             $('#count').text(videoList.length);
             autosize.update($('#reporter'));
             videoUpdate = false;
+             defineRequest(videoList);
             i = 0;
             count = 1;
             while (videoList[i]) {
-                defineRequest(videoList[i]);
                 phrase[i] = $('#phrase').val() + ' ' + link + videoList[count];
                 console.log(count + ':' + videoList[i] + ':' + phrase[i]);
                 count++;
@@ -219,11 +219,7 @@ function executeRequest(request) {
     "use strict";
     request.execute(function (response) {
         if (videoUpdate === false) {
-            snippet = response.items[0].snippet;
-            categoryId = snippet.categoryId;
-            videoId = response.items[0].id;
-            desRec = snippet.description;
-            console.log( i + ':' + snippet.description );
+            console.log( response );
         }
     });
 }
@@ -253,14 +249,15 @@ function buildApiRequest(requestMethod, path, params, properties) {
 /***** END BOILERPLATE CODE *****/
 
 
-function defineRequest(getVideo) {
+function defineRequest(videoList) {
     "use strict";
     // See full sample for buildApiRequest() code, which is not 
     // specific to a particular youtube or youtube method.
-
+    ids = videoList.join();
+console.log( ids );
     buildApiRequest('GET',
         '/youtube/v3/videos', {
-            'id': getVideo,
+            'id': ids,
             'part': 'snippet'
         });
 
