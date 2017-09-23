@@ -1,5 +1,5 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count;
+var playlistId, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count,desRec;
 var updated = Array();
 var phrase = Array();
 var videoList = Array();
@@ -75,7 +75,6 @@ function requestVideoPlaylist(playlistId, pageToken) {
                 if (count > videoList.length - 1) {
                     count = 0;
                 }
-                waitResults();
                 i++;
             }
         } else {
@@ -83,40 +82,32 @@ function requestVideoPlaylist(playlistId, pageToken) {
         }
     });
 }
-$('#complete').click(function(){
+$('#complete').click(function () {
     "use strict";
-    i=0;
+    i = 0;
     videoUpdate = true;
-    while(videoList[i]){
-        updated[i] = description[i] + ('\n' + phrase[i]);
-        console.log( updated[i] );
-    buildApiRequest('PUT',
-        '/youtube/v3/videos', {
-            'part': 'snippet'
-        }, {
-            'id': videoList[i],
-            'snippet.categoryId': '19',
-            'snippet.description': updated[i]
-        });
+    while (videoList[i]) {
+        updated[i] = description[i] + '\n' + phrase[i];
+        console.log(updated[i]);
+        buildApiRequest('PUT',
+            '/youtube/v3/videos', {
+                'part': 'snippet'
+            }, {
+                'id': videoList[i],
+                'snippet.categoryId': '19',
+                'snippet.description': updated[i]
+            });
         i++;
     }
     $('#success').text('updated!');
 });
-var waitResults = function () {
-    "use strict";
-    if (typeof description[i] !== 'undefined') {
-        console.log( 'wait' );
-    } else {
-        setTimeout(function () {
-            waitResults();
-        }, 5000);
-    }
-};
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
     var videoId = videoSnippet.resourceId.videoId;
     videoList[counter] = videoId;
+    description[counter] = desRec;
+    console.log( description[counter] );
     counter++;
 }
 
@@ -231,7 +222,8 @@ function executeRequest(request) {
             snippet = response.items[0].snippet;
             categoryId = snippet.categoryId;
             videoId = response.items[0].id;
-            description[i] = snippet.description;
+            desRec = snippet.description;
+            console.log( i + ':' + snippet.description );
         }
     });
 }
