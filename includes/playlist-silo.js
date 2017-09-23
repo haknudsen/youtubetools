@@ -1,6 +1,8 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken, GoogleAuth, description, snippet, videoId, getVideo, categoryId, isAuthorized, phrase,i,count;
+var playlistId, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count;
+var phrase = Array();
 var videoList = Array();
+var description = Array();
 var videoUpdate = true;
 var link = 'https://youtu.be/';
 var counter = 0;
@@ -64,19 +66,15 @@ function requestVideoPlaylist(playlistId, pageToken) {
             videoUpdate = false;
             i = 0;
             count = 1;
-            while(videoList[i]){
-                console.log( count );
-            getVideo = videoList[i];
-            defineRequest(getVideo);
-            waitResults();
+            while (videoList[i]) {
+                defineRequest(videoList[i]);
+                phrase[i] = $('#phrase').val() + ' ' + link + videoList[count];
+                console.log(count + ':' + phrase[i]);
                 count++;
-                if(count>videoList.length-1){
-                    count=0;
-                }else{
-                setTimeout(function () {
-                        $('#description').val('');
-                    }, 5000);
+                if (count > videoList.length - 1) {
+                    count = 0;
                 }
+                waitResults();
                 i++;
             }
         } else {
@@ -84,17 +82,22 @@ function requestVideoPlaylist(playlistId, pageToken) {
         }
     });
 }
-            var waitResults = function () {
-                if ($('#description').val() !== '') {
-                    phrase = $('#phrase').val()+ ' ' + link + videoList[count];
-                    console.log( phrase );
-                    $('#description').val($('#description').val() + '\n' + phrase );
-                } else {
-                    setTimeout(function () {
-                        waitResults();
-                    }, 5000);
-                }
-            };
+$('#complete').click(function(){
+    i=0;
+    videoUpdate = true;
+    while(videoList[i]){
+        
+    }
+})
+var waitResults = function () {
+    if (typeof description[i] !== 'undefined') {
+        description[i] = description[i] + ('\n' + phrase[i]);
+    } else {
+        setTimeout(function () {
+            waitResults();
+        }, 5000);
+    }
+};
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
@@ -214,9 +217,8 @@ function executeRequest(request) {
             snippet = response.items[0].snippet;
             categoryId = snippet.categoryId;
             videoId = response.items[0].id;
-            description = snippet.description;
-            $('#description').val(description);
-            autosize.update($('#description'));
+            description[i] = snippet.description;
+            console.log(description[i]);
         }
     });
 }
@@ -262,7 +264,7 @@ function defineRequest(getVideo) {
 function update() {
     "use strict";
     videoUpdate = true;
-    description = $('#description').val();
+    description = description[i];
     // Sample js code for videos.update
 
     // See full sample for buildApiRequest() code, which is not 
