@@ -1,5 +1,7 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken, GoogleAuth, description, snippet, videoId, getVideo, categoryId, isAuthorized, phrase,i,count;
+var playlistId, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count, desRec, ids, myResponse, description;
+var updated = Array();
+var phrase = Array();
 var videoList = Array();
 var videoUpdate = true;
 var link = 'https://youtu.be/';
@@ -62,20 +64,14 @@ function requestVideoPlaylist(playlistId, pageToken) {
             $('#count').text(videoList.length);
             autosize.update($('#reporter'));
             videoUpdate = false;
+            defineRequest(videoList);
             i = 0;
             count = 1;
-            while(videoList[i]){
-                console.log( count );
-            getVideo = videoList[i];
-            defineRequest(getVideo);
-            waitResults();
+            while (videoList[i]) {
+                phrase[i] = $('#phrase').val() + ' ' + link + videoList[count];
                 count++;
-                if(count>videoList.length-1){
-                    count=0;
-                }else{
-                setTimeout(function () {
-                        $('#description').val('');
-                    }, 5000);
+                if (count > videoList.length - 1) {
+                    count = 0;
                 }
                 i++;
             }
@@ -84,17 +80,25 @@ function requestVideoPlaylist(playlistId, pageToken) {
         }
     });
 }
-            var waitResults = function () {
-                if ($('#description').val() !== '') {
-                    phrase = $('#phrase').val()+ ' ' + link + videoList[count];
-                    console.log( phrase );
-                    $('#description').val($('#description').val() + '\n' + phrase );
-                } else {
-                    setTimeout(function () {
-                        waitResults();
-                    }, 5000);
-                }
-            };
+$('#complete').click(function () {
+    "use strict";
+    i = 0;
+    videoUpdate = true;
+    while (videoList[i]) {
+        description = myResponse.items[i].snippet.description + '\n' + phrase[i];
+        console.log(videoList[i] + ":" + myResponse.items[i].id);
+        buildApiRequest('PUT',
+                        '/youtube/v3/videos', 
+                        {'part': 'snippet'}, 
+                        {'id': myResponse.items[i].id,
+                         'snippet.categoryId': myResponse.items[i].snippet.categoryId,
+                         'snippet.description': description,
+                         'snippet.title':myResponse.items[i].snippet.title
+        });
+    i++;
+}
+$('#success').text('updated!');
+});
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
@@ -211,12 +215,8 @@ function executeRequest(request) {
     "use strict";
     request.execute(function (response) {
         if (videoUpdate === false) {
-            snippet = response.items[0].snippet;
-            categoryId = snippet.categoryId;
-            videoId = response.items[0].id;
-            description = snippet.description;
-            $('#description').val(description);
-            autosize.update($('#description'));
+            console.log(response);
+            myResponse = response;
         }
     });
 }
@@ -246,41 +246,16 @@ function buildApiRequest(requestMethod, path, params, properties) {
 /***** END BOILERPLATE CODE *****/
 
 
-function defineRequest(getVideo) {
+function defineRequest(videoList) {
     "use strict";
     // See full sample for buildApiRequest() code, which is not 
     // specific to a particular youtube or youtube method.
-
+    ids = videoList.join();
     buildApiRequest('GET',
         '/youtube/v3/videos', {
-            'id': getVideo,
+            'id': ids,
             'part': 'snippet'
         });
 
 }
-
-function update() {
-    "use strict";
-    videoUpdate = true;
-    description = $('#description').val();
-    // Sample js code for videos.update
-
-    // See full sample for buildApiRequest() code, which is not 
-    // specific to a particular youtube or youtube method.
-
-    buildApiRequest('PUT',
-        '/youtube/v3/videos', {
-            'part': 'snippet'
-        }, {
-            'id': videoId,
-            'snippet.categoryId': '19',
-            'snippet.description': description
-        });
-    $('#counter').text('updated!');
-}
-
-function getTags() {
-    "use strict";
-    var stringTags = $('#tags').val();
-    return stringTags.split(',');
-}
+// the end!!!
