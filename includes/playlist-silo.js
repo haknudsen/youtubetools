@@ -1,9 +1,8 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count,desRec, ids;
+var playlistId, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count, desRec, ids, myResponse, description;
 var updated = Array();
 var phrase = Array();
 var videoList = Array();
-var description = Array();
 var videoUpdate = true;
 var link = 'https://youtu.be/';
 var counter = 0;
@@ -65,12 +64,11 @@ function requestVideoPlaylist(playlistId, pageToken) {
             $('#count').text(videoList.length);
             autosize.update($('#reporter'));
             videoUpdate = false;
-             defineRequest(videoList);
+            defineRequest(videoList);
             i = 0;
             count = 1;
             while (videoList[i]) {
                 phrase[i] = $('#phrase').val() + ' ' + link + videoList[count];
-                console.log(count + ':' + videoList[i] + ':' + phrase[i]);
                 count++;
                 if (count > videoList.length - 1) {
                     count = 0;
@@ -87,27 +85,25 @@ $('#complete').click(function () {
     i = 0;
     videoUpdate = true;
     while (videoList[i]) {
-        updated[i] = description[i] + '\n' + phrase[i];
-        console.log(updated[i]);
+        description = myResponse.items[i].snippet.description + '\n' + phrase[i];
+        console.log(videoList[i] + ":" + myResponse.items[i].id);
         buildApiRequest('PUT',
-            '/youtube/v3/videos', {
-                'part': 'snippet'
-            }, {
-                'id': videoList[i],
-                'snippet.categoryId': '19',
-                'snippet.description': updated[i]
-            });
-        i++;
-    }
-    $('#success').text('updated!');
+                        '/youtube/v3/videos', 
+                        {'part': 'snippet'}, 
+                        {'id': myResponse.items[i].id,
+                         'snippet.categoryId': myResponse.items[i].snippet.categoryId,
+                         'snippet.description': description,
+                         'snippet.title':myResponse.items[i].snippet.title
+        });
+    i++;
+}
+$('#success').text('updated!');
 });
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
     var videoId = videoSnippet.resourceId.videoId;
     videoList[counter] = videoId;
-    description[counter] = desRec;
-    console.log( description[counter] );
     counter++;
 }
 
@@ -219,7 +215,8 @@ function executeRequest(request) {
     "use strict";
     request.execute(function (response) {
         if (videoUpdate === false) {
-            console.log( response );
+            console.log(response);
+            myResponse = response;
         }
     });
 }
@@ -254,7 +251,6 @@ function defineRequest(videoList) {
     // See full sample for buildApiRequest() code, which is not 
     // specific to a particular youtube or youtube method.
     ids = videoList.join();
-console.log( ids );
     buildApiRequest('GET',
         '/youtube/v3/videos', {
             'id': ids,
