@@ -14,11 +14,11 @@
 <body>
     <div id="header"></div>
     <section class="jumbotron text-center">
-        <h1>Get Thumbnails</h1>
+        <h1>View Thumbnails</h1>
         <h2>For a Specific Video</h2>
         <div class="container text-center">
             <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
+                <div class="col-sm-12">
                     <form action="thumbnail-view.php" method="post" class="form">
                         videoID: <input type="text" name="videoID">
                         <input type="submit" value="Submit" id="submit" class="btn btn-green"/>
