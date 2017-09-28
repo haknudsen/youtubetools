@@ -12,10 +12,11 @@
 <body>
 <div id="header"></div>
 <section class="jumbotron text-center">
-   <h2>Character Count</h2>
+   <h1>Word and Character Count</h1>
     <textarea name="count" id="count" cols="30" rows="12"></textarea>
     <div class="m-1">
         <h3>Total Letter Count : <span id="counter">0</span></h3>
+        <h3>Total Word Count : <span id="words">0</span></h3>
     </div>
 </section>
     <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
@@ -27,6 +28,16 @@
 <script>
     $(document).ready(function(){
           $('#count').simplyCountable();
+          $('#count').simplyCountable({
+      counter:            '#words',
+      countType:          'words',
+      maxCount:           500,
+      strictMax:          false,
+      countDirection:     'up',
+      safeClass:          'safe',
+      overClass:          'over',
+      thousandSeparator:  ','
+          });
     });
     autosize(document.querySelectorAll('textarea'));
     $("#copy").click(function(){
