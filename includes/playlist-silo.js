@@ -54,15 +54,14 @@ function requestVideoPlaylist(playlistId, pageToken) {
         var prevVis = prevPageToken ? 'visible' : 'hidden';
         $('#prev-button').css('visibility', prevVis);
         var playlistItems = response.result.items;
-        $('#editor-section').removeClass("alert-warning");
-        $('#editor-section').addClass("alert-success");
         if (playlistItems) {
             $.each(playlistItems, function (index, item) {
                 displayResult(item.snippet);
             });
-            $("#reporter").text(videoList);
+            if (videoList.length > 50) {
+                videoList.length = 50;
+            }
             $('#count').text(videoList.length);
-            autosize.update($('#reporter'));
             videoUpdate = false;
             defineRequest(videoList);
             i = 0;
@@ -76,10 +75,16 @@ function requestVideoPlaylist(playlistId, pageToken) {
                 i++;
             }
         } else {
-            $('#video-container').html('Sorry you have no uploaded videos');
+            $('#success').text('Sorry you have no uploaded videos');
         }
     });
 }
+$('#clear').click(function () {
+    "use strict";
+    $('#playlist').val('');
+    $('#phrase').val("Watch the next video");
+    location.reload();
+});
 $('#complete').click(function () {
     "use strict";
     i = 0;
@@ -88,16 +93,17 @@ $('#complete').click(function () {
         description = myResponse.items[i].snippet.description + '\n' + phrase[i];
         console.log(videoList[i] + ":" + myResponse.items[i].id);
         buildApiRequest('PUT',
-                        '/youtube/v3/videos', 
-                        {'part': 'snippet'}, 
-                        {'id': myResponse.items[i].id,
-                         'snippet.categoryId': myResponse.items[i].snippet.categoryId,
-                         'snippet.description': description,
-                         'snippet.title':myResponse.items[i].snippet.title
-        });
-    i++;
-}
-$('#success').text('updated!');
+            '/youtube/v3/videos', {
+                'part': 'snippet'
+            }, {
+                'id': myResponse.items[i].id,
+                'snippet.categoryId': myResponse.items[i].snippet.categoryId,
+                'snippet.description': description,
+                'snippet.title': myResponse.items[i].snippet.title
+            });
+        i++;
+    }
+    $('#success').text('updated!');
 });
 // Create a listing for a video.
 function displayResult(videoSnippet) {
@@ -217,6 +223,7 @@ function executeRequest(request) {
         if (videoUpdate === false) {
             console.log(response);
             myResponse = response;
+            $('#success').text('Data Loaded!');
         }
     });
 }
