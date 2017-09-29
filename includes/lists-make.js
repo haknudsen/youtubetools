@@ -49,6 +49,22 @@ function listFunctions() {
         $("#spin").val(holder);
         fieldUpdate();
     });
+    $("#randomize").click(function () {
+        list = $("#decode").val();
+        text = list.split('\n');
+        text.sort(function(a, b){return 0.5 - Math.random()});
+        $("#spin").val('');
+        holder = "";
+        i = 0;
+        while (text[i]) {
+            if (text[i] !== "") {
+                holder += text[i] + '\n';
+            }
+            i++;
+        }
+        $("#spin").val(holder);
+        fieldUpdate();
+    });
         $('#convert-commas').click(function(){
         list = $("#decode").val();
         holder = list.replace(/,/g, '\n');
