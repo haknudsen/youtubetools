@@ -2,6 +2,7 @@
 function listFunctions() {
     "use strict";
     var list, text, i, holder;
+    var randomArray = new Array();
     $("#getSpintax").click(function () {
         list = $("#decode").val();
         text = list.replace(/(\r\n|\n|\r)/gm, "|");
@@ -52,26 +53,27 @@ function listFunctions() {
     $("#randomize").click(function () {
         list = $("#decode").val();
         text = list.split('\n');
-        text.sort(function(a, b){return 0.5 - Math.random()});
         $("#spin").val('');
+        var i = 0,
+            j = 0,
+            temp = null;
         holder = "";
-        i = 0;
-        while (text[i]) {
-            if (text[i] !== "") {
-                holder += text[i] + '\n';
-            }
-            i++;
+        for (i = text.length - 1; i > 0; i -= 1) {
+            j = Math.floor(Math.random() * (i + 1));
+            temp = text[i];
+            holder += text[j] + '\n';
+            text[j] = temp;
         }
         $("#spin").val(holder);
         fieldUpdate();
     });
-        $('#convert-commas').click(function(){
+    $('#convert-commas').click(function () {
         list = $("#decode").val();
         holder = list.replace(/,/g, '\n');
         $("#spin").val(holder);
         fieldUpdate();
     });
-//End functions
+    //End functions
     $('#clear').click(function () {
         $("#spin").val('');
         $("#decode").val('');
