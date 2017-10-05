@@ -91,7 +91,7 @@ $('#complete').click(function () {
     videoUpdate = true;
     while (videoList[i]) {
         description = myResponse.items[i].snippet.description + '\n' + phrase[i];
-        console.log(videoList[i] + ":" + myResponse.items[i].id);
+        console.log( description);
         buildApiRequest('PUT',
             '/youtube/v3/videos', {
                 'part': 'snippet'
