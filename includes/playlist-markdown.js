@@ -61,9 +61,8 @@ function requestVideoPlaylist(playlistId, pageToken) {
         prevPageToken = response.result.prevPageToken;
         var prevVis = prevPageToken ? 'visible' : 'hidden';
         $('#prev-button').css('visibility', prevVis);
+
         var playlistItems = response.result.items;
-        var playlistTitle =  response.result.items[0].snippet.channelTitle;
-            $('#playlistID').val(playlistTitle);
         if (playlistItems) {
             $.each(playlistItems, function (index, item) {
                 displayResult(item.snippet);
@@ -72,6 +71,8 @@ function requestVideoPlaylist(playlistId, pageToken) {
             $link.val(list);
             $link.val($('#link-container').val().replace(/,/g, '\n'));
             autosize.update($link);
+
+            $('#playlistID').val(playlistId);
         } else {
             $('#link-container').html('Sorry you have no uploaded videos');
         }
@@ -115,5 +116,6 @@ function fixTitle(title) {
 function fixDescription(description) {
     "use strict";
     description = description.split('\n');
+    console.log('d- ' + description);
     return description[0];
 }
