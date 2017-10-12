@@ -137,7 +137,7 @@ function initClient() {
     // 'scope' field specifies space-delimited list of access scopes
 
     gapi.client.init({
-        'clientId': '90875073625-ff3ntj9kehegnbamaoace12q6lo37v6u.apps.googleusercontent.com',
+        'clientId': '789972865268-b0c0hd4t9n1afn94ju1g6uq2n38hlgtu.apps.googleusercontent.com',
         'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
         'scope': 'https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner'
     }).then(function () {
