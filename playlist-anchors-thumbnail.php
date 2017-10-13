@@ -23,10 +23,10 @@
                     <h3 class="text-center">Text Anchors</h3>
                     <div class="row">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <button type="button" class="btn btn-blue" id="anchor-title">Anchor on Title</button>
+                            <button type="button" class="btn btn-drkblue" id="anchor-left">Responsive Left</button>
                         </div>
                         <div class="col-sm-4">
-                            <button type="button" class="btn btn-orange" id="anchor-description">Anchor From Description</button>
+                            <button type="button" class="btn btn-purple" id="anchor-image">Responsive Center</button>
                         </div>
                     </div>
                 </div>
@@ -39,14 +39,15 @@
         <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
         <textarea class="m-1" id="spintax"></textarea>
         <button type="button" class="btn btn-primary text-capitalize center-block" id="copy-spin">Copy Spin</button>
+        <button type="button" class="btn btn-warning text-capitalize center-block" id="reset">Reset</button>
     </section>
     <footer id="footer"></footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="auth.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
-    <script src="includes/playlist-anchors.js"></script>
     <script src="includes/navigation.js"></script>
     <script src="includes/autosize.js"></script>
+    <script src="includes/playlist-thumbnails.js"></script>
     <script>
         autosize( document.querySelectorAll( 'textarea' ) );
         $( "#copy" ).click( function () {
