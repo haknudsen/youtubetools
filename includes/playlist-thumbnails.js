@@ -129,7 +129,6 @@ function displayResult(videoSnippet) {
             }else{
             info += left;
             }
-    info += '</a>';
     list[i] = info;
     videoList[i] = videoURL;
     i++;
