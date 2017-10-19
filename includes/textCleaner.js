@@ -131,6 +131,8 @@ function changeText() {
     // close angle bracket
     s = s.replace(/\�/g, "'");
         //
+    s = s.replace(/\@‌​/g, "@");
+        //weird @
     s = s.replace(/\u203A/g, ">");
     // spaces
     s = s.replace(/[\u02DC\u00A0]/g, " ");
