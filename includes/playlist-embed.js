@@ -3,10 +3,12 @@ var nextPageToken, prevPageToken, i = 0,
     videoList = Array(),
     list = Array(),
     center,
+    spin,
     anchor = '<iframe type="text/html" style="margin: 0 auto;display:block"  width="640" height="360" src="https://www.youtube.com/embed/',
-    left = '<div style="position: relative; padding-bottom: 56.25%;  height: 0; overflow: hidden;"><iframe type="text/html" style="position: absolute; top:0; left: 0; width: 100%; height: 100%" src="https://www.youtube.com/embed/',
+    left = '<div style="width: 50%;max-width:1280px;float:left;padding-right:1rem"><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"> <iframe type="text/html" style="position: absolute; top:0; left: 0; width: 100%; height: 100%" src="https://www.youtube.com/embed/',
     frameEnd = '?autoplay=1&loop=1&rel=0" frameborder="0"></iframe>',
-    description, title, spin;
+    leftEnd = '</div></div>';
+ 
 
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
@@ -99,7 +101,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
             spin += spintax;
             spin += frameEnd;
             if (!center) {
-                spin += "</div>";
+                spin += leftEnd;
             }
             $('#playlistID').val(playlistId);
             $('#spintax').val(spin);
@@ -114,8 +116,6 @@ function requestVideoPlaylist(playlistId, pageToken) {
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
-    title = String(videoSnippet.title);
-    description = String(videoSnippet.description);
     var videoId = videoSnippet.resourceId.videoId,
         videoURL = videoId,
         info = "";
@@ -126,27 +126,13 @@ function displayResult(videoSnippet) {
     }
     info += videoURL + frameEnd;
     if (!center) {
-        info += "</div>";
+        info += leftEnd;
     }
     list[i] = info;
     videoList[i] = videoURL;
     i++;
 }
 
-function fixTitle(title) {
-    "use strict";
-    title = title.toString();
-    title = title.replace(/,/g, ' ').trim();
-    return title.replace(/\|/g, '');
-}
-
-function fixDescription(description) {
-    "use strict";
-    description = description.toString().split(/\n/);
-    description = description[0];
-    console.log('d- ' + description);
-    return description;
-}
 $.fn.extend({
     autoresize: function () {
         $(this).on('change keyup keydown paste cut', function () {
