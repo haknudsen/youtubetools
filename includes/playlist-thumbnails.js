@@ -123,7 +123,7 @@ function displayResult(videoSnippet) {
         videoURL = videoId,
         info = "";
     info = anchor + videoURL + '">';
-            info += image + videoURL + maxjpg + ' alt="' + title + ' ';
+            info += image + videoURL + maxjpg + ' alt="' + title + '" ';
             if(responsive){
             info += center;
             }else{

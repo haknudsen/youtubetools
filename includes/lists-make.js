@@ -37,41 +37,23 @@ function listFunctions() {
         list = $("#decode").val();
         text = list.split('\n');
         text.sort();
-        $("#spin").val('');
-        holder = "";
-        i = 0;
-        while (text[i]) {
-            if (text[i] !== "") {
-                holder += text[i] + '\n';
-            }
-            i++;
-        }
-        $("#spin").val(holder);
-        fieldUpdate();
+        outputList(text);
     });
     $("#randomize").click(function () {
         list = $("#decode").val();
         text = list.split('\n');
-        text.sort(function(a, b){return 0.5 - Math.random()});
-        $("#spin").val('');
-        holder = "";
-        i = 0;
-        while (text[i]) {
-            if (text[i] !== "") {
-                holder += text[i] + '\n';
-            }
-            i++;
-        }
-        $("#spin").val(holder);
-        fieldUpdate();
+        text.sort(function (a, b) {
+            return 0.5 - Math.random()
+        });
+        outputList(text);
     });
-        $('#convert-commas').click(function(){
+    $('#convert-commas').click(function () {
         list = $("#decode").val();
         holder = list.replace(/,/g, '\n');
         $("#spin").val(holder);
         fieldUpdate();
     });
-//End functions
+    //End functions
     $('#clear').click(function () {
         $("#spin").val('');
         $("#decode").val('');
@@ -89,4 +71,18 @@ function listFunctions() {
         autosize.update($('#decode'));
         $('#spin').blur();
     }
+    function outputList(text){
+        $("#spin").val('');
+        holder = "";
+        i = 0;
+        while (text[i]) {
+            holder += text[i];
+            if (i < text.length-1) {
+                holder += '\n';
+            }
+            i++;
+            console.log( i + " - " + text[i]);
+        }
+        $("#spin").val(holder);
+        fieldUpdate();}
 }
