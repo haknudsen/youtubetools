@@ -11,7 +11,10 @@ function handleAPILoaded() {
     "use strict";
     requestUserUploadsPlaylistId();
 }
-
+$('#clear').click(function(){
+    $('#playlist').val('');
+    $('#phrase').val('');
+})
 // Call the Data API to retrieve the playlist ID that uniquely identifies the
 // list of videos uploaded to the currently authenticated user's channel.
 function requestUserUploadsPlaylistId() {
@@ -68,7 +71,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
             i = 0;
             count = 1;
             while (videoList[i]) {
-                phrase[i] = $('#phrase').val() + ' ' + link + videoList[count];
+                phrase[i] = $('#phrase').val() + '\n🖥️- ' + link + videoList[count];
                 count++;
                 if (count > videoList.length - 1) {
                     count = 0;
@@ -85,7 +88,7 @@ $('#complete').click(function () {
     i = 0;
     videoUpdate = true;
     while (videoList[i]) {
-        description = myResponse.items[i].snippet.description + '\n' + phrase[i];
+        description = myResponse.items[i].snippet.description + phrase[i];
         console.log(videoList[i] + ":" + myResponse.items[i].id);
         buildApiRequest('PUT',
                         '/youtube/v3/videos', 
