@@ -43,7 +43,23 @@ function listFunctions() {
         list = $("#decode").val();
         text = list.split('\n');
         text.sort(function (a, b) {
-            return 0.5 - Math.random()
+            return 0.5 - Math.random();
+        });
+        outputList(text);
+    });
+    $("#getLength").click(function () {
+        list = $("#decode").val();
+        text = list.split('\n');
+        text.sort(function (a, b) {
+            return a.length<b.length;
+        });
+        outputList(text);
+    });
+    $("#getLengthShort").click(function () {
+        list = $("#decode").val();
+        text = list.split('\n');
+        text.sort(function (a, b) {
+            return a.length>b.length;
         });
         outputList(text);
     });
