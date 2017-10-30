@@ -11,7 +11,10 @@ function handleAPILoaded() {
     "use strict";
     requestUserUploadsPlaylistId();
 }
-
+$('#clear').click(function(){
+    $('#playlist').val('');
+    $('#phrase').val('');
+})
 // Call the Data API to retrieve the playlist ID that uniquely identifies the
 // list of videos uploaded to the currently authenticated user's channel.
 function requestUserUploadsPlaylistId() {
@@ -54,20 +57,21 @@ function requestVideoPlaylist(playlistId, pageToken) {
         var prevVis = prevPageToken ? 'visible' : 'hidden';
         $('#prev-button').css('visibility', prevVis);
         var playlistItems = response.result.items;
+        $('#editor-section').removeClass("alert-warning");
+        $('#editor-section').addClass("alert-success");
         if (playlistItems) {
             $.each(playlistItems, function (index, item) {
                 displayResult(item.snippet);
             });
-            if (videoList.length > 50) {
-                videoList.length = 50;
-            }
+            $("#reporter").text(videoList);
             $('#count').text(videoList.length);
+            autosize.update($('#reporter'));
             videoUpdate = false;
             defineRequest(videoList);
             i = 0;
             count = 1;
             while (videoList[i]) {
-                phrase[i] = $('#phrase').val() + ' ' + link + videoList[count];
+                phrase[i] = $('#phrase').val() + '\n🖥️- ' + link + videoList[count];
                 count++;
                 if (count > videoList.length - 1) {
                     count = 0;
@@ -75,35 +79,28 @@ function requestVideoPlaylist(playlistId, pageToken) {
                 i++;
             }
         } else {
-            $('#success').text('Sorry you have no uploaded videos');
+            $('#video-container').html('Sorry you have no uploaded videos');
         }
     });
 }
-$('#clear').click(function () {
-    "use strict";
-    $('#playlist').val('');
-    $('#phrase').val("Watch the next video");
-    location.reload();
-});
 $('#complete').click(function () {
     "use strict";
     i = 0;
     videoUpdate = true;
     while (videoList[i]) {
-        description = myResponse.items[i].snippet.description + '\n' + phrase[i];
-        console.log( description);
+        description = myResponse.items[i].snippet.description + phrase[i];
+        console.log(videoList[i] + ":" + myResponse.items[i].id);
         buildApiRequest('PUT',
-            '/youtube/v3/videos', {
-                'part': 'snippet'
-            }, {
-                'id': myResponse.items[i].id,
-                'snippet.categoryId': myResponse.items[i].snippet.categoryId,
-                'snippet.description': description,
-                'snippet.title': myResponse.items[i].snippet.title
-            });
-        i++;
-    }
-    $('#success').text('updated!');
+                        '/youtube/v3/videos', 
+                        {'part': 'snippet'}, 
+                        {'id': myResponse.items[i].id,
+                         'snippet.categoryId': myResponse.items[i].snippet.categoryId,
+                         'snippet.description': description,
+                         'snippet.title':myResponse.items[i].snippet.title
+        });
+    i++;
+}
+$('#success').text('updated!');
 });
 // Create a listing for a video.
 function displayResult(videoSnippet) {
@@ -137,7 +134,7 @@ function initClient() {
     // 'scope' field specifies space-delimited list of access scopes
 
     gapi.client.init({
-        'clientId': '789972865268-b0c0hd4t9n1afn94ju1g6uq2n38hlgtu.apps.googleusercontent.com',
+        'clientId': '90875073625-ff3ntj9kehegnbamaoace12q6lo37v6u.apps.googleusercontent.com',
         'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
         'scope': 'https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner'
     }).then(function () {
@@ -223,7 +220,6 @@ function executeRequest(request) {
         if (videoUpdate === false) {
             console.log(response);
             myResponse = response;
-            $('#success').text('Data Loaded!');
         }
     });
 }
