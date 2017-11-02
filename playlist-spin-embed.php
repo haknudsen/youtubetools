@@ -23,7 +23,7 @@
                     <h3 class="text-center">Text Anchors</h3>
                     <div class="row">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <button type="button" class="btn btn-drkblue" id="embed-left">Float Left</button>
+                            <button type="button" class="btn btn-drkblue" id="responsive">Responsive</button>
                         </div>
                         <div class="col-sm-4">
                             <button type="button" class="btn btn-purple" id="embed-center">Center</button>
