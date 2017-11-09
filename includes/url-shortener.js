@@ -10,8 +10,12 @@ $('#getURL').click(function () {
     $('#playlistID').val(keywords[0]);
     longUrl = $('#url').val();
     gapi.client.setApiKey('AIzaSyBbfVeAk8vKBeM7qLHlqGKObIKEZ5tbMNY');
-    for (counter = 0; counter < keywords.length; counter++) {
-        console.log( counter );
+    var listLength = keywords.length;
+    if(listLength>70){
+        listLength =70;
+    }
+    console.log(listLength);
+    for (counter = 0; counter < listLength; counter++) {
         gapi.client.load('urlshortener', 'v1', function () {
             var request = gapi.client.urlshortener.url.insert({
                 'resource': {
