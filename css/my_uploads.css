@@ -6,7 +6,7 @@ body { font-size: 18px }
 .center { text-align: center; margin: 0 auto }
 #textCleaner {margin: 10px auto }
 .content { width: 90%; margin: 0 auto }
-footer { margin-top: 20px }
+footer { margin-bottom:3rem}
 .p-2 { padding: .2em; }
 .m-1 { margin: 1em auto }
 #decode, #spin { margin:auto ; width: 96%;overflow: visible!important;resize: both!important}
