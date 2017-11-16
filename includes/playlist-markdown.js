@@ -21,6 +21,12 @@ function requestUserUploadsPlaylistId() {
         part: 'contentDetails'
     });
 }
+$('#clear').click(function () {
+    "use strict";
+    $('#playlist').val('');
+    $('#link-container').val('');
+    $('#playlistID').val('');
+});
 $('#anchor-title').click(function () {
     "use strict";
     embed = 'title';
