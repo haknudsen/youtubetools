@@ -1,5 +1,5 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count, desRec, ids, myResponse, description;
+var playlistId,playlist, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count, desRec, ids, myResponse, description;
 var updated = Array();
 var phrase = Array();
 var videoList = Array();
@@ -7,6 +7,9 @@ var videoUpdate = true;
 var link = 'https://youtu.be/';
 var counter = 0;
 // After the API loads, call a function to get the uploads playlist ID.
+$(document).ready(function () {
+    handleClientLoad();
+});
 function handleAPILoaded() {
     "use strict";
     requestUserUploadsPlaylistId();
@@ -14,6 +17,10 @@ function handleAPILoaded() {
 $('#clear').click(function(){
     $('#playlist').val('');
     $('#phrase').val('');
+    playlist = '';
+    playlistId = '';
+    count=0;
+    counter=0;
 })
 // Call the Data API to retrieve the playlist ID that uniquely identifies the
 // list of videos uploaded to the currently authenticated user's channel.
@@ -26,8 +33,8 @@ function requestUserUploadsPlaylistId() {
     });
     request.execute(function (response) {
         $('#playlistClick').click(function () {
-            var playlist = $('#playlist').val();
-            var playlistId = playlist.substring(playlist.lastIndexOf("=") + 1);
+            playlist = $('#playlist').val();
+            playlistId = playlist.substring(playlist.lastIndexOf("=") + 1);
             requestVideoPlaylist(playlistId);
         });
 
@@ -71,7 +78,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
             i = 0;
             count = 1;
             while (videoList[i]) {
-                phrase[i] = $('#phrase').val() + '\n🖥️- ' + link + videoList[count];
+                phrase[i] = '\n' + $('#phrase').val() + ' ' +  '\uD83D\uDC49'	+ link + videoList[count] + '\n';
                 count++;
                 if (count > videoList.length - 1) {
                     count = 0;
@@ -89,14 +96,16 @@ $('#complete').click(function () {
     videoUpdate = true;
     while (videoList[i]) {
         description = myResponse.items[i].snippet.description + phrase[i];
-        console.log(videoList[i] + ":" + myResponse.items[i].id);
+        console.log(videoList[i] + " : " + phrase[i]);
+        console.log('\n' + myResponse.items[i].snippet.tags );
         buildApiRequest('PUT',
                         '/youtube/v3/videos', 
                         {'part': 'snippet'}, 
                         {'id': myResponse.items[i].id,
                          'snippet.categoryId': myResponse.items[i].snippet.categoryId,
                          'snippet.description': description,
-                         'snippet.title':myResponse.items[i].snippet.title
+                         'snippet.title':myResponse.items[i].snippet.title,
+                         'snippet.tags':myResponse.items[i].snippet.tags
         });
     i++;
 }
@@ -134,7 +143,7 @@ function initClient() {
     // 'scope' field specifies space-delimited list of access scopes
 
     gapi.client.init({
-        'clientId': '90875073625-ff3ntj9kehegnbamaoace12q6lo37v6u.apps.googleusercontent.com',
+        'clientId': '90875073625-c3k22oeo15lc8p086cf2307pmoatehp1.apps.googleusercontent.com',
         'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
         'scope': 'https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner'
     }).then(function () {
@@ -164,7 +173,9 @@ function setSigninStatus() {
     var user = GoogleAuth.currentUser.get();
     isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
     // Toggle button text and displayed statement based on current auth status.
-    if (isAuthorized) {}
+    if (isAuthorized) {
+        console.log( user );
+    }
 }
 
 function updateSigninStatus(isSignedIn) {
@@ -218,8 +229,8 @@ function executeRequest(request) {
     "use strict";
     request.execute(function (response) {
         if (videoUpdate === false) {
-            console.log(response);
             myResponse = response;
+            console.log(myResponse.items);
         }
     });
 }
