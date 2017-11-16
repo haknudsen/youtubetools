@@ -1,10 +1,8 @@
 // JavaScript Document
 // copyright 2017 Talking Heads
-var keywords, counter, info, x, i, shortURL, shorts, longUrl,listLength ;
-    console.log("click<br/>");
+var keywords, counter, info, x, i, shortURL, shorts, longUrl;
 $('#getURL').click(function () {
     "use strict";
-    console.log("click<br/>");
     keywords = $('#keywords').val();
     keywords = keywords.split('\n');
     $("#result").val('');
@@ -12,7 +10,7 @@ $('#getURL').click(function () {
     $('#playlistID').val(keywords[0]);
     longUrl = $('#url').val();
     gapi.client.setApiKey('AIzaSyBbfVeAk8vKBeM7qLHlqGKObIKEZ5tbMNY');
-    listLength = keywords.length;
+    var listLength = keywords.length;
     if(listLength>70){
         listLength =70;
     }
@@ -44,7 +42,7 @@ $('#getPastebin').click(function () {
         $('#link-container').val('');
         shorts = $('#shorties').val();
         shorts = shorts.split('\n');
-        for (x = 0; x < listLength; x++) {
+        for (x = 0; x < keywords.length; x++) {
             info = '';
             info = '[';
             info += keywords[x];

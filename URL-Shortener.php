@@ -81,6 +81,7 @@ $response = curl_exec( $ch );
         </div>
     </section>
     <footer id="footer"></footer>
+    <script src="includes/url-shortener.js">
     </script><script src="includes/navigation.js">
 </script>
     <script src="includes/autosize.js">
@@ -88,7 +89,6 @@ $response = curl_exec( $ch );
     <script>
         autosize( document.querySelectorAll( 'textarea' ) );
     </script>
-    <script src="includes/url-shortener.js"></script>
 </body>
 
 </html>
