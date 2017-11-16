@@ -30,6 +30,7 @@ $response = curl_exec( $ch );
     <div id="header"></div>
     <section class="jumbotron text-center">
         <h1>Get YouTube Video Loop URLs</h1>
+        <button type="button" class="btn btn-danger" id="clear">Clear</button>
         <div class="container text-center">
             <div class="row">
                 <div class="col-sm-6">
@@ -51,8 +52,17 @@ $response = curl_exec( $ch );
                         <div class="m-1">
                             <label>Enter name for Pastebin:<input type="text" value="" name="playlistID" id="playlistID"></label>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3>PasteBin Links</h3>
                         <textarea id="link-container" name="link-container" class="text-left" style="max-height: 500px"></textarea>
                         <input type="hidden" value="<?=$response?>" name="userID" id="userID">
+                            </div>
+                            <div class="col-lg-6">
+                                <h3>HTML Links</h3>
+                        <textarea id="htmlLinks" name="htmlLinks" class="text-left" style="max-height: 500px"></textarea>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
