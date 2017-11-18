@@ -9,13 +9,11 @@ $('#getURLs').click(function () {
     list = list.filter(function (value) {
         return value !== "" && value !== null;
     });
-    console.log(list);
     var i = 0;
     var listLength = list.length;
     var l = listLength - 1;
     var id = $('#videoID').val();
     id = id.substring(id.lastIndexOf("=") + 1);
-    $('#playlistID').val(id);
     for (i = 0; i < 50; i++) {
         var newUrl = arrUrls[i].replace('XXXXXX', id);
         info = '[';
@@ -23,13 +21,14 @@ $('#getURLs').click(function () {
         info += '](';
         info += newUrl + ')';
         linkList[i] = info;
-        console.log(l);
         if (l === 0) {
             l = listLength - 1;
         } else {
             l--;
         }
     }
+    $('#playlistID').val( list[0]);
+    console.log(list[0] );
     var $link = $('#link-container');
     $link.val(linkList);
     $link.val($('#link-container').val().replace(/,/g, '\n'));
