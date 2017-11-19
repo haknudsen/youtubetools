@@ -39,6 +39,7 @@ $response = curl_exec( $ch );
                 <div class="col-sm-6">
                     <h2>Keywords(one per row):</h2>
                     <textarea id="keywords" style="max-height: 500px"></textarea>
+                    <button type="button" class="btn btn-orange center" id="randomize">Randomize</button>
                 </div>
                 <button type="button" class="btn btn-purple center" id="getURLs">Get URLs</button>
             </div>
@@ -61,10 +62,10 @@ $response = curl_exec( $ch );
     <footer id="footer"></footer>
     <script src="includes/navigation.js"></script>
     <script src="includes/youtube_variations.js"></script>
-    <script src="includes/autosize.js"></script>
     <script>
         autosize( document.querySelectorAll( 'textarea' ) );
     </script>
+    <script src="includes/autosize.js"></script>
 </body>
 
 </html>
