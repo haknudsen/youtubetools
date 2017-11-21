@@ -19,9 +19,7 @@ $('#clear').click(function(){
     $('#phrase').val('');
     playlist = '';
     playlistId = '';
-    count=0;
-    counter=0;
-});
+})
 // Call the Data API to retrieve the playlist ID that uniquely identifies the
 // list of videos uploaded to the currently authenticated user's channel.
 function requestUserUploadsPlaylistId() {

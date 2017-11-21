@@ -2,7 +2,7 @@
 var nextPageToken, prevPageToken, i = 0,
     videoList = Array(),
     list = Array(),
-    embed,title,videoURL,videoId,description,info,
+    embed,
     anchor = 'https://www.youtube.com/watch?v=';
 
 // After the API loads, call a function to get the uploads playlist ID.
@@ -78,7 +78,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
             $link.val($('#link-container').val().replace(/,/g, '\n'));
             autosize.update($link);
 
-            $('#playlistID').val(title);
+            $('#playlistID').val(playlistId);
         } else {
             $('#link-container').html('Sorry you have no uploaded videos');
         }
@@ -89,10 +89,10 @@ function requestVideoPlaylist(playlistId, pageToken) {
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
-        title = String(videoSnippet.title);
-        videoId = videoSnippet.resourceId.videoId;
-        videoURL = videoId;
-        description = String(videoSnippet.description);
+    var title = String(videoSnippet.title),
+        videoId = videoSnippet.resourceId.videoId,
+        videoURL = videoId,
+        description = String(videoSnippet.description),
         info = "";
     title = fixTitle(title);
     description = fixDescription(description);
