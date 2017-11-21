@@ -30,7 +30,7 @@
     </section>
     <section class="container-fluid alert-success m-1 text-center">
         <div class="row m-1">
-            <div class="col-md-3 col-md-offset-1">
+            <div class="col-md-4">
                 <h3 class="text-center">Prefix/Suffex</h3>
                 <textarea id="decode" name="decode" style="max-height: 700px"></textarea>
             </div>
