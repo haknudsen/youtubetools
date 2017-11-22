@@ -8,6 +8,7 @@ var link = 'https://youtu.be/';
 var counter = 0;
 // After the API loads, call a function to get the uploads playlist ID.
 $(document).ready(function () {
+    "use strict";
     handleClientLoad();
 });
 function handleAPILoaded() {
@@ -15,10 +16,15 @@ function handleAPILoaded() {
     requestUserUploadsPlaylistId();
 }
 $('#clear').click(function(){
+    "use strict";
     $('#playlist').val('');
-    $('#phrase').val('');
+    $('#phrase').val('Next Video');
+    $('#count').text('0');
+    $('#success').text('Cleared');
     playlist = '';
     playlistId = '';
+    count=0;
+    counter=0;
 })
 // Call the Data API to retrieve the playlist ID that uniquely identifies the
 // list of videos uploaded to the currently authenticated user's channel.
@@ -94,8 +100,6 @@ $('#complete').click(function () {
     videoUpdate = true;
     while (videoList[i]) {
         description = myResponse.items[i].snippet.description + phrase[i];
-        console.log(videoList[i] + " : " + phrase[i]);
-        console.log('\n' + myResponse.items[i].snippet.tags );
         buildApiRequest('PUT',
                         '/youtube/v3/videos', 
                         {'part': 'snippet'}, 
@@ -228,7 +232,6 @@ function executeRequest(request) {
     request.execute(function (response) {
         if (videoUpdate === false) {
             myResponse = response;
-            console.log(myResponse.items);
         }
     });
 }

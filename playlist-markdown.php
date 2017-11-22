@@ -61,7 +61,7 @@ $response = curl_exec( $ch );
     <button id="next-button" class="paging-button" onclick="nextPage();">Next Page</button>
   </div>
     <section class="container text-center">
-        <button type="button" class="btn btn-warning" id="clear">Clear</button>
+        <button type="button" class="btn btn-danger" id="clear">Clear</button>
     </section>
 <footer id="footer"></footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
