@@ -30,7 +30,7 @@ $response = curl_exec( $ch );
     <div id="header"></div>
     <section class="jumbotron text-center">
         <h1>Get YouTube Video URL Variations</h1>
-        <div class="container text-center">
+        <div class="container">
             <div class="row">
                 <div class="col-sm-6">
                     <h2>videoID:</h2>
@@ -61,6 +61,7 @@ $response = curl_exec( $ch );
     </section>
     <footer id="footer"></footer>
     <script src="includes/navigation.js"></script>
+    <script src="includes/autosize.js"></script>
     <script src="includes/youtube_variations.js"></script>
     <script>
         autosize( document.querySelectorAll( 'textarea' ) );

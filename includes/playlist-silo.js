@@ -109,6 +109,7 @@ $('#complete').click(function () {
                          'snippet.title':myResponse.items[i].snippet.title,
                          'snippet.tags':myResponse.items[i].snippet.tags
         });
+		console.log( description );
     i++;
 }
 $('#success').text('updated!');
