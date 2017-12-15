@@ -10,7 +10,7 @@ footer { margin-bottom:3rem}
 .p-2 { padding: .2em; }
 .m-1 { margin: 1em auto }
 #decode, #spin { margin:auto ; width: 96%;overflow: visible!important;resize: both!important}
-#results { width: 100%; min-height: 500px; margin: 20px }
+#results { width: 90%; margin: 1rem 5% }
 #title, #language, #category,#channelTitle { min-width: 200px; margin: 10px auto; text-align: left;padding: 8px;height: 40px}
 .btn { margin: 10px auto }
 .instructions { margin: auto; display: block; padding: 25px; text-align: center; }
