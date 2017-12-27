@@ -21,9 +21,9 @@ function addPreSuf() {
     var textarrout = new Array();
     for (var x = 0; x < textlen; x++) {
         if( beforeOrAfter === "before"){
-        textarrout[x] =  toAdd  + text[x];
+        textarrout[x] =  toAdd + " "  + text[x];
         }else{
-        textarrout[x] = text[x]  + toAdd;
+        textarrout[x] = text[x] + " " + toAdd;
         }
     }
     var textout = textarrout.join('\n');
