@@ -31,7 +31,7 @@ function requestUserUploadsPlaylistId() {
 // Retrieve the list of videos in the specified playlist.
 function requestVideoPlaylist(playlistId, pageToken) {
     "use strict";
-    $('#video-container').val('');
+    $('#video-container').text('');
     var requestOptions = {
         playlistId: playlistId,
         part: 'snippet',
@@ -84,9 +84,10 @@ function createList() {
 function displayResult(videoSnippet) {
     "use strict";
     var videoId = videoSnippet.resourceId.videoId;
-    var videoURL = videoId;
-    link = 'https://www.youtube.com/watch?v=' + videoURL + '\n';
-    $('#video-container').val( $('#video-container').val() + link);
+    var videoURL = '//img.youtube.com/vi/'+ videoId + '/maxresdefault.jpg';
+    link = '<a href="' + videoURL + '">' + videoURL + '</a>';
+    $('#video-container').append( link );
+    $('#video-container').append( '<br>' );
     videoList[i] = videoURL;
     i++;
 }
