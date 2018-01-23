@@ -41,7 +41,14 @@
         <button type="button" class="btn btn-primary text-capitalize center-block" id="copy-spin">Copy Spin</button>
         <button type="button" class="btn btn-warning text-capitalize center-block" id="reset">Reset</button>
     </section>
-    
+    <section class="container">
+        <div style="width: 50%;max-width:1280px;float:left;padding-right:1rem">
+            <div style="position: relative; padding-bottom: 56.25%;  height: 0; overflow: hidden;background: #000">
+                <iframe type="text/html" style="position: absolute; top:0; left: 0; width: 100%; height: 100%" src="https://www.youtube.com/embed/AycQ445FBe0?autoplay=1&loop=1&rel=0" frameborder="0"></iframe>
+            </div>
+        </div>
+        Theus Law Offices uses know-how and assessment in the following specialties: Wills and Trusts Asset Protection Planning Trust Protector Services Succession and Probate Administration Estate and Trust Litigation Business Succession Planning Medicaid and Elder Law Planning Asset Protection is an important part of Estate Planning. Theus Law Offices includes asset security includes that successfully protect your traditions from unexpected liabilities today and for future generations. Our group consists of among the location's only licensed experts in Estate Planning and Administration, You will get knowledgeable, skilled and informative suggestions required to guarantee that your family will not be strained with the psychological and monetary expenses of succession and probate matters, which your traditions will be secured Theus Law Offices concentrates on estate, succession and asset defense planning. We use the most sophisticated strategies for both big and little estates to produce an extensive strategy customized particularly for the special requirements and scenarios of each customer.
+    </section>
     <footer id="footer"></footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="auth.js"></script>
