@@ -13,12 +13,11 @@ curl_setopt( $ch, CURLOPT_NOBODY, 0 );
 
 $response = curl_exec( $ch );
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <title>URL Shortener</title>
+<meta charset="utf-8">
+    <title>Keyword Link Creator</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">

@@ -1,36 +1,33 @@
 // Define some variables used to remember state.
-var playlistId, playlist, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count, desRec, ids, myResponse, description;
+var playlistId,playlist, nextPageToken, prevPageToken, GoogleAuth, snippet, videoId, getVideo, categoryId, isAuthorized, i, count, desRec, ids, myResponse, description;
 var updated = Array();
 var phrase = Array();
 var videoList = Array();
 var videoUpdate = true;
 var link = 'https://youtu.be/';
 var counter = 0;
-var auth = false;
-var event;
 // After the API loads, call a function to get the uploads playlist ID.
 $(document).ready(function () {
     "use strict";
     handleClientLoad();
 });
-
 function handleAPILoaded() {
     "use strict";
     requestUserUploadsPlaylistId();
 }
-$('#clear').click(function () {
-        "use strict";
-        $('#playlist').val('');
-        $('#phrase').val('Next Video');
-        $('#count').text('0');
-        $('#success').text('Cleared');
-        playlist = '';
-        playlistId = '';
-        count = 0;
-        counter = 0;
-    })
-    // Call the Data API to retrieve the playlist ID that uniquely identifies the
-    // list of videos uploaded to the currently authenticated user's channel.
+$('#clear').click(function(){
+    "use strict";
+    $('#playlist').val('');
+    $('#phrase').val('Next Video');
+    $('#count').text('0');
+    $('#success').text('Cleared');
+    playlist = '';
+    playlistId = '';
+    count=0;
+    counter=0;
+})
+// Call the Data API to retrieve the playlist ID that uniquely identifies the
+// list of videos uploaded to the currently authenticated user's channel.
 function requestUserUploadsPlaylistId() {
     "use strict";
     // See https://developers.google.com/youtube/v3/docs/channels/list
@@ -85,7 +82,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
             i = 0;
             count = 1;
             while (videoList[i]) {
-                phrase[i] = '\n' + $('#phrase').val() + ' ' + '\uD83D\uDC49' + link + videoList[count] + '\n';
+                phrase[i] = '\n' + $('#phrase').val() + ' ' +  '\uD83D\uDC49'	+ link + videoList[count] + '\n';
                 count++;
                 if (count > videoList.length - 1) {
                     count = 0;
@@ -104,19 +101,18 @@ $('#complete').click(function () {
     while (videoList[i]) {
         description = myResponse.items[i].snippet.description + phrase[i];
         buildApiRequest('PUT',
-            '/youtube/v3/videos', {
-                'part': 'snippet'
-            }, {
-                'id': myResponse.items[i].id,
-                'snippet.categoryId': myResponse.items[i].snippet.categoryId,
-                'snippet.description': description,
-                'snippet.title': myResponse.items[i].snippet.title,
-                'snippet.tags': myResponse.items[i].snippet.tags
-            });
-        console.log(description);
-        i++;
-    }
-    $('#success').text('updated!');
+                        '/youtube/v3/videos', 
+                        {'part': 'snippet'}, 
+                        {'id': myResponse.items[i].id,
+                         'snippet.categoryId': myResponse.items[i].snippet.categoryId,
+                         'snippet.description': description,
+                         'snippet.title':myResponse.items[i].snippet.title,
+                         'snippet.tags':myResponse.items[i].snippet.tags
+        });
+		console.log( description );
+    i++;
+}
+$('#success').text('updated!');
 });
 // Create a listing for a video.
 function displayResult(videoSnippet) {
@@ -177,16 +173,12 @@ function handleAuthClick(event) {
 
 function setSigninStatus() {
     "use strict";
-    console.log(isAuthorized);
-    console.log(auth);
+    var user = GoogleAuth.currentUser.get();
+    isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
+    // Toggle button text and displayed statement based on current auth status.
     if (isAuthorized) {
-        $('#execute-request-button').removeClass("btn-warning");
-        $('#execute-request-button').addClass("btn-green");
-        auth = true;
+        console.log( user );
     }
-        var user = GoogleAuth.currentUser.get();
-        isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
-        // Toggle button text and displayed statement based on current auth status
 }
 
 function updateSigninStatus(isSignedIn) {
