@@ -7,6 +7,7 @@ $('#getURL').click(function () {
     console.log("click<br/>");
     keywords = $('#keywords').val();
     keywords = keywords.split('\n');
+	keywords = keywords.sort(function(a, b){return 0.5 - Math.random()});
     $("#result").val('');
     $('#shorties').val('');
     $('#playlistID').val(keywords[0]);

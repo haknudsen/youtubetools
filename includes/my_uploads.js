@@ -1,8 +1,8 @@
 // Define some variables used to remember state.
-var playlistId, nextPageToken, prevPageToken, link;
+var playlistId, nextPageToken, prevPageToken,link;
 var i = 0;
 var videoList = Array();
-var playlistItems;
+
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
     "use strict";
@@ -51,15 +51,15 @@ function requestVideoPlaylist(playlistId, pageToken) {
         var prevVis = prevPageToken ? 'visible' : 'hidden';
         $('#prev-button').css('visibility', prevVis);
 
-        playlistItems = response.result.items;
+        var playlistItems = response.result.items;
         if (playlistItems) {
             console.log(playlistItems.length);
             $.each(playlistItems, function (index, item) {
                 displayResult(item.snippet);
             });
             createList();
-            autosize.update($('#video-container'));
-            autosize.update($('#spin'));
+         autosize.update($('#video-container'));
+         autosize.update($('#spin'));
         } else {
             $('#video-container').val('Sorry you have no uploaded videos');
         }
@@ -78,20 +78,16 @@ function createList() {
     }
     spin += "}";
     $('#spin').text(spin);
-    autosize.update($('#spin'));
+         autosize.update($('#spin'));
 }
 // Create a listing for a video.
 function displayResult(videoSnippet) {
     "use strict";
     var videoId = videoSnippet.resourceId.videoId;
     var videoURL = videoId;
-    link = 'https://www.youtube.com/watch?v=' + videoURL;
-    if (i < playlistItems.length-1) {
-        link = link + '\n';
-    }
-    $('#video-container').val($('#video-container').val() + link);
+    link = 'https://www.youtube.com/watch?v=' + videoURL + '\n';
+    $('#video-container').val( $('#video-container').val() + link);
     videoList[i] = videoURL;
-    console.log(i);
     i++;
 }
 
@@ -107,6 +103,7 @@ function previousPage() {
     requestVideoPlaylist(playlistId, prevPageToken);
 }
 $('#sendClick').click(function () {
+    console.log(videoList);
     $.ajax({
         url: "save.php",
         data: {

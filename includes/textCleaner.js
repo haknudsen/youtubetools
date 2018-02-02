@@ -89,10 +89,16 @@ function changeText() {
 
 	$('#hyperlinks').click(function () {
 		myText = getText();
-		str = '<a href="' + myText;
-		str += '">' + myText;
-		str += '</a>';
-		changeText(str);
+		var links = myText.split('\n');
+		console.log(links.length);
+		$('#textCleaner').val('');
+		$.each(links, function (index, value) {
+			str = '<a href="' + value;
+			str += '">' + value;
+			str += '</a>';
+		$('#textCleaner').val($('#textCleaner').val() + str+'\n');
+		});
+		autosize.update($('#textCleaner'));
 	});
 	$('#remove-html').click(function () {
 		myText = getText().replace(/(<([^>]+)>)/ig, "");
