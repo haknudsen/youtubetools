@@ -24,6 +24,7 @@ $('#randomize').click(function () {
     text.sort(function (a, b) {
         return 0.5 - Math.random();
     });
+    $('#playlistID').val(text[0]);
     outputList(text);
 });
 $('#getURLs').click(function () {
@@ -52,7 +53,6 @@ $('#getURLs').click(function () {
         }
     }
     $('#playlistID').val(list[0]);
-    console.log(list[0]);
     var $link = $('#link-container');
     $link.val(linkList);
     $link.val($('#link-container').val().replace(/,/g, '\n'));

@@ -52,7 +52,7 @@ $response = curl_exec( $ch );
                         <div class="m-1">
                             <label>Enter name for Pastebin:<input type="text" value="" name="playlistID" id="playlistID"></label>
                         </div>
-                        <textarea id="link-container" name="link-container" class="text-left" style="max-height: 500px"></textarea>
+                        <textarea id="link-container" name="link-container" class="text-left"></textarea>
                         <input type="hidden" value="<?=$response?>" name="userID" id="userID">
                     </form>
                 </div>
@@ -62,11 +62,11 @@ $response = curl_exec( $ch );
     <footer id="footer"></footer>
     <script src="includes/navigation.js"></script>
     <script src="includes/autosize.js"></script>
-    <script src="includes/youtube_variations.js"></script>
     <script>
         autosize( document.querySelectorAll( 'textarea' ) );
     </script>
     <script src="includes/autosize.js"></script>
+    <script src="includes/youtube_variations.js"></script>
 </body>
 
 </html>
