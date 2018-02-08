@@ -1,5 +1,5 @@
 // JavaScript Document
-var beforeOrAfter;
+var beforeOrAfter,space = "";
 $('#prefix').click(function () {
     "use strict";
     beforeOrAfter = "before";
@@ -9,6 +9,17 @@ $('#suffix').click(function () {
     "use strict";
     beforeOrAfter = "after";
     addPreSuf();
+});
+$('#space').click(function () {
+    "use strict";
+	var txt = $('#space').text();
+	if(txt === 'Add Space Between'){
+		$('#space').text('No Space');
+		space = " ";
+	}else{
+		$('#space').text('Add Space Between');
+		space = "";
+	}
 });
 
 function addPreSuf() {
@@ -21,9 +32,9 @@ function addPreSuf() {
     var textarrout = new Array();
     for (var x = 0; x < textlen; x++) {
         if( beforeOrAfter === "before"){
-        textarrout[x] =  toAdd + " "  + text[x];
+        textarrout[x] =  toAdd + space  + text[x];
         }else{
-        textarrout[x] = text[x] + " " + toAdd;
+        textarrout[x] = text[x] + space + toAdd;
         }
     }
     var textout = textarrout.join('\n');

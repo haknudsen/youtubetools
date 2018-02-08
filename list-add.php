@@ -20,11 +20,14 @@
         <h2 class="text-capitalize">Turn List into spintax or separate with commas</h2>
         <h3>Each part on its own line</h3>
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-2">
+            <div class="col-sm-4">
                 <button id="prefix" class="btn btn-blue">Add Prefix</button>
             </div>
             <div class="col-sm-4">
                 <button id="suffix" class="btn btn-green">Add Suffex</button>
+            </div>
+            <div class="col-sm-4">
+                <button id="space" class="btn btn-purple">Add Space Between</button>
             </div>
         </div>
     </section>

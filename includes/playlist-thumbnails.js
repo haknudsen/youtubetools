@@ -2,13 +2,12 @@
 var nextPageToken, prevPageToken, i = 0,
     videoList = Array(),
     list = Array(),
-    max = true,
     responsive,
     maxjpg = '/maxresdefault.jpg"',
     anchor = '<a href="https://www.youtube.com/watch?v=',
     image = '<img src="https://img.youtube.com/vi/',
     center = 'style="max-width:1280px;width:100%;margin:0 auto;padding:1rem" /></a>',
-    left = 'style="max-width:1280px;width:50%;float:left;padding: 1rem 2rem 0 0" /></a>',
+    left = 'style="max-width:480px;width:50%;float:left;padding: 1rem 2rem 0 0" /></a>',
     description, title;
 
 // After the API loads, call a function to get the uploads playlist ID.
