@@ -18,6 +18,12 @@ function changeText() {
 		myText = myText.replace(/ +/g, "-");
 		changeText(myText.trim());
 	});
+	$('#replace-dashes').click(function () {
+		myText = getText();
+		console.log( 'myText' );
+		myText = myText.replace(/-+/g, " ");
+		changeText(myText.trim());
+	});
 	//---------------------------------------Line Breaks
 	$('#remove-extra-linebreaks').click(function () {
 		myText = getText();
