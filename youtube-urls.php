@@ -31,6 +31,7 @@ $response = curl_exec( $ch );
     <section class="jumbotron text-center">
         <h1>Get YouTube Video URL Variations</h1>
         <div class="container">
+			<button type="button" class="btn btn-danger" id="clear">Clear</button>
             <div class="row">
                 <div class="col-sm-6">
                     <h2>videoID:</h2>
@@ -52,8 +53,15 @@ $response = curl_exec( $ch );
                         <div class="m-1">
                             <label>Enter name for Pastebin:<input type="text" value="" name="playlistID" id="playlistID"></label>
                         </div>
-                        <textarea id="link-container" name="link-container" class="text-left"></textarea>
+						<div class="row">
+						<div class="col-sm-6">
+                        <textarea id="link-container" name="link-container" class="text-left" style="max-height: 600px"></textarea>
                         <input type="hidden" value="<?=$response?>" name="userID" id="userID">
+							</div>
+						<div class="col-sm-6">
+                        <textarea id="variations" name="variations" class="text-left" style="max-height: 600px"></textarea>
+							</div>
+						</div>
                     </form>
                 </div>
             </div>

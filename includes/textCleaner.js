@@ -2,6 +2,10 @@
 function changeText() {
 	"use strict";
 	var myText, str = "";
+	$('#clear').click(function(){
+		$('#textCleaner').val("");
+		autosize.update($('#textCleaner'));
+	});
 	//----------------------------------------------------Spaces
 	$('#remove-extra').click(function () {
 		myText = getText();
