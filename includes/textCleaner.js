@@ -93,6 +93,10 @@ function changeText() {
 		str = myText.replace(/\w\S*/g, function (txt) {
 			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 		});
+		str = str.replace(/\|\S/g, function (txt) {
+			console.log( txt );
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toUpperCase();
+		});
 		changeText(str);
 	});
 	///----------------------------------HTML
