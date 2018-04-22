@@ -72,7 +72,6 @@ function displayResult(videoSnippet) {
 	"use strict";
 	var videoId = videoSnippet.resourceId.videoId;
 	var videoURL = videoId;
-	link += 'https://www.youtube.com/watch?v=' + videoURL + '\n';
 	link += 'https://www.youtube.com/watch?v=' + videoURL + "&list=" + playlistId;
 	if (count < playlistItems.length - 1) {
 		link += '\n';
