@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<div id="header"></div>
+	<?php include("includes/header.php"); ?>
 	<section class="container-fluid alert-success p-2 m-1 text-center">
 		<div style="min-height:500px;">
 			<table cellpadding="5" cellspacing="5" border="0" align="center" width="800px">
@@ -91,7 +91,7 @@
 	<section class="alert alert-dismissible">
 		<button class="btn btn-green center-block" onclick="goBack()">Go Back</button>
 	</section>
-	<footer id="footer"></footer>
+	<?php include("includes/nav.html"); ?>
 	<script type="text/javascript" src="auth.js"></script>
 	<script type="text/javascript" src="my_uploads.js"></script>
 	<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>

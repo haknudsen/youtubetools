@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/my_uploads.css">
 	</head>
 	<body>
-<div id="header"></div>
+<?php include("includes/header.php"); ?>
 <section class="jumbotron">
       <h1 class="text-center">Search YouTube</h1>
       <div class="row">
@@ -28,7 +28,7 @@
 <section class="container">
       <div id="results"></div>
     </section>
-<footer id="footer"></footer>
+<?php include("includes/nav.html"); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
 	</script> 
 <script async defer onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()" src="https://apis.google.com/js/api.js">

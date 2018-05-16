@@ -30,7 +30,7 @@ $response = curl_exec( $ch );
 </head>
 
 <body>
-    <div id="header"></div>
+    <?php include("includes/header.php"); ?>
     <section class="jumbotron">
         <div class="container text-center">
                         <div class="row">
@@ -79,7 +79,7 @@ $response = curl_exec( $ch );
             </div>
         </div>
     </section>
-    <footer id="footer"></footer>
+    <?php include("includes/nav.html"); ?>
     </script><script src="includes/navigation.js">
 </script>
     <script src="includes/autosize.js">
