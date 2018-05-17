@@ -23,7 +23,7 @@
             </form>
         </div>
     </section>
-
+	<?php include("includes/random-site-ad.php"); ?>
     <?php include("includes/nav.html"); ?>
     <script type="text/javascript" src="auth.js"></script>
     <script type="text/javascript" src="my_uploads.js"></script>
