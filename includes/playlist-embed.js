@@ -6,7 +6,7 @@ var nextPageToken, prevPageToken, i = 0,
     spin;
     var anchor = '<div style="width: 100%;max-width:1280px;margin:0 auto;padding:1rem">\n  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">\n    <iframe type="text/html" style="position: absolute; top:0; left: 0; width: 100%; height: 100%" src="https://www.youtube.com/embed/';
     var left = '<div style="width: 50%;max-width:1280px;float:left;padding-right:1rem">\n  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">\n    <iframe type="text/html" style="position: absolute; top:0; left: 0; width: 100%; height: 100%" src="https://www.youtube.com/embed/';
-    var frameEnd = '?autoplay=1&loop=1&rel=0" frameborder="0"></iframe>\n  </div>\n</div>';
+    var frameEnd = '" frameborder="0"></iframe>\n  </div>\n</div>';
     var leftEnd = '\n  </div>\n</div>';
  
 
@@ -28,7 +28,6 @@ function requestUserUploadsPlaylistId() {
 }
 $('#reset').click(function () {
     "use strict";
-    console.log('reset');
     $('#playlist').text('');
     $('#link-container').val('');
     $('#spintax').val('');
@@ -98,7 +97,9 @@ function requestVideoPlaylist(playlistId, pageToken) {
                 }
             }
             spintax += '}';
+    console.log(spintax);
             spin += spintax;
+			spin += '&list=' + playlistId;
             spin += frameEnd;
             if (!center) {
                 spin += leftEnd;

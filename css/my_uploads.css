@@ -72,3 +72,4 @@ background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), 
 .tools{margin: 3rem;font-size: 2.5rem}
 .tools dd{text-indent: 2rem;margin-bottom: 1rem}
 .tools dt{color: #337ab7;}
+.paragraph-short{line-height: 1.2}

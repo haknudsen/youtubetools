@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/my_uploads.css">
 </head>
 <body>
-	<div id="header"></div>
+	<?php include("includes/header.php"); ?>
 	<section class="container">
 		<?php
 
@@ -163,12 +163,12 @@ if ( $client->getAccessToken() ) {
 	</section>
 
 
-	<footer id="footer"></footer>
+	<?php include("includes/random-site-ad.php"); ?>
+	<?php include("includes/nav.html"); ?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script type="text/javascript" src="auth.js"></script>
 	<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
 	<script type="text/javascript" src="includes/playlist-markdown.js"></script>
-	<script src="includes/navigation.js"></script>
 	<script src="includes/autosize.js"></script>
 	<script>
 		autosize( document.querySelectorAll( 'textarea' ) );
