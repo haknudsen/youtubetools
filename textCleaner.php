@@ -17,8 +17,8 @@
 		<div class="container-fluid">
 			<textarea id="textCleaner"></textarea>
 			<div class="d-flex align-items-center">
-				<button type="button" class="btn btn-danger text-capitalize center-block" id="clear">Clear</button>
-				<button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
+				<button type="button" class="btn btn-danger text-capitalize" id="clear">Clear</button>
+				<button type="button" class="btn btn-primary text-capitalize" id="copy">Copy</button>
 			</div>
 		</div>
 	</section>

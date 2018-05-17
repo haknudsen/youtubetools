@@ -15,7 +15,7 @@
   <h1 class="text-center">Get Playlist video links</h1>
   <div id="login-container" class="pre-auth"> This application requires access to your YouTube account.  Please <a href="#" id="login-link">authorize</a> to continue. </div>
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 offset-md-2">
       <input type="text" name="playlist" id="playlist" style="width: 800px;margin: 5px auto">
       <button type="button" class="btn btn-default center-block" id="playlistClick">click</button>
     </div>

@@ -16,7 +16,7 @@
     <section class="container">
         <h1 class="text-center">Get Responsive Embed Code for a Playlist</h1>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 offset-md-2">
                 <input type="text" name="playlist" id="playlist" style="width: 800px;margin: 5px auto">
                 <div class="row  text-capitalize center">
                     <h3 class="text-center">Text Anchors</h3>
