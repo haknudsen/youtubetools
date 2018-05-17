@@ -82,6 +82,7 @@
 			</div>
 		</div>
 	</section>
+	<?php include("includes/random-site-ad.php"); ?>
 	<?php include("includes/nav.html"); ?>
 	<script src="includes/textCleaner.js"></script>
 	<script src="includes/autosize.js"></script>

@@ -163,6 +163,7 @@ if ( $client->getAccessToken() ) {
 	</section>
 
 
+	<?php include("includes/random-site-ad.php"); ?>
 	<?php include("includes/nav.html"); ?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script type="text/javascript" src="auth.js"></script>

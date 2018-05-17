@@ -91,6 +91,7 @@
 	<section class="alert alert-dismissible">
 		<button class="btn btn-green center-block" onclick="goBack()">Go Back</button>
 	</section>
+	<?php include("includes/random-site-ad.php"); ?>
 	<?php include("includes/nav.html"); ?>
 	<script type="text/javascript" src="auth.js"></script>
 	<script type="text/javascript" src="my_uploads.js"></script>
