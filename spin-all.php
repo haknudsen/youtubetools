@@ -25,6 +25,9 @@
             </form>
         </div>
     </section>
+	<div class="d-flex align-items-center">
+	<button onclick="goBack()">Go Back</button>
+	</div>
 	<?php include("includes/random-site-ad.php"); ?>
     <?php include("includes/nav.html"); ?>
     <script type="text/javascript" src="auth.js"></script>
@@ -33,6 +36,9 @@
     <script src="includes/navigation.js"></script>
     <script src="includes/autosize.js"></script>
     <script>
+		function goBack() {
+			window.history.back();
+		}
         autosize( document.querySelectorAll( 'textarea' ) );
         $( '#spaces' ).click( function () {
             $( '#content' ).attr( 'action', 'spin-decode-all-no-spaces.php' );

@@ -1,3 +1,4 @@
+<hr>
 <section class="container">
 	<h2 class="text-center">Affiliate Websites</h2>
 	<div class="d-flex align-items-center">

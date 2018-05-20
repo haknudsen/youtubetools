@@ -61,7 +61,7 @@ background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), 
 .my-nav { margin: 0 }
 #link-container,#variations{min-height: 100px}
 #spintax{min-height: 100px}
-.form{max-width: 50%;margin: 0 auto}
+.form,form{max-width: 50%;margin: 0 auto}
 .form .btn{max-width: 200px;margin:20px auto}
 .keywordSpin{min-height: 240px;width: 100%}
 .box{border: #2970D9 medium solid}
@@ -73,3 +73,4 @@ background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), 
 .tools dd{text-indent: 2rem;margin-bottom: 1rem}
 .tools dt{color: #337ab7;}
 .paragraph-short{line-height: 1.2}
+.w-96{width: 96%;margin: 0 auto .25rem}
