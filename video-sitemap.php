@@ -14,14 +14,24 @@
 <body>
 	<?php include("includes/header.php"); ?>
 	<section class="jumbotron">
-		<h1 class="text-center">Get Playlist Video Titles</h1>
+		<h1 class="text-center">Create Video Sitemap of the YouTube Videos On A Page</h1>
 		<div id="login-container" class="pre-auth text-center"> This application requires access to your YouTube account. Please <a href="#" id="login-link">authorize</a> to continue. </div>
+		<hr>
 		<div class="row">
-			<div class="col-6 offset-3 ">
-				<input type="text" name="playlist" id="playlist" style="width: 100%">
-				<div class="d-flex align-items-center">
-					<button type="button" class="btn btn-purple center-block" id="playlistClick">click</button>
+			<div class="col-4">
+				<h3 class="text-center">Page to Check</h3>
+			  <input type="text" name="page" id="page" style="width: 100%">
+				<h3 class="text-center">Change Frequency</h3>
+				<input name="changefreq" type="text" id="changefreq" style="width: 100%;text-align: center" value="daily">
+				<h3 class="text-center">Priority</h3>
+			  <input name="priority" type="text" id="priority" style="width: 100%;text-align: center" value="0.8">
+			  <div class="d-flex align-items-center">
+				<button type="button" class="btn btn-purple center-block" id="playlistClick">Submit</button>
 				</div>
+			</div>
+			<div class="col-8">
+				<h3 class="text-center">Sitemap for this page</h3>
+				<textarea id="sitemap"></textarea>
 			</div>
 		</div>
 	</section>
