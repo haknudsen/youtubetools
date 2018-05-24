@@ -48,14 +48,18 @@ $response = curl_exec( $ch );
 	</section>
 	<div class="alert alert-info">
 		<div class="d-flex align-items-center text-center">
-			<form action="pastebin-send.php">
-				<div class="m-0 d-flex align-items-center">
-				<button type="submit" class="btn btn-green">Send to Paste Bin</button>
+			<form action="pastebin-send.php" class="w-100">
+				<div class="d-flex align-items-start m-1">
+					<div class="col-3">
+						<label>Enter name for Pastebin:  <input type="text" value="" name="playlistID" id="playlistID"></label>
+					</div>
+					<div class="col-9">
+						<textarea name="link-container" id="link-container"></textarea>
+						<input type="hidden" value="<?=$response?>" name="userID" id="userID">
+					</div>
 				</div>
-				<div class="d-flex align-items-center m-1">
-					<label>Enter name for Pastebin:  <input type="text" value="" name="playlistID" id="playlistID"></label>
-				<textarea name="link-container" id="link-container"></textarea>
-				<input type="hidden" value="<?=$response?>" name="userID" id="userID">
+				<div class="m-0 d-flex align-items-center">
+					<button type="submit" class="btn btn-green">Send to Paste Bin</button>
 				</div>
 			</form>
 		</div>
