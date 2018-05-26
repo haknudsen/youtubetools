@@ -50,13 +50,13 @@
 					</div>
 				</div>
 				<div class="d-flex align-items-center text-capitalize" role="group" aria-label="HTML">
-					<div class="col-sm-6 center">
-						<button type="button" class="btn btn-drkblue text-capitalize center" id="remove-extra-linebreaks">remove extra line breaks</button>
-						<button type="button" class="btn btn-drkblue text-capitalize" id="remove-linebreaks">remove all</button>
-					</div>
-					<div class="col-sm-6 center">
+					<div class="col-6 center">
 						<button type="button" class="btn btn-orange text-capitalize center" id="remove-html">Remove HTML</button>
 						<button type="button" class="btn btn-orange text-capitalize" id="hyperlinks">Make URLs hyperlinks</button>
+					</div>
+					<div class="col-6 center">
+						<button type="button" class="btn btn-drkblue text-capitalize center" id="remove-extra-linebreaks">remove extra line breaks</button>
+						<button type="button" class="btn btn-drkblue text-capitalize" id="remove-linebreaks">remove all</button>
 					</div>
 				</div>
 			</div>
