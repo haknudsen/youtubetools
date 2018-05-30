@@ -3,7 +3,7 @@
 
 <head>
 	<title>YouTube Video Sitemap Creator</title>
-	<meta name="description" content="Create Video Sitemap of the YouTube Videos On A Page">
+	<meta name="description" content="Create Video Sitemap of the YouTube Videos on a Page">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -26,7 +26,7 @@
 				<h3 class="text-center">Priority</h3>
 			  <input name="priority" type="text" id="priority" style="width: 100%;text-align: center" value="0.8">
 			  <div class="d-flex align-items-center">
-				<button type="button" class="btn btn-purple center-block" id="playlistClick">Submit</button>
+				<button type="button" class="btn btn-purple center-block" id="submit">Submit</button>
 				</div>
 			</div>
 			<div class="col-8">
@@ -44,12 +44,9 @@
 	</section>
 	<?php include("includes/random-site-ad.php"); ?>
 	<?php include("includes/nav.html"); ?>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script type="text/javascript" src="auth.js"></script>
-	<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
-	<script src="includes/navigation.js"></script>
+	<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
+	<script type="text/javascript" src="includes/get-video-data.js"></script>
 	<script src="includes/autosize.js"></script>
-	<script type="text/javascript" src="includes/my_titles.js"></script>
 	<script>
 		autosize( document.querySelectorAll( 'textarea' ) );
 	</script>
