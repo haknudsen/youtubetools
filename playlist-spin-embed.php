@@ -19,35 +19,30 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <input type="text" name="playlist" id="playlist" style="width: 800px;margin: 5px auto">
-                <div class="row  text-capitalize center">
-                    <h3 class="text-center">Text Anchors</h3>
-                    <div class="row">
-                        <div class="col-sm-4 col-sm-offset-2">
+                    <div class="d-flex">
                             <button type="button" class="btn btn-drkblue" id="responsive">Responsive</button>
-                        </div>
-                        <div class="col-sm-4">
                             <button type="button" class="btn btn-purple" id="embed-center">Center</button>
-                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </section>
 
     <section class="alert alert-success">
+		<div class="container">
         <textarea class="m-1" id="link-container" style="max-height: 400px"></textarea>
-        <button type="button" class="btn btn-primary text-capitalize center-block" id="copy">Copy</button>
+			<div class="d-flex">
+        <button type="button" class="btn btn-primary text-capitalize text-center" id="copy">Copy</button>
+			</div>
+		</div>
+		<div class="container">
         <textarea class="m-1" id="spintax"></textarea>
-        <button type="button" class="btn btn-primary text-capitalize center-block" id="copy-spin">Copy Spin</button>
-        <button type="button" class="btn btn-warning text-capitalize center-block" id="reset">Reset</button>
+			<div class="d-flex">
+        <button type="button" class="btn btn-primary text-capitalize text-center" id="copy-spin">Copy Spin</button>
+        <button type="button" class="btn btn-warning text-capitalize text-center" id="reset">Reset</button>
+			</div>
+		</div>
     </section>
-    <section class="container">
-        <div style="width: 50%;max-width:1280px;float:left;padding-right:1rem">
-            <div style="position: relative; padding-bottom: 56.25%;  height: 0; overflow: hidden;background: #000">
-                <iframe type="text/html" style="position: absolute; top:0; left: 0; width: 100%; height: 100%" src="https://www.youtube.com/embed/AycQ445FBe0?autoplay=1&loop=1&rel=0" frameborder="0"></iframe>
-            </div>
-        </div>
-    </section>
+    
     <?php include("includes/nav.html"); ?>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="auth.js"></script>
