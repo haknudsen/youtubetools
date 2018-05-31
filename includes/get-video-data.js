@@ -3,9 +3,8 @@
 /***** START BOILERPLATE CODE: Load client library, authorize user. *****/
 
 // Global variables for GoogleAuth object, auth status.
-var GoogleAuth, title, description, channel, snippet, videoId, getVideo, categoryId, language, isAuthorized;
+var GoogleAuth, title, description, snippet, videoId, getVideo, language, isAuthorized, short;
 var tags = Array();
-var videoUpdate = true;
 
 /**
  * Load the API's client and auth2 modules.
@@ -57,13 +56,9 @@ function setSigninStatus() {
 		$('#getVideo').addClass('btn-green');
 		$('#execute-request-button').prop("disabled", true);
 		$('#getVideo').click(function () {
-			videoUpdate = false;
 			getVideo = $('#video').val();
-			getVideo = getVideo.substring(getVideo.lastIndexOf("=") + 1);
+			/*			getVideo = getVideo.substring(getVideo.lastIndexOf("=") + 1);*/
 			defineRequest(getVideo);
-		});
-		$('#update').click(function () {
-			update();
 		});
 	}
 }
@@ -79,7 +74,7 @@ function createResource(properties) {
 	var normalizedProps = properties;
 	for (var p in properties) {
 		var value = properties[p];
-		if (p && p.substr(-2, 2) == '[]') {
+		if (p && p.substr(-2, 2) === '[]') {
 			var adjustedName = p.replace('[]', '');
 			if (value) {
 				normalizedProps[adjustedName] = value.split(',');
@@ -94,13 +89,13 @@ function createResource(properties) {
 			var ref = resource;
 			for (var pa = 0; pa < propArray.length; pa++) {
 				var key = propArray[pa];
-				if (pa == propArray.length - 1) {
+				if (pa === propArray.length - 1) {
 					ref[key] = normalizedProps[p];
 				} else {
 					ref = ref[key] = ref[key] || {};
 				}
 			}
-		};
+		}
 	}
 	return resource;
 }
@@ -108,7 +103,7 @@ function createResource(properties) {
 function removeEmptyParams(params) {
 	"use strict";
 	for (var p in params) {
-		if (!params[p] || params[p] == 'undefined') {
+		if (!params[p] || params[p] === 'undefined') {
 			delete params[p];
 		}
 	}
@@ -118,79 +113,67 @@ function removeEmptyParams(params) {
 function executeRequest(request) {
 	"use strict";
 	request.execute(function (response) {
+		createSitemap();
 		console.log(response);
-		if (videoUpdate === false) {
-			snippet = response.items[0].snippet;
-			categoryId = snippet.categoryId;
-			videoId = response.items[0].id;
-			title = snippet.title;
-			description = snippet.description;
+		var items = response.items;
+		var i = 0;
+		while (items[i]) {
+			snippet = items[i].snippet;
+			videoId = items[i].id;
 			tags = snippet.tags;
-			channel = snippet.channelTitle;
-			channel = snippet.channelTitle;
-			language = snippet.defaultLanguage;
-			categoryId = snippet.categoryId;
-			createSitemap();
-			autosize.update($('#description'));
-			autosize.update($('#tags'));
-			autosize.update($('#sitemap'));
+			short = snippet.description.substr(0, 200).replace(/\n/g, " ") + "...";
+			addVideo();
+			i++;
 		}
+		closeMap();
+		autosize.update($('#sitemap'));
 	});
 }
-
-function createSitemap() {
+function createSitemap(){
 	"use strict";
-	var sitemap = {
-		loc: $('#loc').val(),
-		changefreq: $('#changefreq').val(),
-		priority: $('#priority').val(),
-		player_loc: "http://www.youtube.com/v/" + videoId,
-		title: title,
-		description: description.substr(0, 200).replace(/\n/g, " ") + "...",
-		category: categoryId,
-		tags: tags,
-		thumbnail_loc: "http://img.youtube.com/vi/" + videoId + "maxresdefault.jpg"
-	};
-	var short = snippet.description.substr(0, 200).replace(/\n/g, " ") + "..."
-	var s = JSON.stringify(sitemap);
-	$('#sitemap').val(s);
-	$('#description').val("");
-	$('#description').val($('#description').val() + '<?xml version="1.0" encoding="UTF-8"?>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
-	$('#description').val($('#description').val() + '<url>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '<loc>' + $('#loc').val() + '</loc>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '<changefreq>' + $('#changefreq').val() + '</changefreq>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '<priority>' + $('#priority').val() + '</priority>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '<video:video>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '<video:player_loc allow_embed="yes">http://www.youtube.com/v/' + videoId + '</video:player_loc>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '<video:thumbnail_loc>http://img.youtube.com/vi/' + videoId + 'maxresdefault.jpg</video:thumbnail_loc>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '<video:title>' + snippet.title + '</video:title>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '<video:description>' + short + '</video:description>');
-	$('#description').val($('#description').val() + '\n');
+	$('#sitemap').val("");
+	$('#sitemap').val($('#sitemap').val() + '<?xml version="1.0" encoding="UTF-8"?>');
+	$('#sitemap').val($('#sitemap').val() + '\n');
+	$('#sitemap').val($('#sitemap').val() + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
+	$('#sitemap').val($('#sitemap').val() + '\n');
+	$('#sitemap').val($('#sitemap').val() + '<url>');
+	$('#sitemap').val($('#sitemap').val() + '\n');
+	$('#sitemap').val($('#sitemap').val() + '<loc>' + $('#loc').val() + '</loc>');
+	$('#sitemap').val($('#sitemap').val() + '\n');
+	$('#sitemap').val($('#sitemap').val() + '<changefreq>' + $('#changefreq').val() + '</changefreq>');
+	$('#sitemap').val($('#sitemap').val() + '\n');
+	$('#sitemap').val($('#sitemap').val() + '<priority>' + $('#priority').val() + '</priority>');
+	$('#sitemap').val($('#sitemap').val() + '\n');
+	console.log('sitemap start');
+}
+function addVideo() {
+	"use strict";
+	$('#sitemap').val($('#sitemap').val() + '<video:video>');
+	$('#sitemap').val($('#sitemap').val() + '\n    ');
+	$('#sitemap').val($('#sitemap').val() + '<video:player_loc allow_embed="yes">http://www.youtube.com/v/' + videoId + '</video:player_loc>');
+	$('#sitemap').val($('#sitemap').val() + '\n    ');
+	$('#sitemap').val($('#sitemap').val() + '<video:thumbnail_loc>http://img.youtube.com/vi/' + videoId + 'maxresdefault.jpg</video:thumbnail_loc>');
+	$('#sitemap').val($('#sitemap').val() + '\n    ');
+	$('#sitemap').val($('#sitemap').val() + '<video:title>' + snippet.title + '</video:title>');
+	$('#sitemap').val($('#sitemap').val() + '\n    ');
+	$('#sitemap').val($('#sitemap').val() + '<video:description>' + short + '</video:description>');
+	$('#sitemap').val($('#sitemap').val() + '\n    ');
 	var i = 0;
 	while (tags[i]) {
-		$('#description').val($('#description').val() + '<video:tag>' + tags[i] + '</video:tag>');
-		$('#description').val($('#description').val() + '\n');
+		$('#sitemap').val($('#sitemap').val() + '<video:tag>' + tags[i] + '</video:tag>');
+		$('#sitemap').val($('#sitemap').val() + '\n    ');
 		i++;
 	}
-	$('#description').val($('#description').val() + '<video:category>' + snippet.categoryId + '</video:category>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '</video:video>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '</url>');
-	$('#description').val($('#description').val() + '\n');
-	$('#description').val($('#description').val() + '</urlset>');
+	$('#sitemap').val($('#sitemap').val() + '<video:category>' + snippet.categoryId + '</video:category>');
+	$('#sitemap').val($('#sitemap').val() + '\n    ');
+	$('#sitemap').val($('#sitemap').val() + '</video:video>');
+	$('#sitemap').val($('#sitemap').val() + '\n    ');
 }
-
+function closeMap(){
+	$('#sitemap').val($('#sitemap').val() + '</url>');
+	$('#sitemap').val($('#sitemap').val() + '\n');
+	$('#sitemap').val($('#sitemap').val() + '</urlset>');
+}
 
 
 function buildApiRequest(requestMethod, path, params, properties) {
@@ -231,31 +214,6 @@ function defineRequest(getVideo) {
 
 }
 
-function update() {
-	"use strict";
-	videoUpdate = true;
-	title = $('#title').val();
-	description = $('#description').val();
-	tags = getTags();
-	console.log(tags);
-	// Sample js code for videos.update
-
-	// See full sample for buildApiRequest() code, which is not 
-	// specific to a particular youtube or youtube method.
-
-	buildApiRequest('PUT',
-		'/youtube/v3/videos', {
-			'part': 'snippet'
-		}, {
-			'id': videoId,
-			'snippet.categoryId': '19',
-			'snippet.defaultLanguage': 'en',
-			'snippet.description': description,
-			'snippet.tags': tags,
-			'snippet.title': title
-		});
-	$('#reporter').text('updated!');
-}
 
 function getTags() {
 	"use strict";

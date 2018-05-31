@@ -13,78 +13,59 @@
 <body>
 	<?php include("includes/header.php"); ?>
 	<section class="container-fluid">
-			<h1 class="text-center">Video Data Editor</h1>
-			<div class="container">
-				<h3 class="text-capitalize text-center">Enter Video ID</h3>
-				<div class="row">
-					<input type="text" id="video" value="https://www.youtube.com/watch?v=VcGe4c5urb4">
-				</div>
+		<h1 class="text-center">Video Data Editor</h1>
+		<div class="container">
+			<h3 class="text-capitalize text-center">Enter Video ID</h3>
+			<div class="row">
+				<input type="text" id="video" value="duk4b4tKhV8,hPueEE8FqaY,FdOqULUaPtI,WYemYjvKcpY,o1at9aNVC78,0w56S2ZW0iA,vuJC0fvb6h0,sabNW-2vdD8,xxcG9zvzkX8,OcC_-f9jQsw,rAFR4WsBNUQ">
 			</div>
-			<div class="container">
-				<div class="d-flex">
-					<div class="col-6">
-						<input type="text" id="loc" class="data" value="http://www.talkingheads.com/">
-					</div>
-					<div class="col-3">
-						<input type="text" id="changefreq" value="monthly" class="data">
-					</div>
-					<div class="col-3">
-						<input type="text" id="priority" value="0.8" class="data">
-					</div>
+		</div>
+		<div class="container">
+			<div class="d-flex">
+				<div class="col-6">
+					<input type="text" id="loc" class="data" value="http://www.talkingheads.com/">
 				</div>
-				<div class="d-flex text-center">
-					<div class="col-6">
-						<h3>Page URL</h3>
-					</div>
-					<div class="col-3">
-						<h3>Change Frequency</h3>
-					</div>
-					<div class="col-3">
-						<h3>Priority</h3>
-					</div>
+				<div class="col-3">
+					<input type="text" id="changefreq" value="monthly" class="data">
+				</div>
+				<div class="col-3">
+					<input type="text" id="priority" value="0.8" class="data">
 				</div>
 			</div>
 			<div class="d-flex text-center">
-				<button type="button" class="btn btn-drkblue" id="execute-request-button">Authorize</button>
-				<button type="button" class="btn btn-danger" id="getVideo">Get Video</button>
+				<div class="col-6">
+					<h3>Page URL</h3>
+				</div>
+				<div class="col-3">
+					<h3>Change Frequency</h3>
+				</div>
+				<div class="col-3">
+					<h3>Priority</h3>
+				</div>
 			</div>
-			<h3 id="reporter" class="text-capitalize text-center"></h3>
+		</div>
+		<div class="d-flex text-center">
+			<button type="button" class="btn btn-drkblue" id="execute-request-button">Authorize</button>
+			<button type="button" class="btn btn-danger" id="getVideo">Get Video</button>
+		</div>
+		<h3 id="reporter" class="text-capitalize text-center"></h3>
 	</section>
 	<section class="container-fluid">
 		<div class="alert alert-info">
-			
-			<div class="row">
-				<div class="col-sm-6">
-					<h3 class="text-capitalize text-center">description</h3>
-					<textarea id="description" style="max-height: 960px;min-height: 20px"></textarea>
-					<div class="m-1">
-						<h3 class="text-capitalize text-center">Total Letter Count : <span id="counter">0</span></h3>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<h3 class="text-center">Video Sitemap</h3>
-					<textarea id="sitemap" style="max-height: 960px;min-height: 20px"></textarea>
-				</div>
-			</div>
+				<h3 class="text-capitalize text-center">Video Sitemap</h3>
+				<textarea id="sitemap" style="max-height: 960px;min-height: 20px"></textarea>
 		</div>
 	</section>
 	<?php include("includes/random-site-ad.php"); ?>
 	<?php include("includes/nav.html"); ?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="includes/autosize.js"></script>
-	<script src="includes/jquery.simplyCountable-description.js"></script>
 	<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
 	</script>
 	<script src="includes/get-video-data.js"></script>
 	<script>
 		$( document ).ready( function () {
 			autosize( document.querySelectorAll( 'textarea' ) );
-			$( '#description' ).simplyCountable();
-			$( '#tags' ).simplyCountable( {
-				counter: '#counter2',
-				countType: 'characters',
-				maxCount: 500
-			} );
 		} );
 	</script>
 </body>
