@@ -13,40 +13,46 @@
 <body>
 	<?php include("includes/header.php"); ?>
 	<section class="container-fluid">
-		<div class="text-center">
-			<h1>Video Data Editor</h1>
+			<h1 class="text-center">Video Data Editor</h1>
 			<div class="container">
 				<h3 class="text-capitalize text-center">Enter Video ID</h3>
 				<div class="row">
-					<input type="text" id="video">
+					<input type="text" id="video" value="https://www.youtube.com/watch?v=VcGe4c5urb4">
 				</div>
 			</div>
-			<div class="btn-row">
+			<div class="container">
+				<div class="d-flex">
+					<div class="col-6">
+						<input type="text" id="loc" class="data" value="http://www.talkingheads.com/">
+					</div>
+					<div class="col-3">
+						<input type="text" id="changefreq" value="monthly" class="data">
+					</div>
+					<div class="col-3">
+						<input type="text" id="priority" value="0.8" class="data">
+					</div>
+				</div>
+				<div class="d-flex text-center">
+					<div class="col-6">
+						<h3>Page URL</h3>
+					</div>
+					<div class="col-3">
+						<h3>Change Frequency</h3>
+					</div>
+					<div class="col-3">
+						<h3>Priority</h3>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex text-center">
 				<button type="button" class="btn btn-drkblue" id="execute-request-button">Authorize</button>
 				<button type="button" class="btn btn-danger" id="getVideo">Get Video</button>
-				<button type="button" class="btn btn-purple" id="update">Update</button>
 			</div>
 			<h3 id="reporter" class="text-capitalize text-center"></h3>
-		</div>
+	</section>
+	<section class="container-fluid">
 		<div class="alert alert-info">
-			<div class="row">
-				<div class="col-sm-6">
-					<h3 class="text-capitalize text-center">title</h3>
-					<input type="text" id="title">
-				</div>
-				<div class="col-sm-1">
-					<h3 class="text-capitalize text-center">category</h3>
-					<input type="text" id="category">
-				</div>
-				<div class="col-sm-1">
-					<h3 class="text-capitalize text-center">language</h3>
-					<input type="text" id="language">
-				</div>
-				<div class="col-sm-4">
-					<h3 class="text-capitalize text-center">Channel Title</h3>
-					<input type="text" id="channelTitle">
-				</div>
-			</div>
+			
 			<div class="row">
 				<div class="col-sm-6">
 					<h3 class="text-capitalize text-center">description</h3>
@@ -56,9 +62,8 @@
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<h3 class="text-capitalize text-center">tags</h3>
-					<textarea id="tags" style="max-height: 960px;min-height: 20px"></textarea>
-					<h3 class="text-capitalize text-center">Total Letter Count : <span id="counter2">0</span></h3>
+					<h3 class="text-center">Video Sitemap</h3>
+					<textarea id="sitemap" style="max-height: 960px;min-height: 20px"></textarea>
 				</div>
 			</div>
 		</div>
