@@ -21,15 +21,11 @@
 				<button type="button" class="btn btn-blue text-capitalize" id="playlistClick">click</button>
 			</div>
 		</div>
-		<div class="row text-center">
-			<div class="col-8 offset-2">
+		<div class="d-flex">
 				<textarea id="playlist-container"></textarea>
+		</div>
+		<div class="d-flex">
 				<button type="button" class="btn btn-primary text-capitalize" id="copy">Copy</button>
-				<div class="button-container">
-					<button id="prev-button" class="paging-button" onclick="previousPage();">Previous Page</button>
-					<button id="next-button" class="paging-button" onclick="nextPage();">Next Page</button>
-				</div>
-			</div>
 		</div>
 	</section>
 	<?php include("includes/random-site-ad.php"); ?>
