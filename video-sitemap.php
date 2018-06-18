@@ -52,8 +52,11 @@
 	</section>
 	<section class="container-fluid">
 		<div class="alert alert-info">
-				<h3 class="text-capitalize text-center">Video Sitemap</h3>
-				<textarea id="sitemap" style="max-height: 960px;min-height: 20px"></textarea>
+			<h3 class="text-capitalize text-center">Video Sitemap</h3>
+			<textarea id="sitemap" style="max-height: 960px;min-height: 20px"></textarea>
+			<div class="d-flex">
+				<button type="button" class="btn btn-primary text-capitalize text-center" id="copy">Copy</button>
+			</div>
 		</div>
 	</section>
 	<?php include("includes/random-site-ad.php"); ?>
@@ -64,6 +67,10 @@
 	</script>
 	<script src="includes/get-video-data.js"></script>
 	<script>
+		$( "#copy" ).click( function () {
+			$( "#sitemap" ).select();
+			document.execCommand( 'copy' );
+		} );
 		$( document ).ready( function () {
 			autosize( document.querySelectorAll( 'textarea' ) );
 		} );

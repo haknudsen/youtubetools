@@ -129,7 +129,8 @@ function executeRequest(request) {
 		autosize.update($('#sitemap'));
 	});
 }
-function createSitemap(){
+
+function createSitemap() {
 	"use strict";
 	$('#sitemap').val("");
 	$('#sitemap').val($('#sitemap').val() + '<?xml version="1.0" encoding="UTF-8"?>');
@@ -146,6 +147,7 @@ function createSitemap(){
 	$('#sitemap').val($('#sitemap').val() + '\n');
 	console.log('sitemap start');
 }
+
 function addVideo() {
 	"use strict";
 	$('#sitemap').val($('#sitemap').val() + '<video:video>');
@@ -159,17 +161,21 @@ function addVideo() {
 	$('#sitemap').val($('#sitemap').val() + '<video:description>' + short + '</video:description>');
 	$('#sitemap').val($('#sitemap').val() + '\n    ');
 	var i = 0;
-	while (tags[i]) {
-		$('#sitemap').val($('#sitemap').val() + '<video:tag>' + tags[i] + '</video:tag>');
-		$('#sitemap').val($('#sitemap').val() + '\n    ');
-		i++;
+	if (tags) {
+		while (tags[i]) {
+			$('#sitemap').val($('#sitemap').val() + '<video:tag>' + tags[i] + '</video:tag>');
+			$('#sitemap').val($('#sitemap').val() + '\n    ');
+			i++;
+		}
+
 	}
 	$('#sitemap').val($('#sitemap').val() + '<video:category>' + snippet.categoryId + '</video:category>');
 	$('#sitemap').val($('#sitemap').val() + '\n    ');
 	$('#sitemap').val($('#sitemap').val() + '</video:video>');
 	$('#sitemap').val($('#sitemap').val() + '\n    ');
 }
-function closeMap(){
+
+function closeMap() {
 	$('#sitemap').val($('#sitemap').val() + '</url>');
 	$('#sitemap').val($('#sitemap').val() + '\n');
 	$('#sitemap').val($('#sitemap').val() + '</urlset>');
