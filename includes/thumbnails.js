@@ -85,7 +85,11 @@ function displayResult(videoSnippet) {
     "use strict";
     var videoId = videoSnippet.resourceId.videoId;
     var videoURL = '//img.youtube.com/vi/'+ videoId + '/maxresdefault.jpg';
-    link = '<a href="' + videoURL + '">' + videoURL + '</a>';
+	link = '<div class="col-3"><a href="' + videoURL + '">';
+	link += '<img src="' + videoURL + '" class="img-fluid"></a></div>';
+	link += '<div class="col-9">';
+    link += '<a href="' + videoURL + '">' + videoURL + '</a>';
+	link += '</div>';
     $('#video-container').append( link );
     $('#video-container').append( '<br>' );
     videoList[i] = videoURL;
