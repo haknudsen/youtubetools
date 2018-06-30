@@ -1,5 +1,5 @@
 <hr>
-<section class="container">
+<section class="container-fluid">
 	<h2 class="text-center">Affiliate Websites</h2>
 	<div class="d-flex align-items-center">
 		<?php
