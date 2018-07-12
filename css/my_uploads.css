@@ -76,3 +76,7 @@ background-image: -khtml-gradient(linear, left top, left bottom, from(#56c5eb), 
 .w-96{width: 96%;margin: 0 auto .25rem}
 .media-object,.media-body{padding:.5rem}
 .data {margin: .2rem auto}
+
+#channel {
+	width: 50%;margin: 0 auto
+}
