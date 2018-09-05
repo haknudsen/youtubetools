@@ -81,6 +81,7 @@
 							<button type="button" class="btn btn-blue text-capitalize center" id="remove-special">Remove Special Characters</button>
 							<button type="button" class="btn btn-blue text-capitalize center" id="convert-html">Replace HTML Entities</button>
 							<button type="button" class="btn btn-blue text-capitalize center" id="convert-commas">Replace Commas with line break</button>
+							<button type="button" class="btn btn-blue text-capitalize center" id="convert-unspin">Unspin</button>
 					</div>
 				</div>
 			</div>
