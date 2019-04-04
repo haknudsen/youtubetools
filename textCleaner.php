@@ -3,17 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<title>textCleaner&#8482;</title>
-	<meta name="description" content="Large suite of text apps.  Remove HTML, replace underscores with space,remove extra line breaks, remove special characters and more.">
-	<meta name="revisit-after" content="30 days">
-	<meta name="distribution" content="global">
-	<meta name="rating" content="general">
-	<meta name="Content-Language" content="english">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/my_uploads.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
+
 <body>
 	<?php include("includes/header.php"); ?>
 	<section class="container-fluid">
@@ -81,7 +77,6 @@
 							<button type="button" class="btn btn-blue text-capitalize center" id="remove-special">Remove Special Characters</button>
 							<button type="button" class="btn btn-blue text-capitalize center" id="convert-html">Replace HTML Entities</button>
 							<button type="button" class="btn btn-blue text-capitalize center" id="convert-commas">Replace Commas with line break</button>
-							<button type="button" class="btn btn-blue text-capitalize center" id="convert-unspin">Unspin</button>
 					</div>
 				</div>
 			</div>

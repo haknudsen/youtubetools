@@ -166,12 +166,6 @@ function changeText() {
 		myText = getText().replace(/,/g, '\n');
 		changeText(myText);
 	});
-	$('#convert-unspin').click(function () {
-		myText = getText().replace(/{/g, '');
-		myText = myText.replace(/}/g, '');
-		myText = myText.replace(/[|]/g, '\n');
-		changeText(myText);
-	});
 	////-----------------------------------general functions
 	function getText() {
 		return $('#textCleaner').val().toString();

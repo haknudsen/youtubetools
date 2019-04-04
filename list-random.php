@@ -34,6 +34,14 @@
 					<button id="commas" class="btn btn-purple">Comma Separated</button>
 					<button id="randomize" class="btn btn-drkblue">Randomize</button>
 				</div>
+		<div class="container">
+			<textarea id="spin" style="max-height: 480px"></textarea>
+			<div class="m-1">
+				<button type="button" class="btn btn-primary text-capitalize mx-auto" id="copy">Copy</button>
+				<h3>Total Letter Count : <span id="counter">0</span></h3>
+				<h3>Number of lines: <span id="lines"></span></h3>
+			</div>
+		</div>
 			</div>
 
 			<div class="col-6">
@@ -46,14 +54,6 @@
 			</div>
 		</div>
 
-		<div class="container">
-			<textarea id="spin" style="max-height: 700px"></textarea>
-			<div class="m-1">
-				<button type="button" class="btn btn-primary text-capitalize mx-auto" id="copy">Copy</button>
-				<h3>Total Letter Count : <span id="counter">0</span></h3>
-				<h3>Number of lines: <span id="lines"></span></h3>
-			</div>
-		</div>-
 	</section>
 	<?php include("includes/random-site-ad.php"); ?>
 	<?php include( "includes/nav.html"); ?>
