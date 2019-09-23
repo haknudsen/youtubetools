@@ -97,9 +97,7 @@ function requestVideoPlaylist(playlistId, pageToken) {
                 }
             }
             spintax += '}';
-    console.log(spintax);
             spin += spintax;
-			spin += '&list=' + playlistId;
             spin += frameEnd;
             if (!center) {
                 spin += leftEnd;
